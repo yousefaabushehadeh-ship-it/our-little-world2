@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Our Little World</title>
+<style>
+:root{--bg:#fdf6fa;--card:#fff;--tx:#1e2347;--mut:#7a7f9e;--pk:#f7b6d2;--bl:#bfe0f5;--lv:#d9ccf5;--ac:#e0709f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12142b;--card:#1d2040;--tx:#f0f0fa;--mut:#9da2c8;--pk:#6b3a54;--bl:#2c4a63;--lv:#3d3566}}
+:root[data-theme="dark"]{--bg:#12142b;--card:#1d2040;--tx:#f0f0fa;--mut:#9da2c8;--pk:#6b3a54;--bl:#2c4a63;--lv:#3d3566}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;min-height:100vh;transition:background .4s,color .4s;overflow-x:hidden}
+#app{display:flex;min-height:100vh}
+nav{display:flex;gap:4px;position:fixed;bottom:0;inset-inline:0;background:var(--card);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));box-shadow:0 -4px 16px #0001;z-index:5}
+nav button{flex:1;border:0;background:none;color:var(--mut);font-size:11px;padding:6px 2px;border-radius:12px;cursor:pointer;transition:.25s}
+nav button b{display:block;font-size:20px;font-weight:400;transition:transform .25s}nav button:hover b,nav button.on b{transform:translateY(-3px) scale(1.15)}nav button.on{background:var(--lv);color:var(--tx)}
+main{flex:1;padding:16px 16px 90px;max-width:760px;margin:0 auto;width:100%}
+@media(min-width:800px){nav{position:static;flex-direction:column;width:170px;padding:20px 10px;box-shadow:2px 0 16px #0001;height:100vh;position:sticky;top:0}nav button{flex:none;text-align:start;display:flex;gap:10px;align-items:center;font-size:14px;padding:10px 12px}nav button b{display:inline;font-size:18px}main{padding-bottom:30px}}
+.card{background:var(--card);border-radius:20px;padding:16px;margin:12px 0;box-shadow:0 4px 18px #e0709f14;animation:up .55s both;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 24px #e0709f26}
+main>*:nth-child(2){animation-delay:.05s}main>*:nth-child(3){animation-delay:.12s}main>*:nth-child(4){animation-delay:.19s}main>*:nth-child(5){animation-delay:.26s}main>*:nth-child(6){animation-delay:.33s}
+@keyframes up{from{opacity:0;transform:translateY(18px)}}
+h1{font-size:22px;margin:4px 0}h2{font-size:16px;margin:0 0 10px}.mut{color:var(--mut);font-size:13px}.wave{display:inline-block;animation:wv 2.2s infinite;transform-origin:70% 70%}@keyframes wv{0%,60%,100%{transform:rotate(0)}10%,30%{transform:rotate(14deg)}20%,40%{transform:rotate(-8deg)}50%{transform:rotate(10deg)}}
+.bar{height:12px;border-radius:9px;background:var(--lv);overflow:hidden;margin:4px 0}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--pk),var(--ac),var(--pk));background-size:200%;animation:sh 3s linear infinite;transition:width .8s cubic-bezier(.3,1.4,.5,1)}@keyframes sh{to{background-position:-200%}}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}.stats div{background:var(--bl);border-radius:14px;padding:10px 4px;font-size:13px;animation:up .6s both;transition:transform .2s}.stats div:hover{transform:scale(1.06) rotate(-1deg)}.stats b{display:block;font-size:18px}
+.task{display:flex;align-items:center;gap:10px;padding:10px 4px;border-bottom:1px solid var(--lv);cursor:pointer;transition:background .2s,padding .2s}.task:hover{background:var(--bg);padding-inline-start:10px;border-radius:10px}.task:last-child{border:0}
+.ck{width:24px;height:24px;border-radius:8px;border:2px solid var(--ac);display:grid;place-items:center;font-size:14px;color:#fff;flex:none;transition:.25s}.done .ck{background:var(--ac);animation:pop .4s}.done span{opacity:.55;text-decoration:line-through}
+@keyframes pop{50%{transform:scale(1.5) rotate(10deg)}}
+.xp{margin-inline-start:auto;font-size:12px;color:var(--ac)}
+.btn{border:0;background:var(--ac);color:#fff;border-radius:12px;padding:9px 14px;cursor:pointer;font-size:14px;transition:transform .15s,box-shadow .2s}.btn:hover{transform:translateY(-2px);box-shadow:0 6px 14px #e0709f44}.btn:active{transform:scale(.93)}.btn.g{background:var(--lv);color:var(--tx)}
+input{background:var(--bg);color:var(--tx);border:1px solid var(--lv);border-radius:10px;padding:8px;font-size:14px;max-width:100%}input:focus{outline:2px solid var(--pk)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+#toast{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));inset-inline:12px;margin:auto;max-width:360px;background:var(--tx);color:var(--bg);padding:12px 16px;border-radius:14px;text-align:center;opacity:0;transform:translateY(-30px) scale(.9);transition:.35s cubic-bezier(.3,1.5,.5,1);z-index:9;pointer-events:none}#toast.s{opacity:1;transform:none}
+.msg{background:linear-gradient(135deg,var(--pk),var(--lv))}
+.fx{position:fixed;pointer-events:none;z-index:20;font-weight:700;color:var(--ac);animation:fl 1.1s forwards}@keyframes fl{to{transform:translateY(-70px) scale(1.4);opacity:0}}
+.cf{position:fixed;top:-30px;z-index:20;pointer-events:none;animation:cf 2.6s linear forwards}@keyframes cf{to{transform:translateY(110vh) rotate(540deg)}}
+.login{max-width:340px;margin:8vh auto;text-align:center}.av{display:inline-block;width:110px;margin:6px;padding:14px;border-radius:20px;background:var(--card);cursor:pointer;font-size:44px;box-shadow:0 4px 18px #e0709f22;transition:.25s;animation:bob 3s ease-in-out infinite}.av:hover{transform:scale(1.1) rotate(-3deg)}.av small{display:block;font-size:14px;color:var(--tx)}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.room{width:100%;border-radius:18px;display:block;background:var(--card)}
+.tail{transform-origin:236px 168px;animation:wag 2s ease-in-out infinite}@keyframes wag{50%{transform:rotate(16deg)}}
+.eye{transform-origin:center;transform-box:fill-box;animation:bl 4s infinite}@keyframes bl{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+.catg{animation:br 3s ease-in-out infinite;transform-origin:170px 200px}@keyframes br{50%{transform:scaleY(1.02)}}
+.eat .catg{animation:ea .5s 3}.eat .fish{opacity:1;animation:fd 1.4s forwards}@keyframes ea{50%{transform:translateY(8px) rotate(3deg)}}@keyframes fd{0%{transform:translateY(-70px)}60%{transform:translateY(0)}100%{transform:translateY(0);opacity:0}}
+.fish{opacity:0}.bub circle{opacity:0}.wash .bub circle{animation:bu 1.8s ease-in infinite}.wash .sponge{opacity:1;animation:sp .5s 4 alternate}.sponge{opacity:0}
+@keyframes bu{0%{opacity:.9;transform:translateY(20px) scale(.5)}100%{opacity:0;transform:translateY(-60px) scale(1.3)}}@keyframes sp{to{transform:translate(50px,-10px) rotate(20deg)}}
+.z{opacity:0;animation:zz 3s infinite}@keyframes zz{50%{opacity:1;transform:translateY(-8px)}}
+.lbl{display:flex;justify-content:space-between;font-size:13px}
+.ov{position:fixed;inset:0;background:#000a;display:grid;place-items:center;align-content:center;z-index:30;animation:fi .4s}@keyframes fi{from{opacity:0}}
+.env{position:relative;width:270px;height:180px;background:var(--pk);border-radius:8px;animation:bob 3s ease-in-out infinite;cursor:pointer;box-shadow:0 12px 40px #e0709f88}
+.env .front{position:absolute;inset:0;background:var(--ac);clip-path:polygon(0 0,50% 58%,100% 0,100% 100%,0 100%);border-radius:8px;z-index:2;opacity:.92}
+.env .flap{position:absolute;inset:0 0 auto 0;height:62%;background:#c95a88;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .8s;z-index:3}
+.env.open .flap{transform:rotateX(180deg);z-index:0}.env .seal{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);font-size:30px;z-index:4;transition:.4s}.env.open .seal{opacity:0;transform:translate(-50%,-50%) scale(2)}
+.letter{position:absolute;left:14px;right:14px;top:14px;bottom:8px;background:#fffdf7;color:#1e2347;border-radius:6px;padding:14px;font-size:14px;z-index:1;transition:transform 1s .5s;text-align:center}
+.env.open .letter{transform:translateY(-105px) scale(1.12);z-index:5;box-shadow:0 8px 24px #0004}.tp{color:#fff;margin-top:18px;animation:bob 2s infinite}
+.hr{position:fixed;left:50%;top:50%;z-index:40;pointer-events:none;animation:hr 1.8s forwards}@keyframes hr{to{transform:translate(var(--x),-240px) scale(1.6);opacity:0}}
+.bubble{background:var(--lv);border-radius:16px;padding:8px 14px;margin-bottom:8px;text-align:center;font-size:14px;animation:pop2 .4s}@keyframes pop2{from{transform:scale(.85);opacity:0}}
+.play .catg{animation:pl .6s 3}@keyframes pl{50%{transform:translateY(-16px) rotate(-6deg)}}.play .yarn{animation:yr 1.9s}@keyframes yr{50%{transform:translateX(90px) rotate(360deg)}}
+.items{display:flex;flex-wrap:wrap;gap:8px}.it{background:var(--bl);border-radius:12px;padding:8px 10px;font-size:13px;text-align:center}.it.lk{opacity:.4;filter:grayscale(1)}.it b{display:block;font-size:24px}
+.cyw{background:linear-gradient(160deg,#fff0f6,#f3e9ff);border-radius:24px;padding:14px;color:#1e2347}.cyw .card{background:#fffafc;color:#1e2347}.cyw .mut{color:#8a7fa0}
+.cg{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}.cg div{aspect-ratio:1;display:grid;place-items:center;border-radius:12px;font-size:13px;transition:transform .2s}.cg div:hover{transform:scale(1.12)}
+.cg .p{background:#e0709f;color:#fff}.cg .r{background:#f7b6d2aa}.cg .c{background:#f7b6d2;box-shadow:0 0 0 2px #e0709f}.cg .t{outline:2px solid #7f6cc9}.cg .h{font-size:11px;color:#8a7fa0}
+.cyw .btn{background:#e0709f}.cyw .btn.g{background:#e6dcf8;color:#1e2347}.cyw input{background:#fff;color:#1e2347}.cyb{background:linear-gradient(90deg,#f7b6d2,#b9a2ef);color:#1e2347;font-weight:600}
+textarea{width:100%;background:var(--bg);color:var(--tx);border:1px solid var(--lv);border-radius:10px;padding:8px;font:inherit;font-size:14px;resize:vertical}textarea:focus{outline:2px solid var(--pk)}.letter p{max-height:90px;overflow:auto;margin:6px 0}
+#app{position:relative;z-index:1}.fh{position:fixed;bottom:-40px;z-index:0;pointer-events:none;opacity:.22;animation:fu linear infinite}@keyframes fu{to{transform:translateY(-115vh) rotate(50deg)}}
+h1{background:linear-gradient(90deg,var(--tx),var(--ac),var(--tx));background-size:200%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:sh 6s linear infinite}
+.pulse{animation:pls 2s infinite}@keyframes pls{0%{box-shadow:0 0 0 0 #e0709f66}70%{box-shadow:0 0 0 16px #e0709f00}100%{box-shadow:0 0 0 0 #e0709f00}}
+.big{font-size:18px;padding:16px 26px;border-radius:18px;animation:pls 2s infinite}.sel{background:var(--ac)!important;color:#fff!important;animation:pop .4s}
+.task{animation:up .45s both}.task:nth-child(2){animation-delay:.05s}.task:nth-child(3){animation-delay:.1s}.task:nth-child(4){animation-delay:.15s}.task:nth-child(5){animation-delay:.2s}.task:nth-child(6){animation-delay:.25s}.task:hover .ck{transform:rotate(-10deg) scale(1.15)}
+.bf{animation:bfly 9s ease-in-out infinite}@keyframes bfly{25%{transform:translate(120px,-20px)}50%{transform:translate(220px,30px)}75%{transform:translate(90px,10px)}}
+.stats b{animation:bob 3s ease-in-out infinite}nav button:nth-child(odd) b{animation:bob 4s ease-in-out infinite}.msg{background-size:200%;animation:up .55s both,sh 5s linear infinite}
+</style>
+</head>
+<body>
+<div id="app"><nav id="nav"></nav><main id="main"></main></div>
+<div id="toast"></div>
+<script>
+const T={ar:{home:"الرئيسية",tasks:"المهام",cat:"القطة",day:"يومنا",me:"إعداداتي",gm:"صباح الخير",prog:"إنجاز اليوم",streak:"يوم متتالي",xp:"نقطة XP",left:"مهام متبقية",lvl:"المستوى",feed:"أطعميها 🐟",clean:"نظفيها 🧼",add:"أضف مهمة",ph:"مهمة جديدة…",shared:"المشترك",done:"🌙 أحسنتِ! أنجزتِ يومك",soft:"الغد فرصة جديدة 🌱 التقدم الصغير تقدم ❤️",lang:"English",theme:"المظهر",cyc:"متتبع الدورة (خاص بروان)",share:"مشاركة معلومات الدورة مع الشريك",last:"تاريخ آخر بداية",len:"طول الدورة (أيام)",est:"تقديري",next:"الموعد القادم المتوقع",disc:"التوقعات تقريبية وقد تكون غير دقيقة، خاصة مع عدم انتظام الدورة.",priv:"🔒 هذه البيانات تظهر لروان فقط، ولا تُعرض لأحد آخر ما لم تفعّل المشاركة.",up:"ارتقت لولو للمستوى ",hun:"الشبع",cln:"النظافة",hap:"السعادة",who:"من أنتِ؟",pw:"كلمة السر",setpw:"أول مرة؟ اختاري كلمة سر (4 أحرف على الأقل)",go:"دخول",back:"رجوع",bad:"كلمة السر غير صحيحة، جرّبي مرة أخرى 💗",out:"تسجيل الخروج",msgFrom:"💌 رسالة من ",msg:"أنا فخور بيكي اليوم، مجرد إنك حاولتي وكملتي هو إنجاز ❤️",msg2:"خلّصت يومك، أنا فخور فيكي 💪",yum:"يممم! 😻",fresh:"نظيفة ولامعة ✨",demo:"نموذج تجريبي — البيانات تُحفظ في متصفحك فقط",change:"تغيير كلمة السر"},
+en:{home:"Home",tasks:"Tasks",cat:"Cat",day:"Our Day",me:"Settings",gm:"Good Morning",prog:"Today's Progress",streak:"Day Streak",xp:"XP",left:"Tasks left",lvl:"Level",feed:"Feed 🐟",clean:"Clean 🧼",add:"Add task",ph:"New task…",shared:"Shared",done:"🌙 You did it!",soft:"Tomorrow is another chance 🌱 Small progress is still progress ❤️",lang:"العربية",theme:"Theme",cyc:"Private Cycle Tracker (Rawan only)",share:"Share cycle information with partner",last:"Last period start",len:"Cycle length (days)",est:"Estimated",next:"Next expected",disc:"Predictions are approximate and may be inaccurate, especially with irregular cycles.",priv:"🔒 Only Rawan can see this. Nobody else does unless she turns sharing on.",up:"Lulu reached level ",hun:"Fullness",cln:"Clean",hap:"Happy",who:"Who are you?",pw:"Password",setpw:"First time? Choose a password (min 4 chars)",go:"Enter",back:"Back",bad:"Wrong password, try again 💗",out:"Log out",msgFrom:"💌 Message from ",msg:"I'm proud of you today — just trying and continuing is an achievement ❤️",msg2:"You finished your day, I'm proud of you 💪",yum:"Yum! 😻",fresh:"Clean and shiny ✨",demo:"Demo prototype — data is stored only in your browser",change:"Change password"}};
+Object.assign(T.ar,{edit:"تعديل",addS:"اكتب الحالة (ابدأ بإيموجي 😊)",edtS:"عدّل النص",inbox:"الرسائل الواصلة",sentAt:"أُرسلت",cyT:"تقويم الدورة 🌸",cyc:"تقويم الدورة 🌸",wm:"رسائلي إلى",mph:"اكتب رسالة حب أو تشجيع…",cname:"اسم القطة",cnph:"اسم جديد للقطة",nomsg:"لم تكتب رسائل بعد، سيصله رسالة افتراضية 💗",sent:"💌 تم حفظ الرسالة",play:"العبي معها 🧶",tap:"اضغطي لفتح الظرف 💌",items:"غرفة لولو",stg:"المرحلة",lk:"يفتح عند المستوى",cyT:"تقويم الدورة 🌸",st:"بداية الدورة",endd:"نهايتها (اختياري)",nt:"ملاحظة (اختياري)",ad:"حفظ",hist:"الدورات السابقة",nod:"لا توجد سجلات بعد",pm:"قد تتقدم أو تتأخر حتى",days:"أيام",avgl:"متوسط طول الدورة",leg:"● الدورة   ◌ الفترة المتوقعة   ◎ الأرجح",bk:"رجوع"});
+Object.assign(T.en,{edit:"Edit",addS:"Write the status (start with an emoji 😊)",edtS:"Edit text",inbox:"Received messages",sentAt:"Sent",cyT:"Cycle calendar 🌸",cyc:"Cycle calendar 🌸",wm:"My messages to",mph:"Write a love or encouragement note…",cname:"Cat name",cnph:"New cat name",nomsg:"No messages yet, a default one will be shown 💗",sent:"💌 Message saved",play:"Play 🧶",tap:"Tap to open the envelope 💌",items:"Lulu's room",stg:"Stage",lk:"Unlocks at level",cyT:"Cycle calendar 🌸",st:"Period start",endd:"End (optional)",nt:"Note (optional)",ad:"Save",hist:"Past cycles",nod:"No records yet",pm:"May come earlier or later by up to",days:"days",avgl:"Average cycle length",leg:"● Period   ◌ Predicted window   ◎ Most likely",bk:"Back"});
+Object.assign(T.ar,{dates:"الديتات",cynav:"دورتي",fun:"المرح",mm:"متى تظهر لي رسائل الشريك؟",mmd:"بعد ما أخلّص مهامي 🌙",mma:"بأي وقت 💌",mystat:"حالتي الآن",care:"أنا معك 🫂 وبيساعد كتير تحكي مع حدا قريب منك أو مختص.",hug:"ابعث حضن 🤗",wantout:"عبالي نطلع! 🚗",yes:"يلا! 🎉",later:"مش هلأ",newn:"عندك إشعار جديد 💗",goout:"عبالي نطلع 🚗",goouth:"بيوصل إشعار لـ",nsent:"وصّلنا الإشعار 💗",planT:"خطّط لديت جديد",dwhen:"التاريخ",dwhat:"الفعالية",dlink:"رابط (اختياري)",dimg:"صورة (اختيارية)",nodates:"ما في ديتات مخططة بعد ✨",open:"فتح الرابط",miss:"لولو اشتاقت لكم 🥺 تعالوا طعموها والعبوا معها"});
+Object.assign(T.en,{dates:"Dates",cynav:"Cycle",fun:"Fun",mm:"When do I see my partner's messages?",mmd:"After I finish my tasks 🌙",mma:"Anytime 💌",mystat:"How I am now",care:"I'm here with you 🫂 Talking to someone close, or a professional, can really help.",hug:"Send a hug 🤗",wantout:"I feel like going out! 🚗",yes:"Let's go! 🎉",later:"Not now",newn:"You have a new notification 💗",goout:"I feel like going out 🚗",goouth:"A notification goes to",nsent:"Notification sent 💗",planT:"Plan a new date",dwhen:"Date",dwhat:"Activity",dlink:"Link (optional)",dimg:"Image (optional)",nodates:"No dates planned yet ✨",open:"Open link",miss:"Lulu missed you 🥺 Come feed her and play"});
+const STG={ar:["هريرة صغيرة","قطة يافعة","قطة أنيقة","ملكة القطط 👑"],en:["Kitten","Young cat","Stylish cat","Cat royalty 👑"]};
+const CL={ar:{hun:["بطني بتزقزق… 🐟","ممكن سمكة صغيرة؟"],dirty:["بدي حمّام فقاعات 🫧","فروي محتاج تنظيف!"],ok:["أنا بحبكم كتير 💗","شفت إنكم أنجزتوا؟ فخورة فيكم!","بدي أنام جنب النافذة ☀️","العبوا معي شوي 🧶"]},en:{hun:["My tummy is rumbling… 🐟","Maybe a little fish?"],dirty:["I'd love a bubble bath 🫧","My fur needs a wash!"],ok:["I love you both 💗","I saw you did great — so proud!","I'll nap by the window ☀️","Play with me a bit 🧶"]}};
+CL.ar.bored=["زهقانة… العبوا معي 🧶","بدي حدا يلعب معي!"];CL.en.bored=["I'm bored… play with me 🧶","Someone play with me!"];
+const F=[[2,"🛏️",60,225,"سرير","Bed"],[3,"📚",275,120,"مكتبة","Bookshelf"],[4,"🖼️",150,75,"لوحة","Painting"],[5,"🛋️",268,228,"كنبة","Sofa"],[6,"💡",215,62,"مصباح","Lamp"],[7,"🏰",30,120,"قلعة","Castle"]];
+const stage=L=>L<3?0:L<5?1:L<7?2:3;
+const sc=()=>`translate(170 222) scale(${[.75,.88,1,1.08][stage(lvl(D.cat.xp))]}) translate(-170 -222)`;
+const furn=()=>F.filter(f=>lvl(D.cat.xp)>=f[0]).map(f=>`<text x="${f[2]}" y="${f[3]}" font-size="30" style="animation:up .8s both">${f[1]}</text>`).join("");
+const acc=()=>{const g=stage(lvl(D.cat.xp));const th=D.cat.hun<40?"🐟":(D.cat.fun??60)<40?"🧶":D.cat.cln<40?"🫧":"";return(th?`<text x="236" y="92" font-size="22" style="animation:bob 1.6s infinite">💭${th}</text>`:"")+(g>=1?`<text x="200" y="104" font-size="20" text-anchor="middle">🎀</text>`:"")+(g>=3?`<text x="170" y="90" font-size="30" text-anchor="middle">👑</text>`:"")};
+const say=()=>{const c=D.cat,a=CL[D.lang][c.hun<40?"hun":c.cln<40?"dirty":(c.fun??60)<40?"bored":"ok"];return a[Math.floor(Math.random()*a.length)]};
+function pickMsg(){const m=D.msgs.filter(x=>x.to==cur);if(m.length){const z=m[Math.floor(Math.random()*m.length)];return esc(z.text)+(z.ts?`<br><small class="mut">${t("sentAt")} ${fmtT(z.ts)}</small>`:"")}return (cur=="rawan"?t("msg"):t("msg2"))}
+function addMsg(){const v=document.getElementById("mt").value.trim().slice(0,400);if(!v)return;D.msgs.push({from:cur,to:other(),text:v,ts:Date.now()});logAct("msg");save();render();toast(t("sent"))}
+function delMsg(i){D.msgs.splice(i,1);save();render()}
+function setName(){D.cat.name=document.getElementById("cnm").value.trim().slice(0,20);save();render();toast("🐱 "+cn()+" 💗")}
+function msgCards(){const mine=D.msgs.map((m,i)=>[m,i]).filter(a=>a[0].from==cur);return inbox()+`<div class="card"><h2>💌 ${t("mm")}</h2><div class="row"><button class="btn g ${D.u[cur].mm!="any"?"sel":""}" onclick="setMM('done')">${t("mmd")}</button><button class="btn g ${D.u[cur].mm=="any"?"sel":""}" onclick="setMM('any')">${t("mma")}</button></div></div><div class="card"><h2>🐱 ${t("cname")}</h2><div class="row"><input id="cnm" value="${esc(D.cat.name)}" placeholder="${t("cnph")}" maxlength="20"><button class="btn" onclick="setName()">${t("ad")}</button></div></div><div class="card"><h2>💌 ${t("wm")} ${nm(other())}</h2><textarea id="mt" rows="3" maxlength="400" placeholder="${t("mph")}"></textarea><p><button class="btn" onclick="addMsg()">${t("ad")}</button></p>${mine.length?mine.map(a=>`<div class="task" style="cursor:default"><span>💌 ${esc(a[0].text)}${a[0].ts?` <small class="mut">· ${fmtT(a[0].ts)}</small>`:""}</span><em class="xp" style="cursor:pointer" onclick="delMsg(${a[1]})">✕</em></div>`).join(""):`<p class="mut">${t("nomsg")}</p>`}</div>`}
+function pet(e){e.stopPropagation();D.cat.xp+=1;save();fx(e,"💗 +1");const b=document.getElementById("bub");if(b){b.textContent=say();b.style.animation="none";void b.offsetWidth;b.style.animation=""}}
+function play(e){anim("play",1900,()=>{D.cat.xp+=3;D.cat.fun=Math.min(100,(D.cat.fun??60)+30);D.cat.hun=Math.max(20,D.cat.hun-5);fx(e,"🧶 +3")})}
+function hrt(){for(let i=0;i<16;i++){const x=document.createElement("span");x.className="hr";x.textContent="💗";x.style.setProperty("--x",(Math.random()*300-150)+"px");x.style.animationDelay=Math.random()*.5+"s";document.body.appendChild(x);setTimeout(()=>x.remove(),2500)}}
+function openMsg(){if(document.getElementById("ov"))return;const o=document.createElement("div");o.id="ov";o.className="ov";o.innerHTML=`<div class="env" id="env"><div class="letter"><b>💌 ${nm(other())}</b><p>${pickMsg()}</p></div><div class="front"></div><div class="flap"></div><div class="seal">💗</div></div><p class="tp">${t("tap")}</p>`;o.onclick=()=>{const v=document.getElementById("env");if(!v.classList.contains("open")){v.classList.add("open");o.querySelector(".tp").textContent="";conf();hrt()}else o.remove()};document.body.appendChild(o)}
+let cyM=new Date();cyM.setDate(1);
+const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const pd=x=>new Date(x+"T12:00"),addD=(x,n)=>{const d=pd(x);d.setDate(d.getDate()+n);return iso(d)};
+function pred(){const C=D.u.rawan.cyc,st=C.log.map(x=>x.s).sort();if(!st.length)return null;const ds=[];for(let i=1;i<st.length;i++)ds.push((pd(st[i])-pd(st[i-1]))/864e5);const avg=ds.length?Math.round(ds.reduce((a,b)=>a+b)/ds.length):(+C.len||28),sd=ds.length>1?Math.sqrt(ds.reduce((a,b)=>a+(b-avg)**2,0)/ds.length):0;return{avg,m:Math.max(2,Math.ceil(sd)),nx:addD(st[st.length-1],avg)}}
+function addCyc(){const s0=document.getElementById("cs").value;if(!s0)return;const C=D.u.rawan.cyc;C.log.push({s:s0,e:document.getElementById("ce").value,n:document.getElementById("cn").value.slice(0,200)});C.log.sort((a,b)=>b.s.localeCompare(a.s));save();render()}
+function delCyc(i){D.u.rawan.cyc.log.splice(i,1);save();render()}
+function cycView(){const ed=cur=="rawan",C=D.u.rawan.cyc,P=pred(),loc=D.lang=="ar"?"ar-JO":"en-GB",y=cyM.getFullYear(),mo=cyM.getMonth(),n=new Date(y,mo+1,0).getDate(),today=iso(new Date());
+let cells=[0,1,2,3,4,5,6].map(i=>`<div class="h">${new Date(2023,0,1+i).toLocaleDateString(loc,{weekday:"narrow"})}</div>`).join("")+"<div></div>".repeat(cyM.getDay());
+for(let d=1;d<=n;d++){const ds=iso(new Date(y,mo,d));let c="";if(C.log.some(x=>ds>=x.s&&ds<=(x.e||x.s)))c="p";else if(P&&ds==P.nx)c="c";else if(P&&ds>=addD(P.nx,-P.m)&&ds<=addD(P.nx,P.m))c="r";if(ds==today)c+=" t";cells+=`<div class="${c}">${d}</div>`}
+return`<div class="cyw"><div class="row" style="justify-content:space-between"><h1>${t("cyT")}</h1><button class="btn g" onclick="D.tab='me';render()">${t("bk")}</button></div><p class="mut">${t("priv")}</p>
+<div class="card"><div class="row" style="justify-content:space-between"><button class="btn g" onclick="cyM.setMonth(cyM.getMonth()-1);render()">‹</button><b>${cyM.toLocaleDateString(loc,{month:"long",year:"numeric"})}</b><button class="btn g" onclick="cyM.setMonth(cyM.getMonth()+1);render()">›</button></div><div class="cg" style="margin:10px 0">${cells}</div><p class="mut">${t("leg")}</p></div>
+<div class="card"><h2>🌸 ${t("next")} <span class="mut">(${t("est")})</span></h2>${P?`<p style="font-size:20px;margin:4px 0"><b>${pd(P.nx).toLocaleDateString(loc,{day:"numeric",month:"long"})}</b></p><p class="mut">${t("pm")} ±${P.m} ${t("days")} · ${t("avgl")}: ${P.avg}</p>`:`<p class="mut">${t("nod")}</p>`}<p class="mut">${t("disc")}</p></div>
+${ed?`<div class="card"><h2>${t("ad")}</h2><div class="row"><label>${t("st")} <input id="cs" type="date"></label><label>${t("endd")} <input id="ce" type="date"></label></div><p><input id="cn" placeholder="${t("nt")}" style="width:100%"></p><button class="btn" onclick="addCyc()">${t("ad")}</button></div>`:""}
+<div class="card"><h2>${t("hist")}</h2>${C.log.length?C.log.map((x,i)=>`<div class="task" style="cursor:default"><span>🌸 ${x.s}${x.e?" → "+x.e:""} ${x.n?"· "+x.n.replace(/</g,"&lt;"):""}</span>${ed?`<em class="xp" style="cursor:pointer" onclick="delCyc(${i})">✕</em>`:""}</div>`).join(""):`<p class="mut">${t("nod")}</p>`}</div>
+<p class="mut">🔒 ${t("nshare")}</p></div>`}
+const NM={rawan:{ar:"روان",en:"Rawan",ic:"👩"},yousef:{ar:"يوسف",en:"Yousef",ic:"👨"}};
+const TH=[0,100,250,450,700,1000,1400,1900,2500,3200];
+const lvl=x=>{let l=1;TH.forEach((v,i)=>{if(x>=v)l=i+1});return l};
+const mk=()=>[["☀️","Wake up early","الاستيقاظ مبكرًا",5],["☀️","Brush teeth","تنظيف الأسنان",5],["☀️","Drink water","شرب الماء",5],["📚","Study Mathematics","مذاكرة الرياضيات",10],["📚","Review English","مراجعة الإنجليزي",10],["💪","Exercise","تمرين رياضي",15]].map((t,i)=>({id:i,ic:t[0],en:t[1],ar:t[2],xp:t[3],done:false}));
+const D={lang:"ar",theme:"system",tab:"home",cat:{xp:640,hun:60,cln:60},u:{rawan:{h:null,xp:420,streak:8,tasks:mk(),cyc:{last:"",len:28,share:false}},yousef:{h:null,xp:300,streak:5,tasks:mk()}}};
+try{const s=JSON.parse(localStorage.getItem("olw_ui")||"null");if(s){D.lang=s.lang||D.lang;D.theme=s.theme||D.theme}}catch(e){}
+{const _c=D.u.rawan.cyc;if(!_c.log)_c.log=[];if(!D.msgs)D.msgs=[];if(!D.dates)D.dates=[];if(!D.nudges)D.nudges=[];if(!D.log)D.log=[];if(D.cat.name===undefined)D.cat.name=""}
+let cur=null,sel=null,bad=false,busy=false;
+const save=()=>{try{localStorage.setItem("olw_ui",JSON.stringify({lang:D.lang,theme:D.theme}))}catch(e){}window.FB&&FB.push()};
+const esc=x=>String(x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),cn=()=>D.cat.name?esc(D.cat.name):(D.lang=="ar"?"لولو":"Lulu"),t=k=>{const v=T[D.lang][k];return D.cat.name?v.replace(/لولو|Lulu/g,esc(D.cat.name)):v},nm=k=>NM[k][D.lang];
+async function H(s){try{const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode("olw:"+s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}catch(e){return btoa(unescape(encodeURIComponent(s)))}}
+const other=()=>cur=="rawan"?"yousef":"rawan";
+const pctOf=u=>{const a=D.u[u].tasks;if(u!=cur&&D.u[u].pct!=null)return D.u[u].pct;return a.length?Math.round(a.filter(x=>x.done).length/a.length*100):0};
+function toast(m){const e=document.getElementById("toast");e.textContent=m;e.className="s";clearTimeout(toast.i);toast.i=setTimeout(()=>e.className="",2600)}
+function fx(e,txt){const s=document.createElement("span");s.className="fx";s.textContent=txt;const x=e&&e.clientX||innerWidth/2,y=e&&e.clientY||innerHeight/2;s.style.left=x+"px";s.style.top=y+"px";document.body.appendChild(s);setTimeout(()=>s.remove(),1200)}
+function conf(){for(let i=0;i<26;i++){const s=document.createElement("span");s.className="cf";s.textContent=["💗","⭐","✨","🎉","🌸"][i%5];s.style.left=Math.random()*100+"vw";s.style.animationDelay=Math.random()*.8+"s";s.style.fontSize=14+Math.random()*16+"px";document.body.appendChild(s);setTimeout(()=>s.remove(),3600)}}
+async function login(){const p=document.getElementById("pw").value;if(p.length<4){bad=true;return render()}const h=await H(p),u=D.u[sel];
+if(!u.h){u.h=h;save()}else if(u.h!==h){bad=true;return render()}
+cur=sel;try{sessionStorage.setItem("olw_u",cur)}catch(e){}bad=false;sel=null;D.tab="home";render();toast("💗 "+nm(cur));if(D.nudges.some(n=>n.to==cur&&!n.seen))setTimeout(()=>{toast(t("newn"));hrt()},1800)}
+function logout(){FB.out()}
+function toggle(id,ev){const U=D.u[cur],k=U.tasks.find(x=>x.id==id);k.done=!k.done;const s=k.done?1:-1,before=lvl(D.cat.xp),c=Math.ceil(k.xp/2);
+U.xp=Math.max(0,U.xp+s*k.xp);D.cat.xp=Math.max(0,D.cat.xp+s*c);
+if(k.done){logAct("task",k[D.lang]);fx(ev,"+"+k.xp+" ⭐");toast("⭐ +"+k.xp+" XP · 🐱 +"+c);if(lvl(D.cat.xp)>before){setTimeout(()=>{toast("🐱 "+t("up")+lvl(D.cat.xp));conf()},1500)}
+if(pctOf(cur)==100){if(U.lastDone!=iso(new Date())){U.streak++;U.lastDone=iso(new Date());logAct("all")}setTimeout(()=>{conf();toast(t("done"));setTimeout(openMsg,1500)},700)}}save();render()}
+function anim(cls,ms,fn){if(busy)return;busy=true;const r=document.getElementById("room");r.classList.add(cls);fn();logAct(cls);save();setTimeout(()=>{r.classList.remove(cls);busy=false;render()},ms)}
+function feed(e){anim("eat",1600,()=>{D.cat.hun=Math.min(100,D.cat.hun+25);D.cat.xp+=2;fx(e,"😻 +2");toast(t("yum"))})}
+function wash(e){anim("wash",2200,()=>{D.cat.cln=Math.min(100,D.cat.cln+25);D.cat.xp+=2;fx(e,"🫧 +2");setTimeout(()=>toast(t("fresh")),1800)})}
+function apply(){const h=document.documentElement;h.lang=D.lang;h.dir=D.lang=="ar"?"rtl":"ltr";if(D.theme=="system")h.removeAttribute("data-theme");else h.dataset.theme=D.theme}
+function nextDate(){const c=D.u.rawan.cyc;if(!c.last)return"—";const d=new Date(c.last);d.setDate(d.getDate()+(+c.len||28));return d.toLocaleDateString(D.lang=="ar"?"ar-JO":"en-GB")}
+function bars(){const c=D.cat,hp=Math.round((c.hun+c.cln)/2);return[[t("hun"),c.hun],[t("cln"),c.cln],[t("fun"),Math.round(c.fun??60)],[t("hap"),hp]].map(b=>`<div class="lbl"><span>${b[0]}</span><span>${Math.round(b[1])}%</span></div><div class="bar"><i style="width:${b[1]}%"></i></div>`).join("")}
+function catSvg(){const dirty=D.cat.cln<40;return`<svg id="room" class="room" viewBox="0 0 320 240"><rect width="320" height="150" fill="var(--bl)"/><rect y="150" width="320" height="90" fill="var(--lv)"/><rect x="30" y="24" width="70" height="64" rx="8" fill="#fff" stroke="var(--ac)" stroke-width="3"/><path d="M65 24v64M30 56h70" stroke="var(--ac)" stroke-width="2"/><circle cx="82" cy="40" r="7" fill="#ffd66b"/><ellipse cx="170" cy="206" rx="105" ry="20" fill="var(--pk)"/><g transform="translate(250 150)"><rect x="-3" y="30" width="20" height="20" rx="4" fill="#c98b5b"/><path d="M7 30c-14-14-4-26 0-32 4 6 14 18 0 32" fill="#6cc48a"/></g><g><ellipse cx="80" cy="212" rx="28" ry="9" fill="#e0709f"/><g class="fish"><ellipse cx="80" cy="200" rx="12" ry="6" fill="#ffb347"/><path d="M92 200l9-6v12z" fill="#ffb347"/></g></g>
+${furn()}<text class="bf" x="40" y="60" font-size="18">🦋</text><text class="yarn" x="95" y="222" font-size="22">🧶</text><g transform="${sc()}"><g class="catg" onclick="pet(event)" style="cursor:pointer"><g class="tail"><path d="M232 178c30 0 34-40 12-48" fill="none" stroke="#f0a35e" stroke-width="12" stroke-linecap="round"/></g><ellipse cx="190" cy="180" rx="50" ry="36" fill="#f6b26b"/><ellipse cx="190" cy="196" rx="22" ry="16" fill="#fff3e0"/><circle cx="170" cy="126" r="38" fill="#f6b26b"/><path d="M137 106l6-36 26 20zM203 106l-6-36-26 20z" fill="#f6b26b"/><path d="M145 96l3-17 12 9zM195 96l-3-17-12 9z" fill="#f7b6d2"/><ellipse class="eye" cx="156" cy="124" rx="5" ry="7" fill="#1e2347"/><ellipse class="eye" cx="184" cy="124" rx="5" ry="7" fill="#1e2347"/><path d="M166 134h8l-4 5z" fill="#e0709f"/><path d="M170 139q-6 8-12 4M170 139q6 8 12 4" fill="none" stroke="#1e2347" stroke-width="2"/><path d="M130 132h-18M130 138l-16 6M210 132h-18M210 138l16 6" stroke="#1e2347" stroke-width="1.5" transform="translate(-10 0)"/>${dirty?'<circle cx="190" cy="176" r="6" fill="#8b6b4a" opacity=".5"/><circle cx="160" cy="150" r="4" fill="#8b6b4a" opacity=".5"/>':""}<text class="z" x="215" y="100" font-size="18">💤</text>${acc()}</g></g>
+<g class="bub" fill="#fff" stroke="var(--ac)">${[[150,170],[170,150],[195,175],[215,160],[135,140],[185,120],[160,185],[205,140]].map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="${6+i%3*2}" style="animation-delay:${i*.15}s"/>`).join("")}</g><text class="sponge" x="120" y="150" font-size="34">🧽</text></svg>`}
+function nav(){const n=[["home","🏠"],["tasks","✅"],["cat","🐱"],["dates","🗓️"],["day","💞"],["cyc","🌸","cynav"],["me","⚙️"]];document.getElementById("nav").innerHTML=cur?n.map(x=>`<button class="${D.tab==x[0]?"on":""}" onclick="D.tab='${x[0]}';render()"><b>${x[1]}</b>${t(x[2]||x[0])}</button>`).join(""):""}
+function render(){apply();nav();let h="";
+if(!cur){document.getElementById("main").innerHTML=loginView();return}
+dayReset();const U=D.u[cur],p=pctOf(cur),o=other(),po=pctOf(o),L=lvl(D.cat.xp),cl=TH[L-1],ch=TH[L]||cl+500,cp=Math.round((D.cat.xp-cl)/(ch-cl)*100);
+const list=U.tasks.map(k=>`<div class="task ${k.done?"done":""}" onclick="toggle(${k.id},event)"><div class="ck">${k.done?"✓":""}</div><span>${k.ic} ${k[D.lang]}</span><em class="xp">+${k.xp}</em></div>`).join("");
+const cc=`<div class="card"><h2>🐱 ${cn()} · ${t("lvl")} ${L}</h2><div class="bar"><i style="width:${cp}%"></i></div></div>`;
+if(D.tab=="cyc"){document.getElementById("main").innerHTML=cycView();return}
+if(D.tab=="dates")h=datesView();
+if(D.tab=="home")h=`<h1>${t("gm")}, ${nm(cur)} 💗 <span class="wave">👋</span></h1><div class="mut">${new Date().toLocaleDateString(D.lang=="ar"?"ar-JO":"en-GB",{weekday:"long",day:"numeric",month:"long"})}</div>
+${presence()}${statusCards()}${nudgeCards()}<div class="card"><h2>${t("prog")}: ${p}%</h2><div class="bar"><i style="width:${p}%"></i></div><p class="mut">${p==100?t("done"):p==0?t("soft"):"✨"}</p></div>
+<div class="stats"><div><b>🔥 ${U.streak}</b>${t("streak")}</div><div><b>⭐ ${U.xp}</b>${t("xp")}</div><div><b>📋 ${U.tasks.filter(x=>!x.done).length}</b>${t("left")}</div></div>
+<div class="card">${list}</div>${cc}${(p==100||D.u[cur].mm=="any")?`<div class="card msg" style="text-align:center;cursor:pointer" onclick="openMsg()"><div style="font-size:46px;animation:bob 2s infinite">💌</div><h2>${t("msgFrom")}${nm(o)}</h2><p class="mut">${t("tap")}</p></div>`:""}<p class="mut">${t("demo")}</p>`;
+if(D.tab=="tasks")h=`<h1>${t("tasks")} · ${nm(cur)}</h1><div class="card">${tlist()}</div><div class="card row"><input id="nt" placeholder="${t("ph")}" maxlength="80"><select id="nx"><option>5</option><option>10</option><option>15</option></select> XP<button class="btn" onclick="addT()">${t("add")}</button></div>`;
+if(D.tab=="cat"){const st=stage(L);h=`<h1>${cn()} 🐱</h1><div class="card"><div class="bubble" id="bub">${say()}</div>${catSvg()}<div class="row" style="justify-content:center;margin:10px 0"><button class="btn" onclick="feed(event)">${t("feed")}</button><button class="btn" onclick="play(event)">${t("play")}</button><button class="btn g" onclick="wash(event)">${t("clean")}</button></div>${bars()}<p class="mut" style="text-align:center">${t("stg")}: <b>${STG[D.lang][st]}</b> · ${t("lvl")} ${L} · ${D.cat.xp} XP</p></div><div class="card"><h2>${t("items")}</h2><div class="items">${F.map(f=>`<div class="it ${L>=f[0]?"":"lk"}"><b>${f[1]}</b>${D.lang=="ar"?f[4]:f[5]}${L>=f[0]?"":`<br><small>${t("lk")} ${f[0]}</small>`}</div>`).join("")}</div></div>`}
+if(D.tab=="day")h=`<h1>${t("day")} 💞</h1><div class="card">${[[cur,p],[o,po]].map(a=>`<h2>${NM[a[0]].ic} ${nm(a[0])}</h2><div class="bar"><i style="width:${a[1]}%"></i></div><p class="mut">${a[1]}%</p>`).join("")}<h2>${t("shared")}</h2><div class="bar"><i style="width:${Math.round((p+po)/2)}%"></i></div><p class="mut">${Math.round((p+po)/2)}%</p></div>${actFeed()}`;
+if(D.tab=="me"){const C=D.u.rawan.cyc;h=`<h1>${t("me")}</h1><div class="card row"><button class="btn g" onclick="D.lang=D.lang=='ar'?'en':'ar';save();render()">${t("lang")}</button><button class="btn g" onclick="D.theme={system:'light',light:'dark',dark:'system'}[D.theme];save();render()">${t("theme")}: ${D.theme}</button><button class="btn g" onclick="U0()">${t("change")}</button><button class="btn" onclick="logout()">${t("out")}</button></div>`+msgCards()+(cur=="rawan"?`<div class="card" style="text-align:center"><button class="btn cyb" onclick="D.tab='cyc';render()">🌸 ${t("cyc")}</button></div>`:"")}
+document.getElementById("main").innerHTML=h}
+function U0(){FB.resetMine()}
+function addT(){const v=document.getElementById("nt").value.trim();if(!v)return;D.u[cur].tasks.push({id:Date.now(),ic:"📝",en:v,ar:v,xp:+document.getElementById("nx").value||5,done:false});save();render()}
+
+const MOODS=[["😊","happy","سعيد","سعيدة","Happy"],["😢","sad","زعلان","زعلانة","Sad"],["😞","dep","مكتئب","مكتئبة","Depressed"]];
+const WH=[["🚿","bath","بالحمام","In the bathroom"],["🛏️","room","بالغرفة","In my room"],["🛋️","liv","بالصالة مع الأهل","In the living room with family"]];
+const mLab=(m,u)=>D.lang=="ar"?(u=="rawan"?m[3]:m[2]):m[4],wLab=w=>D.lang=="ar"?w[2]:w[3];
+function setMM(v){D.u[cur].mm=v;save();render()}
+const OLD={happy:"😊",sad:"😢",dep:"😞",bath:"🚿",room:"🛏️",liv:"🛋️"};
+let sEdit=false;
+function presets(){const U=D.u[cur],ar=D.lang=="ar",f=cur=="rawan";if(!U.pm)U.pm=ar?[f?"😊 سعيدة":"😊 سعيد",f?"😢 زعلانة":"😢 زعلان",f?"😞 مكتئبة":"😞 مكتئب"]:["😊 Happy","😢 Sad","😞 Depressed"];if(!U.pw)U.pw=ar?["🚿 بالحمام","🛏️ بالغرفة","🛋️ بالصالة مع الأهل"]:["🚿 In the bathroom","🛏️ In my room","🛋️ In the living room with family"];return U}
+const LST=k=>k=="m"?"pm":"pw",KEY=k=>k=="m"?"mood":"where";
+function pickSt(k,i){const U=presets(),S=U.st||(U.st={}),L=U[LST(k)],v=L[i];
+if(sEdit){const n=prompt(t("edtS"),v);if(n&&n.trim()){L[i]=n.trim().slice(0,40);if(S[KEY(k)]==v)S[KEY(k)]=L[i];save();render()}return}
+S[KEY(k)]=v;S.ts=Date.now();if(k=="m"){logAct("mood",v);if(/😢|😞|😔|😭|زعل|مكتئب|sad|depress|down/i.test(v))toast(t("care"))}save();render()}
+function addSt(k){const n=prompt(t("addS"));if(n&&n.trim()){presets()[LST(k)].push(n.trim().slice(0,40));save();render()}}
+function delSt(k,i){presets()[LST(k)].splice(i,1);save();render()}
+function statusCards(){const U=presets(),S=U.st||{},o=other(),P=D.u[o].st||{};
+const row=k=>`<div class="row" style="margin-top:6px">${U[LST(k)].map((v,i)=>`<span style="display:inline-flex;gap:2px"><button class="btn g ${S[KEY(k)]==v?"sel":""}" onclick="pickSt('${k}',${i})">${esc(v)}</button>${sEdit?`<button class="btn g" style="padding:4px 8px" onclick="delSt('${k}',${i})">✕</button>`:""}</span>`).join("")}<button class="btn g" onclick="addSt('${k}')">＋</button></div>`;
+const own=`<div class="card"><div class="row" style="justify-content:space-between"><h2>${t("mystat")}</h2><button class="btn g ${sEdit?"sel":""}" onclick="sEdit=!sEdit;render()">✏️ ${t("edit")}</button></div>${row("m")}${row("w")}${S.ts?`<p class="mut">${fmtT(S.ts)}</p>`:""}</div>`;
+const pm=P.mood,pw=P.where;
+return own+((pm||pw)?`<div class="card"><h2>${NM[o].ic} ${nm(o)}: ${esc(OLD[pm]||pm||"")} ${pw?"· "+esc(OLD[pw]||pw):""}</h2><p class="mut">${P.ts?ago(P.ts):""}</p><button class="btn g" onclick="hug()">${t("hug")}</button></div>`:"")}
+function inbox(){const m=D.msgs.filter(x=>x.to==cur).slice().reverse();return`<div class="card"><h2>📥 ${t("inbox")}</h2>${m.length?m.map(x=>`<div class="task" style="cursor:default"><span>💌 ${esc(x.text)}<br><small class="mut">${nm(x.from)}${x.ts?" · "+t("sentAt")+" "+fmtT(x.ts):""}</small></span></div>`).join(""):`<p class="mut">—</p>`}</div>`}
+function hug(){D.nudges.push({from:cur,to:other(),k:"hug",ts:Date.now()});logAct("hug");save();hrt();toast("🤗 💗")}
+function nudge(){D.nudges.push({from:cur,to:other(),k:"out",ts:Date.now()});logAct("out");save();hrt();toast(t("nsent"));render()}
+function seen(i){D.nudges[i].seen=true;save();render()}
+function rp(i,v){D.nudges[i].reply=v;D.nudges[i].seen=true;save();if(v=="yes")conf();render()}
+function nudgeCards(){return D.nudges.map((n,i)=>[n,i]).filter(a=>a[0].to==cur&&!a[0].seen).map(a=>{const n=a[0];return n.k=="hug"?`<div class="card msg pulse"><h2>🤗 ${nm(n.from)}: 💗</h2><p class="mut">${fmtT(n.ts)}</p><button class="btn" onclick="seen(${a[1]})">💗</button></div>`:`<div class="card msg pulse"><h2>🚗 ${nm(n.from)}: ${t("wantout")}</h2><p class="mut">${fmtT(n.ts)}</p><div class="row"><button class="btn" onclick="rp(${a[1]},'yes')">${t("yes")}</button><button class="btn g" onclick="rp(${a[1]},'later')">${t("later")}</button></div></div>`}).join("")}
+let dImg="";
+const vv=id=>document.getElementById(id).value.trim();
+function pickImg(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,480/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*k;c.height=im.height*k;c.getContext("2d").drawImage(im,0,0,c.width,c.height);dImg=c.toDataURL("image/jpeg",.6);const p=document.getElementById("dp");p.src=dImg;p.style.display="block"};im.src=r.result};r.readAsDataURL(f)}
+function addDate(){const d=vv("dd"),ti=vv("dt");if(!d||!ti)return;let l=vv("dl");if(l){if(!/^https?:\/\//i.test(l))l="https://"+l;try{new URL(l)}catch(e){l=""}}D.dates.push({from:cur,d,ti:ti.slice(0,80),l:l.slice(0,300),img:dImg,ts:Date.now()});logAct("date");dImg="";save();hrt();render()}
+function delDate(i){D.dates.splice(i,1);save();render()}
+function datesView(){const o=other(),loc=D.lang=="ar"?"ar-JO":"en-GB",last=D.nudges.filter(n=>n.from==cur&&n.k=="out").pop();
+const list=D.dates.map((x,i)=>[x,i]).sort((a,b)=>a[0].d.localeCompare(b[0].d)).map(a=>{const x=a[0];return`<div class="card"><div class="row" style="justify-content:space-between"><b>🗓️ ${new Date(x.d+"T12:00").toLocaleDateString(loc,{weekday:"long",day:"numeric",month:"long"})}</b><em class="xp" style="cursor:pointer" onclick="delDate(${a[1]})">✕</em></div><h2>${esc(x.ti)}</h2>${x.img?`<img src="${x.img}" alt="" style="max-width:100%;border-radius:14px;margin:6px 0">`:""}${x.l?`<a class="btn g" href="${esc(x.l)}" target="_blank" rel="noopener noreferrer">🔗 ${t("open")}</a>`:""}<p class="mut">${NM[x.from].ic} ${nm(x.from)}${x.ts?" · "+fmtT(x.ts):""}</p></div>`}).join("");
+return`<h1>${t("dates")} 🗓️</h1><div class="card msg" style="text-align:center"><button class="btn big" onclick="nudge()">${t("goout")}</button><p class="mut">${t("goouth")} ${nm(o)}${last?" · "+fmtT(last.ts)+" · "+(last.reply=="yes"?t("yes"):last.reply=="later"?t("later"):"⏳"):""}</p></div>
+<div class="card"><h2>${t("planT")}</h2><div class="row"><label>${t("dwhen")} <input id="dd" type="date"></label><input id="dt" placeholder="${t("dwhat")}" maxlength="80"></div><p><input id="dl" placeholder="${t("dlink")}" style="width:100%"></p><p class="mut">${t("dimg")} <input type="file" accept="image/*" onchange="pickImg(this)"></p><img id="dp" alt="" style="display:none;max-width:100%;max-height:160px;border-radius:12px;margin-bottom:8px"><button class="btn" onclick="addDate()">${t("ad")}</button></div>${list||`<p class="mut">${t("nodates")}</p>`}`}
+function decay(){const now=Date.now(),c=D.cat;if(!c.t){c.t=now;save();return 0}const h=(now-c.t)/36e5;if(h<.05)return 0;c.hun=Math.max(15,c.hun-h*8);c.cln=Math.max(15,c.cln-h*4);c.fun=Math.max(15,(c.fun??60)-h*6);c.t=now;save();return h}
+const _h=decay();
+setInterval(()=>{decay();if(cur&&(D.tab=="cat"||D.u[cur].day!==iso(new Date()))&&!busy)render()},60000);
+(()=>{const b=document.createElement("div");for(let i=0;i<10;i++){const e=document.createElement("span");e.className="fh";e.textContent=["💗","✨","🌸","🐾","⭐"][i%5];e.style.left=(i*10+Math.random()*8)+"%";e.style.animationDuration=(14+Math.random()*12)+"s";e.style.animationDelay=(-Math.random()*20)+"s";e.style.fontSize=(14+Math.random()*12)+"px";b.appendChild(e)}document.body.appendChild(b)})();
+Object.assign(T.ar,{nshare:"مشتركة بينكما فقط، وروان هي من تعدّلها 💞",priv:"🌸 هذا التقويم مشترك بين روان ويوسف، وروان فقط تقدر تعدّل عليه.",delq:"حذف هذه المهمة؟",newday:"يوم جديد، مهامك رجعت من البداية 🌱",actT:"النشاط الأخير",em:"الإيميل",forgot:"نسيت كلمة السر؟",denied:"هذا الحساب ليس ضمن هذا العالم 🔒",badl:"الإيميل أو كلمة السر غير صحيحة",rsent:"بعتنا رابط تغيير كلمة السر على إيميلك 📧",remail:"اكتبي الإيميل أولًا",nofb:"تعذّر الاتصال بالخادم، تأكدي من الإنترنت"});
+Object.assign(T.en,{nshare:"Shared only between the two of you; Rawan edits it 💞",priv:"🌸 This calendar is shared between Rawan and Yousef; only Rawan can edit it.",delq:"Delete this task?",newday:"New day, your tasks are fresh 🌱",actT:"Recent activity",em:"Email",forgot:"Forgot password?",denied:"This account isn't part of this world 🔒",badl:"Wrong email or password",rsent:"Password reset link sent to your email 📧",remail:"Enter your email first",nofb:"Couldn't reach the server, check your connection"});
+let editId=null;
+const loc0=()=>D.lang=="ar"?"ar-JO":"en-GB";
+const fmtT=ts=>ts?new Date(ts).toLocaleString(loc0(),{day:"numeric",month:"short",hour:"numeric",minute:"2-digit"}):"";
+function ago(ts){const m=Math.floor((Date.now()-ts)/6e4),a=D.lang=="ar";if(m<1)return a?"الآن":"just now";if(m<60)return a?"قبل "+m+" دقيقة":m+" min ago";const h=Math.floor(m/60);if(h<24)return a?"قبل "+h+" ساعة":h+" h ago";return fmtT(ts)}
+function logAct(k,x){D.log.push({w:cur,k,x:x||"",ts:Date.now()});if(D.log.length>40)D.log=D.log.slice(-40)}
+function dayReset(){if(!cur)return;const U=D.u[cur],td=iso(new Date());if(U.day===td)return;const had=!!U.day;U.tasks.forEach(k=>{k.done=false});if(U.lastDone!=addD(td,-1)&&U.lastDone!=td)U.streak=0;U.day=td;save();if(had)setTimeout(()=>toast(t("newday")),600)}
+const tlist=()=>D.u[cur].tasks.map(k=>k.id===editId?`<div class="task" style="cursor:default"><input id="et" value="${esc(k[D.lang])}" maxlength="80" style="flex:1;min-width:0"><select id="ex">${[5,10,15].map(x=>`<option ${x==k.xp?"selected":""}>${x}</option>`).join("")}</select><button class="btn" onclick="saveEdit(${k.id})">✓</button><button class="btn g" onclick="editId=null;render()">✕</button></div>`:`<div class="task ${k.done?"done":""}" onclick="toggle(${k.id},event)"><div class="ck">${k.done?"✓":""}</div><span>${k.ic} ${esc(k[D.lang])}</span><em class="xp">+${k.xp}</em><button class="btn g" style="padding:4px 8px" onclick="event.stopPropagation();editId=${k.id};render()">✏️</button><button class="btn g" style="padding:4px 8px" onclick="event.stopPropagation();delTask(${k.id})">🗑️</button></div>`).join("");
+function saveEdit(id){const k=D.u[cur].tasks.find(x=>x.id===id),v=vv("et");if(k&&v){k.ar=v;k.en=v;k.xp=+document.getElementById("ex").value||k.xp}editId=null;save();render()}
+function delTask(id){if(!confirm(t("delq")))return;D.u[cur].tasks=D.u[cur].tasks.filter(x=>x.id!==id);save();render()}
+function presence(){const o=other(),ts=D.u[o].seen,a=D.lang=="ar",on=ts&&Date.now()-ts<7*6e4;return`<div class="card" style="display:flex;gap:10px;align-items:center"><span style="font-size:26px">${NM[o].ic}</span><div><b>${nm(o)}</b><div class="mut">${!ts?"—":on?(a?"🟢 متصل الآن":"🟢 Online now"):(a?"🕐 آخر ظهور ":"🕐 Last seen ")+ago(ts)+" · "+fmtT(ts)}</div></div></div>`}
+function actFeed(){const a=D.lang=="ar",ic={task:"✅",all:"🌙",eat:"🐟",wash:"🫧",play:"🧶",msg:"💌",date:"🗓️",out:"🚗",hug:"🤗",mood:"🙂"};
+const AR={all:["أنهى اليوم كاملًا","أنهت اليوم كاملًا"],eat:["أطعم القطة","أطعمت القطة"],wash:["نظّف القطة","نظّفت القطة"],play:["لعب مع القطة","لعبت مع القطة"],msg:["كتب رسالة","كتبت رسالة"],date:["أضاف ديت","أضافت ديت"],out:["عبالُه نطلع","عبالها نطلع"],hug:["أرسل حضنًا","أرسلت حضنًا"]};
+const EN={all:"Finished the whole day",eat:"Fed the cat",wash:"Cleaned the cat",play:"Played with the cat",msg:"Wrote a message",date:"Added a date",out:"Feels like going out",hug:"Sent a hug"};
+const tx=e=>{if(e.k=="task")return(a?"مهمة: ":"Task: ")+esc(e.x);if(e.k=="mood")return(a?"الحالة: ":"Mood: ")+esc(OLD[e.x]||e.x);return a?AR[e.k]?.[e.w=="rawan"?1:0]||"":EN[e.k]||""};
+return`<div class="card"><h2>🕐 ${t("actT")}</h2>${D.log.length?D.log.slice(-15).reverse().map(e=>`<div class="task" style="cursor:default"><span>${ic[e.k]||"•"} ${NM[e.w].ic} ${nm(e.w)} ${tx(e)}</span><em class="xp">${fmtT(e.ts)}</em></div>`).join(""):"—"}</div>`}
+const AS={s:"loading",err:"",taken:[]};
+function loginView(){const L=`<p class="mut"><button class="btn g" onclick="D.lang=D.lang=='ar'?'en':'ar';save();render()">${t("lang")}</button></p>`;let b;
+if(AS.s=="loading")b=`<div style="font-size:60px;animation:bob 1.5s infinite">🐱</div>`;
+else if(AS.s=="pick")b=`<p class="mut">${t("who")}</p>`+["rawan","yousef"].filter(k=>!AS.taken.includes(k)).map(k=>`<div class="av" onclick="FB.claim('${k}')">${NM[k].ic}<small>${nm(k)}</small></div>`).join("")+`<p><button class="btn g" onclick="FB.out()">${t("out")}</button></p>`;
+else if(AS.s=="denied")b=`<p class="mut">${t("denied")}</p><button class="btn g" onclick="FB.out()">${t("out")}</button>`;
+else b=`<p><input id="em" type="email" placeholder="${t("em")}" autocomplete="username" style="width:100%"></p><p><input id="pw2" type="password" placeholder="${t("pw")}" autocomplete="current-password" style="width:100%" onkeydown="if(event.key=='Enter')doLogin()"></p><button class="btn" onclick="doLogin()">${t("go")}</button>${AS.err?`<p class="mut">${esc(AS.err)}</p>`:""}<p><button class="btn g" onclick="FB.reset(vv('em'))">${t("forgot")}</button></p>`;
+return`<div class="login card"><h1>Our Little World 🐱</h1>${b}${L}</div>`}
+function doLogin(){FB.login(vv("em"),document.getElementById("pw2").value)}
+window.APP={D,AS,h:_h,render:()=>render(),setCur:v=>{cur=v},getCur:()=>cur,pct:u=>pctOf(u),toast,t};
+setTimeout(()=>{if(AS.s=="loading"&&!window.FB){AS.s="out";AS.err=t("nofb");render()}},8000);
+render();
+</script>
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut,sendPasswordResetEmail}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import{getFirestore,doc,getDoc,setDoc,onSnapshot}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const app=initializeApp({apiKey:"AIzaSyA6TDMAxQKwoqUEA22217G9lj_33e7pT9Q",authDomain:"our-little-world-7db49.firebaseapp.com",projectId:"our-little-world-7db49",storageBucket:"our-little-world-7db49.firebasestorage.app",messagingSenderId:"939906219332",appId:"1:939906219332:web:b8066e2fb54b84b400ab11"});
+const auth=getAuth(app),db=getFirestore(app),A=window.APP,D=A.D,AS=A.AS;
+let unsubs=[],timer=null,ready=false,loaded=false,gs=false,gu=false,nS=false,nU=false,gc=false,nC=false,fired=false;
+const clean=o=>JSON.parse(JSON.stringify(o));
+const rc=()=>{const a=document.activeElement;if(!(a&&(a.tagName=="INPUT"||a.tagName=="TEXTAREA")))A.render()};
+function stop(){unsubs.forEach(f=>f());unsubs=[];ready=false;loaded=false;gs=gu=gc=nS=nU=nC=fired=false;A.setCur(null)}
+function push(){if(!ready||!gs||!gu||!gc)return;clearTimeout(timer);timer=setTimeout(async()=>{const c=A.getCur(),U=D.u[c];if(!c)return;try{
+await setDoc(doc(db,"world","shared"),clean({cat:D.cat,msgs:D.msgs,dates:D.dates,nudges:D.nudges,log:D.log,u:{[c]:{xp:U.xp,streak:U.streak,st:U.st||{},mm:U.mm||"done",pct:A.pct(c),seen:U.seen||null}}}),{merge:true});
+await setDoc(doc(db,"users",c),clean({tasks:U.tasks,day:U.day||null,lastDone:U.lastDone||null,pm:U.pm||null,pw:U.pw||null}),{merge:true});if(c=="rawan")await setDoc(doc(db,"world","cycle"),clean(D.u.rawan.cyc))}catch(e){A.toast("⚠️ "+(e.code||e.message))}},400)}
+function start(who){A.setCur(who);ready=true;
+unsubs.push(onSnapshot(doc(db,"world","shared"),s=>{if(s.metadata.hasPendingWrites)return;const d=s.data();gs=true;if(!d){nS=true;fin();return}
+if(d.cat)D.cat=Object.assign({name:""},d.cat);D.msgs=d.msgs||[];D.dates=d.dates||[];D.nudges=d.nudges||[];
+for(const k in(d.u||{}))if(k!=who||!loaded)Object.assign(D.u[k],d.u[k]);loaded=true;D.log=d.log||[];fin();rc()}));
+unsubs.push(onSnapshot(doc(db,"world","cycle"),s=>{if(s.metadata.hasPendingWrites)return;const d=s.data();gc=true;if(!d){nC=true;fin();return}D.u.rawan.cyc=Object.assign({log:[]},d);fin();rc()}));
+unsubs.push(onSnapshot(doc(db,"users",who),s=>{if(s.metadata.hasPendingWrites)return;const d=s.data();gu=true;if(!d){nU=true;fin();return}
+if(d.tasks)D.u[who].tasks=d.tasks;if(d.pm)D.u[who].pm=d.pm;if(d.pw)D.u[who].pw=d.pw;if(d.day!==undefined)D.u[who].day=d.day;if(d.lastDone)D.u[who].lastDone=d.lastDone;fin();rc()}))}
+function beat(){const c=A.getCur();if(!c||!ready)return;D.u[c].seen=Date.now();push()}
+function fin(){if(gs&&gu&&gc&&!fired){fired=true;if(nS||nU||nC)push();beat()}}
+setInterval(()=>{if(document.visibilityState=="visible")beat()},300000);
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState=="visible")beat()});
+onAuthStateChanged(auth,async u=>{stop();if(!u){AS.s="out";A.render();return}AS.s="loading";A.render();
+try{const[r,y]=await Promise.all(["rawan","yousef"].map(k=>getDoc(doc(db,"slots",k))));
+const own=r.exists()&&r.data().uid==u.uid?"rawan":y.exists()&&y.data().uid==u.uid?"yousef":null;
+if(own){AS.s="ok";D.tab="home";start(own);A.render();if(A.h>3)setTimeout(()=>A.toast("🐱 "+A.t("miss")),900);return}
+AS.taken=[r.exists()&&"rawan",y.exists()&&"yousef"].filter(Boolean);AS.s=AS.taken.length==2?"denied":"pick";A.render()}
+catch(e){AS.s="out";AS.err=e.code||String(e);A.render()}});
+window.FB={push,
+async login(e,p){AS.err="";try{await signInWithEmailAndPassword(auth,e,p)}catch(x){AS.err=A.t("badl");A.render()}},
+out(){signOut(auth)},
+async reset(e){if(!e){A.toast(A.t("remail"));return}try{await sendPasswordResetEmail(auth,e)}catch(x){}A.toast(A.t("rsent"))},
+async resetMine(){try{await sendPasswordResetEmail(auth,auth.currentUser.email);A.toast(A.t("rsent"))}catch(x){A.toast("⚠️ "+x.code)}},
+async claim(k){try{await setDoc(doc(db,"slots",k),{uid:auth.currentUser.uid});AS.s="ok";D.tab="home";start(k);A.render()}catch(x){A.toast("⚠️ "+(x.code||x.message))}}};
+</script>
+</body>
+</html>
