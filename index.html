@@ -89,11 +89,11 @@ const sc=()=>`translate(170 222) scale(${[.75,.88,1,1.08][stage(lvl(D.cat.xp))]}
 const furn=()=>F.filter(f=>lvl(D.cat.xp)>=f[0]).map(f=>`<text x="${f[2]}" y="${f[3]}" font-size="30" style="animation:up .8s both">${f[1]}</text>`).join("");
 const acc=()=>{const g=stage(lvl(D.cat.xp));const th=D.cat.hun<40?"🐟":(D.cat.fun??60)<40?"🧶":D.cat.cln<40?"🫧":"";return(th?`<text x="236" y="92" font-size="22" style="animation:bob 1.6s infinite">💭${th}</text>`:"")+(g>=1?`<text x="200" y="104" font-size="20" text-anchor="middle">🎀</text>`:"")+(g>=3?`<text x="170" y="90" font-size="30" text-anchor="middle">👑</text>`:"")};
 const say=()=>{const c=D.cat,a=CL[D.lang][c.hun<40?"hun":c.cln<40?"dirty":(c.fun??60)<40?"bored":"ok"];return a[Math.floor(Math.random()*a.length)]};
-function pickMsg(){const m=D.msgs.filter(x=>x.to==cur);return m.length?esc(m[Math.floor(Math.random()*m.length)].text):(cur=="rawan"?t("msg"):t("msg2"))}
-function addMsg(){const v=document.getElementById("mt").value.trim().slice(0,400);if(!v)return;D.msgs.push({from:cur,to:other(),text:v});save();render();toast(t("sent"))}
+function pickMsg(){const m=D.msgs.filter(x=>x.to==cur);if(m.length){const z=m[Math.floor(Math.random()*m.length)];return esc(z.text)+(z.ts?`<br><small class="mut">${fmtT(z.ts)}</small>`:"")}return (cur=="rawan"?t("msg"):t("msg2"))}
+function addMsg(){const v=document.getElementById("mt").value.trim().slice(0,400);if(!v)return;D.msgs.push({from:cur,to:other(),text:v,ts:Date.now()});logAct("msg");save();render();toast(t("sent"))}
 function delMsg(i){D.msgs.splice(i,1);save();render()}
 function setName(){D.cat.name=document.getElementById("cnm").value.trim().slice(0,20);save();render();toast("🐱 "+cn()+" 💗")}
-function msgCards(){const mine=D.msgs.map((m,i)=>[m,i]).filter(a=>a[0].from==cur);return`<div class="card"><h2>💌 ${t("mm")}</h2><div class="row"><button class="btn g ${D.u[cur].mm!="any"?"sel":""}" onclick="setMM('done')">${t("mmd")}</button><button class="btn g ${D.u[cur].mm=="any"?"sel":""}" onclick="setMM('any')">${t("mma")}</button></div></div><div class="card"><h2>🐱 ${t("cname")}</h2><div class="row"><input id="cnm" value="${esc(D.cat.name)}" placeholder="${t("cnph")}" maxlength="20"><button class="btn" onclick="setName()">${t("ad")}</button></div></div><div class="card"><h2>💌 ${t("wm")} ${nm(other())}</h2><textarea id="mt" rows="3" maxlength="400" placeholder="${t("mph")}"></textarea><p><button class="btn" onclick="addMsg()">${t("ad")}</button></p>${mine.length?mine.map(a=>`<div class="task" style="cursor:default"><span>💌 ${esc(a[0].text)}</span><em class="xp" style="cursor:pointer" onclick="delMsg(${a[1]})">✕</em></div>`).join(""):`<p class="mut">${t("nomsg")}</p>`}</div>`}
+function msgCards(){const mine=D.msgs.map((m,i)=>[m,i]).filter(a=>a[0].from==cur);return`<div class="card"><h2>💌 ${t("mm")}</h2><div class="row"><button class="btn g ${D.u[cur].mm!="any"?"sel":""}" onclick="setMM('done')">${t("mmd")}</button><button class="btn g ${D.u[cur].mm=="any"?"sel":""}" onclick="setMM('any')">${t("mma")}</button></div></div><div class="card"><h2>🐱 ${t("cname")}</h2><div class="row"><input id="cnm" value="${esc(D.cat.name)}" placeholder="${t("cnph")}" maxlength="20"><button class="btn" onclick="setName()">${t("ad")}</button></div></div><div class="card"><h2>💌 ${t("wm")} ${nm(other())}</h2><textarea id="mt" rows="3" maxlength="400" placeholder="${t("mph")}"></textarea><p><button class="btn" onclick="addMsg()">${t("ad")}</button></p>${mine.length?mine.map(a=>`<div class="task" style="cursor:default"><span>💌 ${esc(a[0].text)}${a[0].ts?` <small class="mut">· ${fmtT(a[0].ts)}</small>`:""}</span><em class="xp" style="cursor:pointer" onclick="delMsg(${a[1]})">✕</em></div>`).join(""):`<p class="mut">${t("nomsg")}</p>`}</div>`}
 function pet(e){e.stopPropagation();D.cat.xp+=1;save();fx(e,"💗 +1");const b=document.getElementById("bub");if(b){b.textContent=say();b.style.animation="none";void b.offsetWidth;b.style.animation=""}}
 function play(e){anim("play",1900,()=>{D.cat.xp+=3;D.cat.fun=Math.min(100,(D.cat.fun??60)+30);D.cat.hun=Math.max(20,D.cat.hun-5);fx(e,"🧶 +3")})}
 function hrt(){for(let i=0;i<16;i++){const x=document.createElement("span");x.className="hr";x.textContent="💗";x.style.setProperty("--x",(Math.random()*300-150)+"px");x.style.animationDelay=Math.random()*.5+"s";document.body.appendChild(x);setTimeout(()=>x.remove(),2500)}}
@@ -112,14 +112,14 @@ return`<div class="cyw"><div class="row" style="justify-content:space-between"><
 <div class="card"><h2>🌸 ${t("next")} <span class="mut">(${t("est")})</span></h2>${P?`<p style="font-size:20px;margin:4px 0"><b>${pd(P.nx).toLocaleDateString(loc,{day:"numeric",month:"long"})}</b></p><p class="mut">${t("pm")} ±${P.m} ${t("days")} · ${t("avgl")}: ${P.avg}</p>`:`<p class="mut">${t("nod")}</p>`}<p class="mut">${t("disc")}</p></div>
 <div class="card"><h2>${t("ad")}</h2><div class="row"><label>${t("st")} <input id="cs" type="date"></label><label>${t("endd")} <input id="ce" type="date"></label></div><p><input id="cn" placeholder="${t("nt")}" style="width:100%"></p><button class="btn" onclick="addCyc()">${t("ad")}</button></div>
 <div class="card"><h2>${t("hist")}</h2>${C.log.length?C.log.map((x,i)=>`<div class="task" style="cursor:default"><span>🌸 ${x.s}${x.e?" → "+x.e:""} ${x.n?"· "+x.n.replace(/</g,"&lt;"):""}</span><em class="xp" style="cursor:pointer" onclick="delCyc(${i})">✕</em></div>`).join(""):`<p class="mut">${t("nod")}</p>`}</div>
-<label class="mut"><input type="checkbox" ${C.share?"checked":""} onchange="D.u.rawan.cyc.share=this.checked;save()"> ${t("share")}</label></div>`}
+<p class="mut">🔒 ${t("nshare")}</p></div>`}
 const NM={rawan:{ar:"روان",en:"Rawan",ic:"👩"},yousef:{ar:"يوسف",en:"Yousef",ic:"👨"}};
 const TH=[0,100,250,450,700,1000,1400,1900,2500,3200];
 const lvl=x=>{let l=1;TH.forEach((v,i)=>{if(x>=v)l=i+1});return l};
 const mk=()=>[["☀️","Wake up early","الاستيقاظ مبكرًا",5],["☀️","Brush teeth","تنظيف الأسنان",5],["☀️","Drink water","شرب الماء",5],["📚","Study Mathematics","مذاكرة الرياضيات",10],["📚","Review English","مراجعة الإنجليزي",10],["💪","Exercise","تمرين رياضي",15]].map((t,i)=>({id:i,ic:t[0],en:t[1],ar:t[2],xp:t[3],done:false}));
 const D={lang:"ar",theme:"system",tab:"home",cat:{xp:640,hun:60,cln:60},u:{rawan:{h:null,xp:420,streak:8,tasks:mk(),cyc:{last:"",len:28,share:false}},yousef:{h:null,xp:300,streak:5,tasks:mk()}}};
 try{const s=JSON.parse(localStorage.getItem("olw_ui")||"null");if(s){D.lang=s.lang||D.lang;D.theme=s.theme||D.theme}}catch(e){}
-{const _c=D.u.rawan.cyc;if(!_c.log)_c.log=[];if(!D.msgs)D.msgs=[];if(!D.dates)D.dates=[];if(!D.nudges)D.nudges=[];if(D.cat.name===undefined)D.cat.name=""}
+{const _c=D.u.rawan.cyc;if(!_c.log)_c.log=[];if(!D.msgs)D.msgs=[];if(!D.dates)D.dates=[];if(!D.nudges)D.nudges=[];if(!D.log)D.log=[];if(D.cat.name===undefined)D.cat.name=""}
 let cur=null,sel=null,bad=false,busy=false;
 const save=()=>{try{localStorage.setItem("olw_ui",JSON.stringify({lang:D.lang,theme:D.theme}))}catch(e){}window.FB&&FB.push()};
 const esc=x=>String(x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),cn=()=>D.cat.name?esc(D.cat.name):(D.lang=="ar"?"لولو":"Lulu"),t=k=>{const v=T[D.lang][k];return D.cat.name?v.replace(/لولو|Lulu/g,esc(D.cat.name)):v},nm=k=>NM[k][D.lang];
@@ -135,9 +135,9 @@ cur=sel;try{sessionStorage.setItem("olw_u",cur)}catch(e){}bad=false;sel=null;D.t
 function logout(){FB.out()}
 function toggle(id,ev){const U=D.u[cur],k=U.tasks.find(x=>x.id==id);k.done=!k.done;const s=k.done?1:-1,before=lvl(D.cat.xp),c=Math.ceil(k.xp/2);
 U.xp=Math.max(0,U.xp+s*k.xp);D.cat.xp=Math.max(0,D.cat.xp+s*c);
-if(k.done){fx(ev,"+"+k.xp+" ⭐");toast("⭐ +"+k.xp+" XP · 🐱 +"+c);if(lvl(D.cat.xp)>before){setTimeout(()=>{toast("🐱 "+t("up")+lvl(D.cat.xp));conf()},1500)}
-if(pctOf(cur)==100){U.streak++;setTimeout(()=>{conf();toast(t("done"));setTimeout(openMsg,1500)},700)}}save();render()}
-function anim(cls,ms,fn){if(busy)return;busy=true;const r=document.getElementById("room");r.classList.add(cls);fn();save();setTimeout(()=>{r.classList.remove(cls);busy=false;render()},ms)}
+if(k.done){logAct("task",k[D.lang]);fx(ev,"+"+k.xp+" ⭐");toast("⭐ +"+k.xp+" XP · 🐱 +"+c);if(lvl(D.cat.xp)>before){setTimeout(()=>{toast("🐱 "+t("up")+lvl(D.cat.xp));conf()},1500)}
+if(pctOf(cur)==100){if(U.lastDone!=iso(new Date())){U.streak++;U.lastDone=iso(new Date());logAct("all")}setTimeout(()=>{conf();toast(t("done"));setTimeout(openMsg,1500)},700)}}save();render()}
+function anim(cls,ms,fn){if(busy)return;busy=true;const r=document.getElementById("room");r.classList.add(cls);fn();logAct(cls);save();setTimeout(()=>{r.classList.remove(cls);busy=false;render()},ms)}
 function feed(e){anim("eat",1600,()=>{D.cat.hun=Math.min(100,D.cat.hun+25);D.cat.xp+=2;fx(e,"😻 +2");toast(t("yum"))})}
 function wash(e){anim("wash",2200,()=>{D.cat.cln=Math.min(100,D.cat.cln+25);D.cat.xp+=2;fx(e,"🫧 +2");setTimeout(()=>toast(t("fresh")),1800)})}
 function apply(){const h=document.documentElement;h.lang=D.lang;h.dir=D.lang=="ar"?"rtl":"ltr";if(D.theme=="system")h.removeAttribute("data-theme");else h.dataset.theme=D.theme}
@@ -149,53 +149,68 @@ ${furn()}<text class="bf" x="40" y="60" font-size="18">🦋</text><text class="y
 function nav(){const n=[["home","🏠"],["tasks","✅"],["cat","🐱"],["dates","🗓️"],["day","💞"],...(cur=="rawan"?[["cyc","🌸","cynav"]]:[]),["me","⚙️"]];document.getElementById("nav").innerHTML=cur?n.map(x=>`<button class="${D.tab==x[0]?"on":""}" onclick="D.tab='${x[0]}';render()"><b>${x[1]}</b>${t(x[2]||x[0])}</button>`).join(""):""}
 function render(){apply();nav();let h="";
 if(!cur){document.getElementById("main").innerHTML=loginView();return}
-const U=D.u[cur],p=pctOf(cur),o=other(),po=pctOf(o),L=lvl(D.cat.xp),cl=TH[L-1],ch=TH[L]||cl+500,cp=Math.round((D.cat.xp-cl)/(ch-cl)*100);
+dayReset();const U=D.u[cur],p=pctOf(cur),o=other(),po=pctOf(o),L=lvl(D.cat.xp),cl=TH[L-1],ch=TH[L]||cl+500,cp=Math.round((D.cat.xp-cl)/(ch-cl)*100);
 const list=U.tasks.map(k=>`<div class="task ${k.done?"done":""}" onclick="toggle(${k.id},event)"><div class="ck">${k.done?"✓":""}</div><span>${k.ic} ${k[D.lang]}</span><em class="xp">+${k.xp}</em></div>`).join("");
 const cc=`<div class="card"><h2>🐱 ${cn()} · ${t("lvl")} ${L}</h2><div class="bar"><i style="width:${cp}%"></i></div></div>`;
 if(D.tab=="cyc"&&cur!="rawan")D.tab="home";
 if(D.tab=="cyc"){document.getElementById("main").innerHTML=cycView();return}
 if(D.tab=="dates")h=datesView();
 if(D.tab=="home")h=`<h1>${t("gm")}, ${nm(cur)} 💗 <span class="wave">👋</span></h1><div class="mut">${new Date().toLocaleDateString(D.lang=="ar"?"ar-JO":"en-GB",{weekday:"long",day:"numeric",month:"long"})}</div>
-${statusCards()}${nudgeCards()}<div class="card"><h2>${t("prog")}: ${p}%</h2><div class="bar"><i style="width:${p}%"></i></div><p class="mut">${p==100?t("done"):p==0?t("soft"):"✨"}</p></div>
+${presence()}${statusCards()}${nudgeCards()}<div class="card"><h2>${t("prog")}: ${p}%</h2><div class="bar"><i style="width:${p}%"></i></div><p class="mut">${p==100?t("done"):p==0?t("soft"):"✨"}</p></div>
 <div class="stats"><div><b>🔥 ${U.streak}</b>${t("streak")}</div><div><b>⭐ ${U.xp}</b>${t("xp")}</div><div><b>📋 ${U.tasks.filter(x=>!x.done).length}</b>${t("left")}</div></div>
 <div class="card">${list}</div>${cc}${(p==100||D.u[cur].mm=="any")?`<div class="card msg" style="text-align:center;cursor:pointer" onclick="openMsg()"><div style="font-size:46px;animation:bob 2s infinite">💌</div><h2>${t("msgFrom")}${nm(o)}</h2><p class="mut">${t("tap")}</p></div>`:""}<p class="mut">${t("demo")}</p>`;
-if(D.tab=="tasks")h=`<h1>${t("tasks")} · ${nm(cur)}</h1><div class="card">${list}</div><div class="card row"><input id="nt" placeholder="${t("ph")}"><button class="btn" onclick="addT()">${t("add")}</button></div>`;
+if(D.tab=="tasks")h=`<h1>${t("tasks")} · ${nm(cur)}</h1><div class="card">${tlist()}</div><div class="card row"><input id="nt" placeholder="${t("ph")}" maxlength="80"><select id="nx"><option>5</option><option>10</option><option>15</option></select> XP<button class="btn" onclick="addT()">${t("add")}</button></div>`;
 if(D.tab=="cat"){const st=stage(L);h=`<h1>${cn()} 🐱</h1><div class="card"><div class="bubble" id="bub">${say()}</div>${catSvg()}<div class="row" style="justify-content:center;margin:10px 0"><button class="btn" onclick="feed(event)">${t("feed")}</button><button class="btn" onclick="play(event)">${t("play")}</button><button class="btn g" onclick="wash(event)">${t("clean")}</button></div>${bars()}<p class="mut" style="text-align:center">${t("stg")}: <b>${STG[D.lang][st]}</b> · ${t("lvl")} ${L} · ${D.cat.xp} XP</p></div><div class="card"><h2>${t("items")}</h2><div class="items">${F.map(f=>`<div class="it ${L>=f[0]?"":"lk"}"><b>${f[1]}</b>${D.lang=="ar"?f[4]:f[5]}${L>=f[0]?"":`<br><small>${t("lk")} ${f[0]}</small>`}</div>`).join("")}</div></div>`}
-if(D.tab=="day")h=`<h1>${t("day")} 💞</h1><div class="card">${[[cur,p],[o,po]].map(a=>`<h2>${NM[a[0]].ic} ${nm(a[0])}</h2><div class="bar"><i style="width:${a[1]}%"></i></div><p class="mut">${a[1]}%</p>`).join("")}<h2>${t("shared")}</h2><div class="bar"><i style="width:${Math.round((p+po)/2)}%"></i></div><p class="mut">${Math.round((p+po)/2)}%</p></div>`;
+if(D.tab=="day")h=`<h1>${t("day")} 💞</h1><div class="card">${[[cur,p],[o,po]].map(a=>`<h2>${NM[a[0]].ic} ${nm(a[0])}</h2><div class="bar"><i style="width:${a[1]}%"></i></div><p class="mut">${a[1]}%</p>`).join("")}<h2>${t("shared")}</h2><div class="bar"><i style="width:${Math.round((p+po)/2)}%"></i></div><p class="mut">${Math.round((p+po)/2)}%</p></div>${actFeed()}`;
 if(D.tab=="me"){const C=D.u.rawan.cyc;h=`<h1>${t("me")}</h1><div class="card row"><button class="btn g" onclick="D.lang=D.lang=='ar'?'en':'ar';save();render()">${t("lang")}</button><button class="btn g" onclick="D.theme={system:'light',light:'dark',dark:'system'}[D.theme];save();render()">${t("theme")}: ${D.theme}</button><button class="btn g" onclick="U0()">${t("change")}</button><button class="btn" onclick="logout()">${t("out")}</button></div>`+msgCards()+(cur=="rawan"?`<div class="card" style="text-align:center"><button class="btn cyb" onclick="D.tab='cyc';render()">🌸 ${t("cyc")}</button></div>`:"")}
 document.getElementById("main").innerHTML=h}
 function U0(){FB.resetMine()}
-function addT(){const v=document.getElementById("nt").value.trim();if(!v)return;D.u[cur].tasks.push({id:Date.now(),ic:"📝",en:v,ar:v,xp:5,done:false});save();render()}
+function addT(){const v=document.getElementById("nt").value.trim();if(!v)return;D.u[cur].tasks.push({id:Date.now(),ic:"📝",en:v,ar:v,xp:+document.getElementById("nx").value||5,done:false});save();render()}
 
 const MOODS=[["😊","happy","سعيد","سعيدة","Happy"],["😢","sad","زعلان","زعلانة","Sad"],["😞","dep","مكتئب","مكتئبة","Depressed"]];
 const WH=[["🚿","bath","بالحمام","In the bathroom"],["🛏️","room","بالغرفة","In my room"],["🛋️","liv","بالصالة مع الأهل","In the living room with family"]];
 const mLab=(m,u)=>D.lang=="ar"?(u=="rawan"?m[3]:m[2]):m[4],wLab=w=>D.lang=="ar"?w[2]:w[3];
 function setMM(v){D.u[cur].mm=v;save();render()}
-function setSt(k,v){const S=D.u[cur].st||(D.u[cur].st={});S[k]=v;S.ts=Date.now();save();if(k=="mood"&&v!="happy")toast(t("care"));render()}
+function setSt(k,v){const S=D.u[cur].st||(D.u[cur].st={});S[k]=v;S.ts=Date.now();if(k=="mood")logAct("mood",v);save();if(k=="mood"&&v!="happy")toast(t("care"));render()}
 function statusCards(){const S=D.u[cur].st||{},o=other(),P=D.u[o].st||{};
 const own=`<div class="card"><h2>${t("mystat")}</h2><div class="row">${MOODS.map(m=>`<button class="btn g ${S.mood==m[1]?"sel":""}" onclick="setSt('mood','${m[1]}')">${m[0]} ${mLab(m,cur)}</button>`).join("")}</div><div class="row" style="margin-top:8px">${WH.map(w=>`<button class="btn g ${S.where==w[1]?"sel":""}" onclick="setSt('where','${w[1]}')">${w[0]} ${wLab(w)}</button>`).join("")}</div></div>`;
 const pm=MOODS.find(m=>m[1]==P.mood),pw=WH.find(w=>w[1]==P.where);
-return own+((pm||pw)?`<div class="card"><h2>${NM[o].ic} ${nm(o)}: ${pm?pm[0]+" "+mLab(pm,o):""} ${pw?"· "+pw[0]+" "+wLab(pw):""}</h2><button class="btn g" onclick="hug()">${t("hug")}</button></div>`:"")}
-function hug(){D.nudges.push({from:cur,to:other(),k:"hug",ts:Date.now()});save();hrt();toast("🤗 💗")}
-function nudge(){D.nudges.push({from:cur,to:other(),k:"out",ts:Date.now()});save();hrt();toast(t("nsent"));render()}
+return own+((pm||pw)?`<div class="card"><h2>${NM[o].ic} ${nm(o)}: ${pm?pm[0]+" "+mLab(pm,o):""} ${pw?"· "+pw[0]+" "+wLab(pw):""}</h2><p class="mut">${P.ts?ago(P.ts):""}</p><button class="btn g" onclick="hug()">${t("hug")}</button></div>`:"")}
+function hug(){D.nudges.push({from:cur,to:other(),k:"hug",ts:Date.now()});logAct("hug");save();hrt();toast("🤗 💗")}
+function nudge(){D.nudges.push({from:cur,to:other(),k:"out",ts:Date.now()});logAct("out");save();hrt();toast(t("nsent"));render()}
 function seen(i){D.nudges[i].seen=true;save();render()}
 function rp(i,v){D.nudges[i].reply=v;D.nudges[i].seen=true;save();if(v=="yes")conf();render()}
-function nudgeCards(){return D.nudges.map((n,i)=>[n,i]).filter(a=>a[0].to==cur&&!a[0].seen).map(a=>{const n=a[0];return n.k=="hug"?`<div class="card msg pulse"><h2>🤗 ${nm(n.from)}: 💗</h2><button class="btn" onclick="seen(${a[1]})">💗</button></div>`:`<div class="card msg pulse"><h2>🚗 ${nm(n.from)}: ${t("wantout")}</h2><div class="row"><button class="btn" onclick="rp(${a[1]},'yes')">${t("yes")}</button><button class="btn g" onclick="rp(${a[1]},'later')">${t("later")}</button></div></div>`}).join("")}
+function nudgeCards(){return D.nudges.map((n,i)=>[n,i]).filter(a=>a[0].to==cur&&!a[0].seen).map(a=>{const n=a[0];return n.k=="hug"?`<div class="card msg pulse"><h2>🤗 ${nm(n.from)}: 💗</h2><p class="mut">${fmtT(n.ts)}</p><button class="btn" onclick="seen(${a[1]})">💗</button></div>`:`<div class="card msg pulse"><h2>🚗 ${nm(n.from)}: ${t("wantout")}</h2><p class="mut">${fmtT(n.ts)}</p><div class="row"><button class="btn" onclick="rp(${a[1]},'yes')">${t("yes")}</button><button class="btn g" onclick="rp(${a[1]},'later')">${t("later")}</button></div></div>`}).join("")}
 let dImg="";
 const vv=id=>document.getElementById(id).value.trim();
 function pickImg(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,480/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*k;c.height=im.height*k;c.getContext("2d").drawImage(im,0,0,c.width,c.height);dImg=c.toDataURL("image/jpeg",.6);const p=document.getElementById("dp");p.src=dImg;p.style.display="block"};im.src=r.result};r.readAsDataURL(f)}
-function addDate(){const d=vv("dd"),ti=vv("dt");if(!d||!ti)return;let l=vv("dl");if(l){if(!/^https?:\/\//i.test(l))l="https://"+l;try{new URL(l)}catch(e){l=""}}D.dates.push({from:cur,d,ti:ti.slice(0,80),l:l.slice(0,300),img:dImg});dImg="";save();hrt();render()}
+function addDate(){const d=vv("dd"),ti=vv("dt");if(!d||!ti)return;let l=vv("dl");if(l){if(!/^https?:\/\//i.test(l))l="https://"+l;try{new URL(l)}catch(e){l=""}}D.dates.push({from:cur,d,ti:ti.slice(0,80),l:l.slice(0,300),img:dImg,ts:Date.now()});logAct("date");dImg="";save();hrt();render()}
 function delDate(i){D.dates.splice(i,1);save();render()}
 function datesView(){const o=other(),loc=D.lang=="ar"?"ar-JO":"en-GB",last=D.nudges.filter(n=>n.from==cur&&n.k=="out").pop();
-const list=D.dates.map((x,i)=>[x,i]).sort((a,b)=>a[0].d.localeCompare(b[0].d)).map(a=>{const x=a[0];return`<div class="card"><div class="row" style="justify-content:space-between"><b>🗓️ ${new Date(x.d+"T12:00").toLocaleDateString(loc,{weekday:"long",day:"numeric",month:"long"})}</b><em class="xp" style="cursor:pointer" onclick="delDate(${a[1]})">✕</em></div><h2>${esc(x.ti)}</h2>${x.img?`<img src="${x.img}" alt="" style="max-width:100%;border-radius:14px;margin:6px 0">`:""}${x.l?`<a class="btn g" href="${esc(x.l)}" target="_blank" rel="noopener noreferrer">🔗 ${t("open")}</a>`:""}<p class="mut">${NM[x.from].ic} ${nm(x.from)}</p></div>`}).join("");
-return`<h1>${t("dates")} 🗓️</h1><div class="card msg" style="text-align:center"><button class="btn big" onclick="nudge()">${t("goout")}</button><p class="mut">${t("goouth")} ${nm(o)}${last?" · "+(last.reply=="yes"?t("yes"):last.reply=="later"?t("later"):"⏳"):""}</p></div>
+const list=D.dates.map((x,i)=>[x,i]).sort((a,b)=>a[0].d.localeCompare(b[0].d)).map(a=>{const x=a[0];return`<div class="card"><div class="row" style="justify-content:space-between"><b>🗓️ ${new Date(x.d+"T12:00").toLocaleDateString(loc,{weekday:"long",day:"numeric",month:"long"})}</b><em class="xp" style="cursor:pointer" onclick="delDate(${a[1]})">✕</em></div><h2>${esc(x.ti)}</h2>${x.img?`<img src="${x.img}" alt="" style="max-width:100%;border-radius:14px;margin:6px 0">`:""}${x.l?`<a class="btn g" href="${esc(x.l)}" target="_blank" rel="noopener noreferrer">🔗 ${t("open")}</a>`:""}<p class="mut">${NM[x.from].ic} ${nm(x.from)}${x.ts?" · "+fmtT(x.ts):""}</p></div>`}).join("");
+return`<h1>${t("dates")} 🗓️</h1><div class="card msg" style="text-align:center"><button class="btn big" onclick="nudge()">${t("goout")}</button><p class="mut">${t("goouth")} ${nm(o)}${last?" · "+fmtT(last.ts)+" · "+(last.reply=="yes"?t("yes"):last.reply=="later"?t("later"):"⏳"):""}</p></div>
 <div class="card"><h2>${t("planT")}</h2><div class="row"><label>${t("dwhen")} <input id="dd" type="date"></label><input id="dt" placeholder="${t("dwhat")}" maxlength="80"></div><p><input id="dl" placeholder="${t("dlink")}" style="width:100%"></p><p class="mut">${t("dimg")} <input type="file" accept="image/*" onchange="pickImg(this)"></p><img id="dp" alt="" style="display:none;max-width:100%;max-height:160px;border-radius:12px;margin-bottom:8px"><button class="btn" onclick="addDate()">${t("ad")}</button></div>${list||`<p class="mut">${t("nodates")}</p>`}`}
 function decay(){const now=Date.now(),c=D.cat;if(!c.t){c.t=now;save();return 0}const h=(now-c.t)/36e5;if(h<.05)return 0;c.hun=Math.max(15,c.hun-h*8);c.cln=Math.max(15,c.cln-h*4);c.fun=Math.max(15,(c.fun??60)-h*6);c.t=now;save();return h}
 const _h=decay();
-setInterval(()=>{decay();if(cur&&D.tab=="cat"&&!busy)render()},60000);
+setInterval(()=>{decay();if(cur&&(D.tab=="cat"||D.u[cur].day!==iso(new Date()))&&!busy)render()},60000);
 (()=>{const b=document.createElement("div");for(let i=0;i<10;i++){const e=document.createElement("span");e.className="fh";e.textContent=["💗","✨","🌸","🐾","⭐"][i%5];e.style.left=(i*10+Math.random()*8)+"%";e.style.animationDuration=(14+Math.random()*12)+"s";e.style.animationDelay=(-Math.random()*20)+"s";e.style.fontSize=(14+Math.random()*12)+"px";b.appendChild(e)}document.body.appendChild(b)})();
-Object.assign(T.ar,{em:"الإيميل",forgot:"نسيت كلمة السر؟",denied:"هذا الحساب ليس ضمن هذا العالم 🔒",badl:"الإيميل أو كلمة السر غير صحيحة",rsent:"بعتنا رابط تغيير كلمة السر على إيميلك 📧",remail:"اكتبي الإيميل أولًا",nofb:"تعذّر الاتصال بالخادم، تأكدي من الإنترنت"});
-Object.assign(T.en,{em:"Email",forgot:"Forgot password?",denied:"This account isn't part of this world 🔒",badl:"Wrong email or password",rsent:"Password reset link sent to your email 📧",remail:"Enter your email first",nofb:"Couldn't reach the server, check your connection"});
+Object.assign(T.ar,{delq:"حذف هذه المهمة؟",newday:"يوم جديد، مهامك رجعت من البداية 🌱",nshare:"لا تُشارَك أبدًا مع الشريك",priv:"🔒 هذه البيانات تظهر لروان فقط ولا تُشارَك مع أي أحد أبدًا، والخادم يمنع الشريك من قراءتها.",actT:"النشاط الأخير",em:"الإيميل",forgot:"نسيت كلمة السر؟",denied:"هذا الحساب ليس ضمن هذا العالم 🔒",badl:"الإيميل أو كلمة السر غير صحيحة",rsent:"بعتنا رابط تغيير كلمة السر على إيميلك 📧",remail:"اكتبي الإيميل أولًا",nofb:"تعذّر الاتصال بالخادم، تأكدي من الإنترنت"});
+Object.assign(T.en,{delq:"Delete this task?",newday:"New day, your tasks are fresh 🌱",nshare:"Never shared with your partner",priv:"🔒 Only Rawan can see this. It is never shared with anyone, and the server blocks your partner from reading it.",actT:"Recent activity",em:"Email",forgot:"Forgot password?",denied:"This account isn't part of this world 🔒",badl:"Wrong email or password",rsent:"Password reset link sent to your email 📧",remail:"Enter your email first",nofb:"Couldn't reach the server, check your connection"});
+let editId=null;
+const loc0=()=>D.lang=="ar"?"ar-JO":"en-GB";
+const fmtT=ts=>ts?new Date(ts).toLocaleString(loc0(),{day:"numeric",month:"short",hour:"numeric",minute:"2-digit"}):"";
+function ago(ts){const m=Math.floor((Date.now()-ts)/6e4),a=D.lang=="ar";if(m<1)return a?"الآن":"just now";if(m<60)return a?"قبل "+m+" دقيقة":m+" min ago";const h=Math.floor(m/60);if(h<24)return a?"قبل "+h+" ساعة":h+" h ago";return fmtT(ts)}
+function logAct(k,x){D.log.push({w:cur,k,x:x||"",ts:Date.now()});if(D.log.length>40)D.log=D.log.slice(-40)}
+function dayReset(){if(!cur)return;const U=D.u[cur],td=iso(new Date());if(U.day===td)return;const had=!!U.day;U.tasks.forEach(k=>{k.done=false});if(U.lastDone!=addD(td,-1)&&U.lastDone!=td)U.streak=0;U.day=td;save();if(had)setTimeout(()=>toast(t("newday")),600)}
+const tlist=()=>D.u[cur].tasks.map(k=>k.id===editId?`<div class="task" style="cursor:default"><input id="et" value="${esc(k[D.lang])}" maxlength="80" style="flex:1;min-width:0"><select id="ex">${[5,10,15].map(x=>`<option ${x==k.xp?"selected":""}>${x}</option>`).join("")}</select><button class="btn" onclick="saveEdit(${k.id})">✓</button><button class="btn g" onclick="editId=null;render()">✕</button></div>`:`<div class="task ${k.done?"done":""}" onclick="toggle(${k.id},event)"><div class="ck">${k.done?"✓":""}</div><span>${k.ic} ${esc(k[D.lang])}</span><em class="xp">+${k.xp}</em><button class="btn g" style="padding:4px 8px" onclick="event.stopPropagation();editId=${k.id};render()">✏️</button><button class="btn g" style="padding:4px 8px" onclick="event.stopPropagation();delTask(${k.id})">🗑️</button></div>`).join("");
+function saveEdit(id){const k=D.u[cur].tasks.find(x=>x.id===id),v=vv("et");if(k&&v){k.ar=v;k.en=v;k.xp=+document.getElementById("ex").value||k.xp}editId=null;save();render()}
+function delTask(id){if(!confirm(t("delq")))return;D.u[cur].tasks=D.u[cur].tasks.filter(x=>x.id!==id);save();render()}
+function presence(){const o=other(),ts=D.u[o].seen,a=D.lang=="ar",on=ts&&Date.now()-ts<7*6e4;return`<div class="card" style="display:flex;gap:10px;align-items:center"><span style="font-size:26px">${NM[o].ic}</span><div><b>${nm(o)}</b><div class="mut">${!ts?"—":on?(a?"🟢 متصل الآن":"🟢 Online now"):(a?"🕐 آخر ظهور ":"🕐 Last seen ")+ago(ts)+" · "+fmtT(ts)}</div></div></div>`}
+function actFeed(){const a=D.lang=="ar",ic={task:"✅",all:"🌙",eat:"🐟",wash:"🫧",play:"🧶",msg:"💌",date:"🗓️",out:"🚗",hug:"🤗",mood:"🙂"};
+const AR={all:["أنهى اليوم كاملًا","أنهت اليوم كاملًا"],eat:["أطعم القطة","أطعمت القطة"],wash:["نظّف القطة","نظّفت القطة"],play:["لعب مع القطة","لعبت مع القطة"],msg:["كتب رسالة","كتبت رسالة"],date:["أضاف ديت","أضافت ديت"],out:["عبالُه نطلع","عبالها نطلع"],hug:["أرسل حضنًا","أرسلت حضنًا"]};
+const EN={all:"Finished the whole day",eat:"Fed the cat",wash:"Cleaned the cat",play:"Played with the cat",msg:"Wrote a message",date:"Added a date",out:"Feels like going out",hug:"Sent a hug"};
+const tx=e=>{if(e.k=="task")return(a?"مهمة: ":"Task: ")+esc(e.x);if(e.k=="mood"){const m=MOODS.find(z=>z[1]==e.x);return(a?"الحالة: ":"Mood: ")+(m?m[a?(e.w=="rawan"?3:2):4]:"")}return a?AR[e.k]?.[e.w=="rawan"?1:0]||"":EN[e.k]||""};
+return`<div class="card"><h2>🕐 ${t("actT")}</h2>${D.log.length?D.log.slice(-15).reverse().map(e=>`<div class="task" style="cursor:default"><span>${ic[e.k]||"•"} ${NM[e.w].ic} ${nm(e.w)} ${tx(e)}</span><em class="xp">${fmtT(e.ts)}</em></div>`).join(""):"—"}</div>`}
 const AS={s:"loading",err:"",taken:[]};
 function loginView(){const L=`<p class="mut"><button class="btn g" onclick="D.lang=D.lang=='ar'?'en':'ar';save();render()">${t("lang")}</button></p>`;let b;
 if(AS.s=="loading")b=`<div style="font-size:60px;animation:bob 1.5s infinite">🐱</div>`;
@@ -214,19 +229,23 @@ import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut,sendPasswor
 import{getFirestore,doc,getDoc,setDoc,onSnapshot}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 const app=initializeApp({apiKey:"AIzaSyA6TDMAxQKwoqUEA22217G9lj_33e7pT9Q",authDomain:"our-little-world-7db49.firebaseapp.com",projectId:"our-little-world-7db49",storageBucket:"our-little-world-7db49.firebasestorage.app",messagingSenderId:"939906219332",appId:"1:939906219332:web:b8066e2fb54b84b400ab11"});
 const auth=getAuth(app),db=getFirestore(app),A=window.APP,D=A.D,AS=A.AS;
-let unsubs=[],timer=null,ready=false,loaded=false;
+let unsubs=[],timer=null,ready=false,loaded=false,gs=false,gu=false,nS=false,nU=false,fired=false;
 const clean=o=>JSON.parse(JSON.stringify(o));
 const rc=()=>{const a=document.activeElement;if(!(a&&(a.tagName=="INPUT"||a.tagName=="TEXTAREA")))A.render()};
-function stop(){unsubs.forEach(f=>f());unsubs=[];ready=false;loaded=false;A.setCur(null)}
-function push(){if(!ready)return;clearTimeout(timer);timer=setTimeout(async()=>{const c=A.getCur(),U=D.u[c];if(!c)return;try{
-await setDoc(doc(db,"world","shared"),clean({cat:D.cat,msgs:D.msgs,dates:D.dates,nudges:D.nudges,u:{[c]:{xp:U.xp,streak:U.streak,st:U.st||{},mm:U.mm||"done",pct:A.pct(c)}}}),{merge:true});
-await setDoc(doc(db,"users",c),clean(c=="rawan"?{tasks:U.tasks,cyc:D.u.rawan.cyc}:{tasks:U.tasks}),{merge:true})}catch(e){A.toast("⚠️ "+(e.code||e.message))}},400)}
+function stop(){unsubs.forEach(f=>f());unsubs=[];ready=false;loaded=false;gs=gu=nS=nU=fired=false;A.setCur(null)}
+function push(){if(!ready||!gs||!gu)return;clearTimeout(timer);timer=setTimeout(async()=>{const c=A.getCur(),U=D.u[c];if(!c)return;try{
+await setDoc(doc(db,"world","shared"),clean({cat:D.cat,msgs:D.msgs,dates:D.dates,nudges:D.nudges,log:D.log,u:{[c]:{xp:U.xp,streak:U.streak,st:U.st||{},mm:U.mm||"done",pct:A.pct(c),seen:U.seen||null}}}),{merge:true});
+await setDoc(doc(db,"users",c),clean({tasks:U.tasks,day:U.day||null,lastDone:U.lastDone||null,...(c=="rawan"?{cyc:D.u.rawan.cyc}:{})}),{merge:true})}catch(e){A.toast("⚠️ "+(e.code||e.message))}},400)}
 function start(who){A.setCur(who);ready=true;
-unsubs.push(onSnapshot(doc(db,"world","shared"),s=>{if(s.metadata.hasPendingWrites)return;const d=s.data();if(!d){push();return}
+unsubs.push(onSnapshot(doc(db,"world","shared"),s=>{if(s.metadata.hasPendingWrites)return;const d=s.data();gs=true;if(!d){nS=true;fin();return}
 if(d.cat)D.cat=Object.assign({name:""},d.cat);D.msgs=d.msgs||[];D.dates=d.dates||[];D.nudges=d.nudges||[];
-for(const k in(d.u||{}))if(k!=who||!loaded)Object.assign(D.u[k],d.u[k]);loaded=true;rc()}));
-unsubs.push(onSnapshot(doc(db,"users",who),s=>{if(s.metadata.hasPendingWrites)return;const d=s.data();if(!d){push();return}
-if(d.tasks)D.u[who].tasks=d.tasks;if(d.cyc)D.u.rawan.cyc=Object.assign({log:[]},d.cyc);rc()}))}
+for(const k in(d.u||{}))if(k!=who||!loaded)Object.assign(D.u[k],d.u[k]);loaded=true;D.log=d.log||[];fin();rc()}));
+unsubs.push(onSnapshot(doc(db,"users",who),s=>{if(s.metadata.hasPendingWrites)return;const d=s.data();gu=true;if(!d){nU=true;fin();return}
+if(d.tasks)D.u[who].tasks=d.tasks;if(d.day!==undefined)D.u[who].day=d.day;if(d.lastDone)D.u[who].lastDone=d.lastDone;if(d.cyc)D.u.rawan.cyc=Object.assign({log:[]},d.cyc);fin();rc()}))}
+function beat(){const c=A.getCur();if(!c||!ready)return;D.u[c].seen=Date.now();push()}
+function fin(){if(gs&&gu&&!fired){fired=true;if(nS||nU)push();beat()}}
+setInterval(()=>{if(document.visibilityState=="visible")beat()},300000);
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState=="visible")beat()});
 onAuthStateChanged(auth,async u=>{stop();if(!u){AS.s="out";A.render();return}AS.s="loading";A.render();
 try{const[r,y]=await Promise.all(["rawan","yousef"].map(k=>getDoc(doc(db,"slots",k))));
 const own=r.exists()&&r.data().uid==u.uid?"rawan":y.exists()&&y.data().uid==u.uid?"yousef":null;
