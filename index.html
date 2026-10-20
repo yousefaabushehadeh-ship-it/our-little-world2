@@ -355,6 +355,26 @@ details summary{cursor:pointer;font-weight:700;color:var(--ac);margin-top:6px}
 .pl.walking .cb{animation:wstep .26s ease-in-out infinite alternate}@keyframes wstep{from{transform:translateY(0) rotate(-3deg)}to{transform:translateY(-2.5px) rotate(3deg)}}
 .lline .lic svg{width:36px;height:36px}
 
+/* ================= memories ================= */
+.memc h2{margin-bottom:6px}.memc p{margin:6px 0}.mini{grid-template-columns:repeat(3,1fr);max-width:340px}
+.tags{flex-wrap:wrap;overflow:visible}.tags button{font-size:12.5px;padding:6px 11px}
+.hrt{border:1.5px solid var(--line);background:var(--card);color:var(--tx);border-radius:999px;padding:6px 12px;font:700 14px var(--fd);cursor:pointer}.hrt.on{background:#ffe3ee;border-color:#f59ab9}
+.hrt2{font-size:14px;margin-inline-start:10px;color:var(--mut)}.hrt2.on{color:var(--ac)}
+.pcs{display:grid;gap:8px;margin-top:8px}.pcm textarea{width:100%}.pco{background:var(--bg2);border-radius:14px;padding:8px 10px}.pco p{margin:4px 0 0;overflow-wrap:anywhere}.pco b{font-size:13px}
+.pmeta{margin:10px 0 6px;align-items:flex-end}
+.capc{position:relative;border-radius:16px;padding:10px 34px 10px 12px;margin:8px 0;background:var(--bg2)}.capc small{color:var(--mut)}.capc p{margin:6px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.capc.locked{background:repeating-linear-gradient(135deg,var(--bg2) 0 12px,var(--card) 12px 24px)}.capc .x{position:absolute;top:6px;inset-inline-end:6px}
+.lock{font:700 14.5px var(--fd)}
+.vrow{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}.vrow:last-child{border:0}.vrow small{display:block;color:var(--mut);font-size:12.5px}
+.vpl{display:block;width:100%;margin:8px 0}
+.vrec{font:700 16px var(--fd);color:var(--ac);text-align:center;margin:6px 0 10px;animation:pls 1.4s infinite;border-radius:14px;padding:6px}
+.rec .recS{min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;background:linear-gradient(160deg,var(--bg2),var(--card));border-radius:20px;padding:16px;margin:10px 0}
+.rs{display:flex;flex-direction:column;align-items:center;gap:6px;width:100%}.rs p{margin:4px 0;overflow-wrap:anywhere}.rs .bign{font-size:56px;line-height:1.2}
+.rsp-img{width:100%;max-width:300px;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:var(--bl);display:grid;place-items:center}.rsp-img img{width:100%;height:100%;object-fit:cover;display:block}
+.statg{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}.statg div{background:var(--card);border-radius:16px;padding:12px 6px;box-shadow:var(--shadow)}.statg b{font:800 20px var(--fd);display:block}.statg small{color:var(--mut)}
+.capbig{font:700 17px/1.6 var(--fd);background:#fffdf7;color:#2b2350;border-radius:16px;padding:14px;margin-top:8px;max-width:360px}
+.recN{justify-content:space-between;flex-wrap:nowrap}.recD{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;flex:1}.recD i{width:7px;height:7px;border-radius:50%;background:var(--line)}.recD i.on{background:var(--ac)}
+
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
 </head>
@@ -471,6 +491,16 @@ sc_auto:"Auto",sc_day:"Day",sc_sunset:"Sunset",sc_night:"Night",sc_snow:"Snow",s
 const PRM=[["شو أحلى ذكرى إلنا مع بعض؟","What's our sweetest memory together?"],["شو الشي اللي بتحبه فيّ وما قلتلي ياه؟","What do you love about me that you never told me?"],["لو بنقدر نسافر بكرة، وين بدك نروح؟","If we could travel tomorrow, where would we go?"],["شو الأغنية اللي بتذكرك فيّ؟","Which song reminds you of me?"],["شو الشي اللي فرّحك اليوم؟","What made you smile today?"],["كيف بتتخيل بيتنا الحقيقي؟","How do you imagine our real home?"],["شو أول شي لاحظته فيّ؟","What was the first thing you noticed about me?"],["شو الشي اللي بدك نعمله سوا هالشهر؟","What should we do together this month?"],["إيمتى حسّيت إني بحبك كتير؟","When did you feel how much I love you?"],["شو الأكلة اللي بدك نطبخها سوا؟","What dish should we cook together?"],["شو حلمك الكبير؟","What's your big dream?"],["شو الشي اللي بيريحك لما تكون تعبان؟","What comforts you when you're tired?"],["لو اليوم آخر يوم بالأسبوع، شو بدك نعمل؟","If today were the weekend, what would we do?"],["شو الكلمة اللي بتوصفنا؟","One word that describes us?"],["شو أكتر شي ضحكنا عليه سوا؟","What made us laugh the hardest together?"],["شو الشي اللي تعلمته مني؟","What have you learned from me?"],["كيف بتحب نحتفل بذكرانا الجاية؟","How would you like to celebrate our next anniversary?"],["شو الهدية اللي ما بتنساها؟","Which gift will you never forget?"],["شو أكتر شي بتشتاقلي فيه؟","What do you miss most when we're apart?"],["لو عندنا يوم كامل بلا تلفونات، شو منعمل؟","A whole day without phones, what do we do?"],["شو الشي اللي بدك تقوله لحالك قبل 5 سنين؟","What would you tell yourself five years ago?"],["شو الفيلم اللي لازم نحضره سوا؟","Which movie must we watch together?"],["شو أحلى مكان رحناه سوا؟","The most beautiful place we've been together?"],["شو بيخليك تحس بالأمان معي؟","What makes you feel safe with me?"],["لو بدك تسمي قصتنا، شو بتسميها؟","If our story had a title, what would it be?"],["شو العادة الصغيرة اللي بتحبها فيّ؟","Which little habit of mine do you love?"],["شو الشي اللي بدك نجربه لأول مرة سوا؟","What should we try together for the first time?"],["شو أكتر لحظة كنت فخور فيّ فيها؟","When were you proudest of me?"],["كيف شكل يومنا المثالي؟","What does our perfect day look like?"],["شو الشي اللي بتتمنى نعمله أكتر؟","What do you wish we did more often?"],["شو الرسالة اللي بدك تبعتها لإلنا بعد سنة؟","What message would you send us a year from now?"],["شو الشي اللي بيفرحك مني حتى لو صغير؟","What small thing I do makes you happy?"],["لو كنا شخصيات بفيلم كرتون، مين بنكون؟","If we were cartoon characters, who would we be?"],["شو الريحة اللي بتذكرك فيّ؟","Which smell reminds you of me?"],["شو أكتر شي بتحبه بيومك العادي؟","What do you love most about an ordinary day?"],["شو الوعد اللي بدك نوعده لبعض؟","What promise should we make each other?"],["شو أول شي بتعمله لما تصحى؟","What's the first thing you do when you wake up?"],["شو الشي اللي بيخليني مميز بنظرك؟","What makes me special to you?"],["لو بنقدر نرجع ليوم واحد، أي يوم بتختار؟","If we could relive one day, which one?"],["شو بدك تقولي هلأ؟","What do you want to tell me right now?"]];
 // drawing themes: [ar, en]
 const DTH=[["إحنا الثنين","The two of us"],["لولو","Lulu"],["بيتنا","Our home"],["أكلتك المفضلة","Your favorite food"],["مكان بدنا نروحه","A place we'll go"],["شو حاسس هلأ","How you feel now"],["قلب كبير","A big heart"],["حيوان بيشبهني","An animal like me"],["سماء الليل","The night sky"],["هدية إلي","A gift for me"],["أحلى ذكرى","Our best memory"],["شمس وورد","Sun and flowers"],["وجه مضحك","A funny face"],["بحر وموج","The sea"],["بيتزا","Pizza"],["قطة نايمة","A sleeping cat"],["قوس قزح","A rainbow"],["أول ديت","Our first date"],["سيارتنا","Our car"],["كوب قهوة","A cup of coffee"],["نجمة","A star"],["إنت بعيوني","You through my eyes"],["حلمك","Your dream"],["شجرة","A tree"],["كيكة","A cake"],["غيمة","A cloud"],["بالون","A balloon"],["قمر","The moon"],["وردة","A flower"],["رسالة حب","A love letter"]];
+Object.assign(T.ar,{album:"ذكرياتنا",memToday:"📅 ذكرى هذا اليوم",capFrom:"رسالة من {p}",tPh:"الصور",tStory:"قصتنا",tCap:"للمستقبل",tVoice:"أصوات",tRec:"تقرير",filterAll:"الكل",placesT:"أماكننا",placeT:"📍 المكان (اختياري)",
+capT:"💌 رسالة للمستقبل",capSay:"اكتب رسالة لحبيبك، وبتنفتح بتاريخ بتختاره 🔒",capDate:"تنفتح بتاريخ",capTxt:"اكتب الرسالة…",capSave:"اقفلها 💌",capNeed:"اكتب الرسالة واختار التاريخ",capMin:"لازم التاريخ يكون بكرا أو بعده",capSaved:"💌 انقفلت الرسالة",capDel:"تحذف هالرسالة؟",capLocked:"🔒 بتنفتح {d}",capEmpty:"ما في رسائل بعد",capGot:"💌 من {p}",capMine:"💌 لـ {p}",capNew:"💌 {p} كتب إلك رسالة للمستقبل",
+pcMine:"كلامي",pcTheirs:"كلام {p}",pcPh:"شو كنت حاسس بهاللحظة؟",pcNone:"{p} لسا ما كتب شي 🤍",pcSaved:"انحفظ ✓",
+voiceRec:"🔴 سجّل ذكرى",voiceStop:"⏹️ وقّف",voiceUp:"📎 ارفع صوت",voiceRecing:"🔴 عم تسجّل…",voiceHint:"دقيقة كحد أقصى",voiceTitle:"عنوان الذكرى",voiceSave:"احفظه 🎙️",voiceDone:"🎙️ انحفظ الصوت",voiceList:"أصوات الذكريات",voiceNone:"ما في أصوات بعد",voiceTooBig:"الصوت كبير، سجّل أقصر",voiceNoMic:"المتصفح ما بيسجّل، ارفع ملف صوت",voicePerm:"اسمح للمايك عشان تسجّل 🎤",voiceNoPlay:"ما قدرت أشغّله، جرّب مرة تانية",voiceGone:"الصوت ما عاد موجود",voiceDel:"تحذف هالصوت؟",voiceNew:"🎙️ {p} سجّل صوت ذكرى",
+recT:"🎬 تقرير قصتنا",recPlay:"▶️ شغّل",recPause:"⏸️ وقّف",recCover:"قصتنا",recStart:"بلّشت قصتنا 💞",recStats:"أرقامنا",recPhotos:"صور",recDates:"ديتات",recLetters:"رسايل",recHugs:"أحضان",recEnd:"كمّلنا ❤️",recAnn:"🎉 ذكراكم اليوم! شوفوا التقرير"});
+Object.assign(T.en,{album:"Our memories",memToday:"📅 On this day",capFrom:"A letter from {p}",tPh:"Photos",tStory:"Our story",tCap:"For later",tVoice:"Voices",tRec:"Recap",filterAll:"All",placesT:"Our places",placeT:"📍 Place (optional)",
+capT:"💌 A letter for later",capSay:"Write a letter for your partner, to open on a date you choose 🔒",capDate:"Opens on",capTxt:"Write the letter…",capSave:"Seal it 💌",capNeed:"Write the letter and pick a date",capMin:"The date must be tomorrow or later",capSaved:"💌 Letter sealed",capDel:"Delete this letter?",capLocked:"🔒 Opens {d}",capEmpty:"No letters yet",capGot:"💌 From {p}",capMine:"💌 To {p}",capNew:"💌 {p} wrote you a letter for later",
+pcMine:"My words",pcTheirs:"{p}'s words",pcPh:"What did you feel in this moment?",pcNone:"{p} hasn't written anything yet 🤍",pcSaved:"Saved ✓",
+voiceRec:"🔴 Record a memory",voiceStop:"⏹️ Stop",voiceUp:"📎 Upload audio",voiceRecing:"🔴 Recording…",voiceHint:"One minute at most",voiceTitle:"Title of the memory",voiceSave:"Save it 🎙️",voiceDone:"🎙️ Voice saved",voiceList:"Memory voices",voiceNone:"No voices yet",voiceTooBig:"That's too big, record something shorter",voiceNoMic:"This browser can't record, upload an audio file",voicePerm:"Allow the microphone to record 🎤",voiceNoPlay:"Couldn't play it, try again",voiceGone:"That voice is gone",voiceDel:"Delete this voice?",voiceNew:"🎙️ {p} recorded a memory",
+recT:"🎬 Our story recap",recPlay:"▶️ Play",recPause:"⏸️ Pause",recCover:"Our story",recStart:"Our story began 💞",recStats:"Our numbers",recPhotos:"photos",recDates:"dates",recLetters:"letters",recHugs:"hugs",recEnd:"To be continued ❤️",recAnn:"🎉 Your anniversary! See the recap"});
 const STG={ar:["هريرة صغيرة","قطة يافعة","قطة أنيقة","ملكة القطط 👑"],en:["Kitten","Young cat","Stylish cat","Cat royalty 👑"]};
 // What Lulu says, by her mood (her mood follows the two of you, see luluMood)
 const CL={ar:{nap:["خرررر… 💤","عم بحلم فيكم… 😴"],hugme:["أنا هون جنبك 🧸","جبتلك دبدوبي، رح يصير أحسن 💗","خليني أعطيك حضن صغير 🐾"],hugthemM:["{p} زعلان… خلينا نروح نحضنه 🥺","رح أضل قاعدة جنب {p} لحد ما ينبسط 💗"],hugthemF:["{p} زعلانة… خلينا نروح نحضنها 🥺","رح أضل قاعدة جنب {p} لحد ما تنبسط 💗"],
@@ -558,7 +588,7 @@ const EARN=[["t",2,0,"✅","مهمة","A task"],["all",5,1,"🌙","يوم كام
 /* ================= state ================= */
 const mk=()=>[["☀️","Wake up early","الاستيقاظ مبكرًا",5],["☀️","Brush teeth","تنظيف الأسنان",5],["☀️","Drink water","شرب الماء",5],["📚","Study Mathematics","مذاكرة الرياضيات",10],["📚","Review English","مراجعة الإنجليزي",10],["💪","Exercise","تمرين رياضي",15]].map((t,i)=>({id:i,ic:t[0],en:t[1],ar:t[2],xp:t[3],done:false}));
 const G0=()=>({mem:{},fish:{},bub:{},quiz:{},gift:{},ach:{},best:{},xo:{b:Array(9).fill(""),t:"rawan",w:"",g:0,n:0,s:{}}});
-const D={lang:"ar",theme:"system",tab:"house",cat:{xp:640,name:""},u:{rawan:{xp:420,streak:8,tasks:mk(),cyc:{last:"",len:28,share:false,log:[]}},yousef:{xp:300,streak:5,tasks:mk()}},msgs:[],dates:[],nudges:[],log:[],games:G0(),home:{p:{},own:{},av:{},nt:{},song:{},draw:{},prm:{},bd:{},alb:{},pos:{},wall:{},flo:{},rel:{},pn:{}}};
+const D={lang:"ar",theme:"system",tab:"house",cat:{xp:640,name:""},u:{rawan:{xp:420,streak:8,tasks:mk(),cyc:{last:"",len:28,share:false,log:[]}},yousef:{xp:300,streak:5,tasks:mk()}},msgs:[],dates:[],nudges:[],log:[],games:G0(),home:{p:{},own:{},av:{},nt:{},song:{},draw:{},prm:{},bd:{},alb:{},pos:{},wall:{},flo:{},rel:{},pn:{},cap:{},pc:{},rx:{},voice:{}}};
 let SND=true;
 try{const s=JSON.parse(localStorage.getItem("olw_ui")||"null");if(s){D.lang=s.lang||D.lang;D.theme=s.theme||D.theme;if(s.snd===false)SND=false}}catch(e){}
 let cur=null,busy=false,editId=null,dImg="",dataOk=false;
@@ -828,10 +858,10 @@ const bc=Array.isArray(b.c)?b.c:[];if(!Array.isArray(a.c))a.c=[];
 if((b.d||"")>(a.d||"")){a.d=b.d;a.c=bc.slice()}else if(b.d==a.d)for(const k of new Set(bc)){const m=bc.filter(x=>x==k).length-cnt(a,k);for(let i=0;i<m;i++)a.c.push(k)}}
 // my own entries: this phone is the source once it has loaded; my partner's always come from the server
 for(const k of MINE)if(k!="p"){const R=r[k]||{},L=mine(k);for(const u of["rawan","yousef"]){const b=R[u];if(b===undefined)continue;
-if(u!=cur){if(live)announce(k,L[u],b);L[u]=b}else if(first||L[u]==null)L[u]=k=="nt"||k=="alb"?unionId(b,L[u]):b}}}
+if(u!=cur){if(live)announce(k,L[u],b);L[u]=b}else if(first||L[u]==null)L[u]=["nt","alb","cap","voice"].includes(k)?unionId(b,L[u]):b}}}
 // tell me when my partner leaves something new
-function announce(k,a,b){const ids=x=>new Set((x||[]).map(n=>n.id)),fresh=(k=="nt"||k=="alb")&&(b||[]).some(n=>!ids(a).has(n.id)),td=today();
-const msg=fresh?(k=="nt"?"noteNew":"phNew"):k=="draw"&&b&&b.d==td&&(!a||a.d!=td||a.s!=b.s)?"drawNew":k=="song"&&b&&b.d==td&&(!a||a.d!=td||a.t!=b.t)?"songPick":"";
+function announce(k,a,b){const ids=x=>new Set((x||[]).map(n=>n.id)),fresh=["nt","alb","cap","voice"].includes(k)&&(b||[]).some(n=>!ids(a).has(n.id)),td=today();
+const msg=fresh?({nt:"noteNew",alb:"phNew",cap:"capNew",voice:"voiceNew"})[k]:k=="draw"&&b&&b.d==td&&(!a||a.d!=td||a.s!=b.s)?"drawNew":k=="song"&&b&&b.d==td&&(!a||a.d!=td||a.t!=b.t)?"songPick":"";
 if(msg)setTimeout(()=>{snd("ding");toast(tq(msg),1)},600)}
 let BUYQ=null,BUYT=null;
 const iName=i=>i.e+" "+(D.lang=="ar"?i.ar:i.en);
@@ -852,7 +882,7 @@ return dx||dy?`<g transform="translate(${dx} ${dy})">${g}</g>`:g}).join("");
 let HPATCH=[];
 function hset(path,v){let o=D.home;for(let i=0;i<path.length-1;i++){const k=path[i];if(!o[k]||typeof o[k]!="object"||Array.isArray(o[k]))o[k]={};o=o[k]}o[path[path.length-1]]=v;HPATCH.push([path,v]);save()}
 // each of you writes only your own entry of these
-const MINE=["p","av","song","draw","prm","nt","bd","alb"];
+const MINE=["p","av","song","draw","prm","nt","bd","alb","cap","pc","rx","voice"];
 const SHK=["own","pos","wall","flo","scene","rel","pn","frame"];
 const mine=k=>{const H=D.home;H[k]=H[k]||{};return H[k]};
 const WALL0={our:"pHeart",bath:"pTile",games:"pStar",liv:"pStripe",desk:"pDot",cat:"pPaw"};
@@ -1185,7 +1215,7 @@ function enter(k){snd("whoosh");if(k=="games")GM=null;if(!RFL[k]){go(k);return}c
 function seeIt(id){const i=SHOP.find(x=>x.id==id);if(!i)return;go("house");const[x,y,w,h]=i.bb.split(" ").map(Number),W=Math.max(w*1.6,150),H=Math.max(h*1.6,110),box={x:x+w/2-W/2,y:y+h/2-H/2,w:W,h:H};
 setTimeout(()=>{const z=document.getElementById("hz");if(!z||reduced())return;clearTimeout(luT);snd("whoosh");z.classList.add("look");z.style.transform=zoomT(z,box);setTimeout(()=>{if(document.getElementById("hz")===z){z.style.transform="";z.classList.remove("look");luT=setTimeout(luluTick,1500)}},2600)},450)}
 function zoomOut(k){const z=document.getElementById("hz");if(!z||!ROOMS[k]||reduced())return;z.style.transition="none";z.style.transform=zoomT(z,k);void z.offsetWidth;z.style.transition="";requestAnimationFrame(()=>requestAnimationFrame(()=>{z.style.transform=""}))}
-function go(k){if(k!="play"&&GW){clearTimeout(GW);GW=null;window.HOLD=false}if(k=="house"&&ROOMS[D.tab])ZF=D.tab=="cyc"?"our":D.tab;if(k!="house")DECO=false;if(k!="draw")DRW=null;if(k!="games")fishStop();if(k!="bath")bubStop();D.tab=k;render();scrollTo(0,0)}
+function go(k){clearInterval(RECT2);RECP=false;if(k!="play"&&GW){clearTimeout(GW);GW=null;window.HOLD=false}if(k=="house"&&ROOMS[D.tab])ZF=D.tab=="cyc"?"our":D.tab;if(k!="house")DECO=false;if(k!="draw")DRW=null;if(k!="games")fishStop();if(k!="bath")bubStop();D.tab=k;render();scrollTo(0,0)}
 // Lulu wanders: walks along a floor, or slips upstairs/downstairs with a quick fade.
 const LROOMS=["cat","cat","liv","our","games","desk","bath","liv"];
 function luluTick(){clearTimeout(luT);const el=document.getElementById("lulu");if(!el||!(D.tab=="house"&&el.closest("#hz")||D.tab=="play"&&el.closest("#gcam")))return;
@@ -1203,7 +1233,7 @@ const P=k=>{const R=ROOMS[k];return`left:${((R.x+R.w/2)/6).toFixed(2)}%;top:${((
 const tags=tag(P("our"),t("rOur"),Math.round((pctOf(cur)+pctOf(o))/2)+"%")+tag(P("bath"),t("rBath"))+tag(P("games"),t("rGame"),myXoTurn()?"🎯":qn?"❓":"")+tag(P("liv"),t("rLiv"),unseenNudges()?"🔔":giftReady()?"🎁":"")+tag(P("desk"),t("rDesk"),left?"📋"+left:"✅")+tag(P("cat"),t("rCat"),need)
 +tag(at(300,150),t("rAtt"),ach?"🏆"+ach:"")+tag(at(124,540),t("rMail"),letterReady()?"💌":"")+tag(at(292,598),t("gdn"),U.streak?"🔥"+U.streak:"")+tag(at(518,530),t("rGar"),up?"🗓️"+up:"");
 const wn=week().filter(togOn).length,lm=luluMood(),ev=eventsOn(td),n=relDays(),rit=["song","draw","prm"].filter(k=>dayOf(k,cur)).length;
-const chips=[`<button class="chip ${left?"":"hot"}" onclick="go('desk')">${left?"📋 "+left+" "+t("leftN"):"✅ "+t("allDone")}</button>`,`<button class="chip ${rit<3?"hot":""}" onclick="go('today')">☀️ ${t("today")} ${rit}/3</button>`,giftReady()?`<button class="chip hot" onclick="openGift(event)">${t("gift")}</button>`:"",qn?`<button class="chip hot" onclick="GM='quiz';go('games')">${t("qNew")}</button>`:"",`<button class="chip ${togOn(td)?"hot":""}" onclick="go('liv')">💞 ${t("warm")} ${wn}/7</button>`,`<button class="chip" onclick="go('gdn')">🔥 ${U.streak||0} ${t("streak")}</button>`].join("");
+const chips=[(memToday().n?`<button class="chip hot" onclick="ALV=0;go('album')">${t("memToday")}</button>`:""),`<button class="chip ${left?"":"hot"}" onclick="go('desk')">${left?"📋 "+left+" "+t("leftN"):"✅ "+t("allDone")}</button>`,`<button class="chip ${rit<3?"hot":""}" onclick="go('today')">☀️ ${t("today")} ${rit}/3</button>`,giftReady()?`<button class="chip hot" onclick="openGift(event)">${t("gift")}</button>`:"",qn?`<button class="chip hot" onclick="GM='quiz';go('games')">${t("qNew")}</button>`:"",`<button class="chip ${togOn(td)?"hot":""}" onclick="go('liv')">💞 ${t("warm")} ${wn}/7</button>`,`<button class="chip" onclick="go('gdn')">🔥 ${U.streak||0} ${t("streak")}</button>`].join("");
 const lline=`<div class="lline"><span class="lic">🐱</span><div><b>${cn()}</b> ${luluLine()}</div>${lm=="nap"?`<button class="btn g" onclick="wakeLulu(event)">${t("wake")}</button>`:lm=="hugthem"?`<button class="btn" onclick="hug()">${t("hug")}</button>`:""}</div>`;
 const tb=[["🚶",t("play"),"go('play')"],["🙂",t("tbSt"),"openAct()"],["🎨",t("deco"),"startDeco()"],["👗",t("myLook"),"go('av')"],["🛍️",t("shop"),"go('shop')"],["🌤️",t("scene"),"openScene()"],["📸",t("tbSnap"),"snapHouse()"]];
 const tools=`<div class="tbar">${tb.map(([e,l,f])=>`<button onclick="${f}"><b>${e}</b><small>${l}</small></button>`).join("")}</div>`;
@@ -1416,22 +1446,95 @@ return head("our","🎉 "+t("events"),t("sEvents"))
 function saveRel(){const v=document.getElementById("rlS").value;if(!v||v>today())return;hset(["rel","start"],v);conf();hrt();snd("fan");render()}
 function saveBd(){const v=document.getElementById("bdI").value;if(!v)return;mine("bd")[cur]=v;save();snd("ding");toast("🎂 💗");render()}
 
-/* ---------- album & our story (a photo = world/ph_<id> + a small world/pt_<id> thumbnail) ---------- */
-let ALV=0,PHQ={},RCT=null;
+/* ---------- memories: album, this day, future letters, voice notes, our recap ---------- */
+let ALV=0,PHQ={},RCT=null,ALF="",ALP="",VREC=null,VUP=null,VCACHE={},RECI=0,RECP=false,RECT2=null;
+// tags on photos: [id, emoji, ar, en]
+const TAGS=[["first","💫","أول مرة","First time"],["trip","✈️","رحلة","Trip"],["laugh","😂","ضحكة","Laugh"],["date","🍽️","ديت","Date"],["special","🌟","يوم خاص","Special day"],["cozy","🛋️","يوم بالبيت","Cozy day"]];
+const tagOf=k=>TAGS.find(x=>x[0]==k);
 const albAll=()=>["rawan","yousef"].flatMap(u=>(((D.home.alb||{})[u])||[]).map(x=>Object.assign({by:u},x))).sort((a,b)=>(b.d||"").localeCompare(a.d||"")||(b.ts||0)-(a.ts||0));
 const rcSoft=()=>{clearTimeout(RCT);RCT=setTimeout(()=>{const a=document.activeElement;if(!(a&&(a.tagName=="INPUT"||a.tagName=="TEXTAREA"))&&!document.querySelector(".ov")&&!window.HOLD)render()},150)};
 function loadPh(id){if(PH[id]||PHQ[id]||!window.FB||!FB.getThumb)return;PHQ[id]=1;FB.getThumb(id).then(d=>{PH[id]={th:(d&&d.th)||""};rcSoft()}).catch(()=>{PH[id]={th:""}}).finally(()=>{delete PHQ[id]})}
+// each of you writes your own words about a photo; the uploader's first caption is also kept with the photo
+const capOf=(u,x)=>(((D.home.pc||{})[u])||{})[x.id]||(x.by==u&&x.cap)||"";
+const hearted=(u,id)=>!!((((D.home.rx||{})[u])||{})[id]);
+function toggleHeart(id){const L=mine("rx"),m=Object.assign({},L[cur]||{});if(m[id])delete m[id];else m[id]=1;L[cur]=m;save();snd("pop");hrt()}
+// letters for later: what I wrote for my partner, and what my partner wrote for me
+const capsIn=()=>(D.home.cap||{})[other()]||[];
+const capsOut=()=>(D.home.cap||{})[cur]||[];
+const voicesOf=u=>(D.home.voice||{})[u]||[];
+const voiceSupported=()=>!!(navigator.mediaDevices&&window.MediaRecorder);
+// this day in past years: photos and dates from the same day, and letters that open today
+function memToday(){const td=today(),md=td.slice(5),ph=albAll().filter(x=>x.d&&x.d<td&&x.d.slice(5)==md),dt=D.dates.filter(x=>x.d<td&&x.d.slice(5)==md),cp=capsIn().filter(c=>c.d==td);return{ph,dt,cp,n:ph.length+dt.length+cp.length}}
+function memCard(){const m=memToday();if(!m.n)return"";
+const ph=m.ph.slice(0,3).map(x=>{loadPh(x.id);const p=PH[x.id];return`<button class="pth" onclick="openPh('${x.id}')">${p&&p.th?`<img src="${p.th}" alt="">`:`<span class="pld">📷</span>`}<small>${pd(x.d).getFullYear()}</small></button>`}).join("");
+return`<div class="card memc"><h2>${t("memToday")}</h2>${ph?`<div class="pgrid mini">${ph}</div>`:""}${m.dt.map(x=>`<p>🎟️ <b>${esc(x.ti)}</b> · ${pd(x.d).getFullYear()}</p>`).join("")}${m.cp.map(c=>`<p>💌 ${t("capFrom").replace("{p}",nm(other()))}: <b>${esc(c.t)}</b></p>`).join("")}</div>`}
+const lockTxt=(c,loc)=>{const td=today(),dd=Math.round((pd(c.d)-pd(td))/864e5),left=dd>=365?yrs(Math.round(dd/365.25)):dCount(dd);return`${t("capLocked").replace("{d}",pd(c.d).toLocaleDateString(loc,{day:"numeric",month:"long",year:"numeric"}))} · ${t("inDays").replace("{n}",left)}`};
+function capsView(){const o=other(),td=today(),out=capsOut(),inc=capsIn(),loc=loc0();
+const sorted=a=>a.slice().sort((x,y)=>y.d.localeCompare(x.d));
+return`<div class="card"><h2>${t("capT")}</h2><p class="mut">${t("capSay")}</p><div class="row"><label>${t("capDate")} <input id="cpD" type="date" min="${addD(td,1)}"></label></div><p><textarea id="cpT" rows="3" maxlength="600" placeholder="${t("capTxt")}"></textarea></p><button class="btn" onclick="saveCap()">${t("capSave")}</button></div>`
++`<div class="card"><h2>${t("capGot").replace("{p}",nm(o))}</h2>${inc.length?sorted(inc).map(c=>c.d>td?`<div class="capc locked"><div class="lock">${lockTxt(c,loc)}</div></div>`:`<div class="capc"><small>${fmtD(c.d)}</small><p>${esc(c.t)}</p></div>`).join(""):`<p class="mut">${t("capEmpty")}</p>`}</div>`
++`<div class="card"><h2>${t("capMine").replace("{p}",nm(o))}</h2>${out.length?sorted(out).map(c=>`<div class="capc ${c.d>td?"locked":""}">${c.d>td?`<div class="lock">${lockTxt(c,loc)}</div>`:`<small>${fmtD(c.d)}</small>`}<p>${esc(c.t)}</p><button class="x" onclick="delCap('${c.id}')" aria-label="✕">✕</button></div>`).join(""):`<p class="mut">${t("capEmpty")}</p>`}</div>`}
+function saveCap(){const d=document.getElementById("cpD").value,x=vv("cpT").slice(0,600);if(!d||!x){toast(t("capNeed"));return}if(d<=today()){toast(t("capMin"));return}
+const L=mine("cap"),l=(L[cur]||[]).slice();l.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),d,t:x,ts:Date.now()});L[cur]=l.slice(-60);const g=earn("cap",3,2);logAct("cap",nm(other()));save();conf();snd("fan");toast(t("capSaved")+(g?" · 🪙 +"+g:""));render()}
+function delCap(id){if(!confirm(t("capDel")))return;const L=mine("cap");L[cur]=(L[cur]||[]).filter(c=>c.id!=id);save();render()}
+// voice notes: recorded (or uploaded) audio, one minute at most, kept in its own document like the photos
+function vStart(){if(!voiceSupported()){toast(t("voiceNoMic"));return}
+navigator.mediaDevices.getUserMedia({audio:true}).then(st=>{const want="audio/webm;codecs=opus",mt=MediaRecorder.isTypeSupported(want)?want:"";const mr=mt?new MediaRecorder(st,{mimeType:mt,audioBitsPerSecond:24000}):new MediaRecorder(st,{audioBitsPerSecond:24000});
+const ch=[];mr.ondataavailable=e=>{if(e.data&&e.data.size)ch.push(e.data)};VUP=null;VREC={mr,st,ch,t0:Date.now(),mt:mr.mimeType||mt||"audio/webm"};mr.start(500);
+setTimeout(()=>{if(VREC&&VREC.mr===mr&&mr.state=="recording")vStop()},60000);render()}).catch(()=>toast(t("voicePerm")))}
+function vStop(){const v=VREC;if(!v||v.mr.state=="inactive")return;v.mr.onstop=()=>{v.st.getTracks().forEach(x=>x.stop());v.blob=new Blob(v.ch,{type:v.mt});v.url=URL.createObjectURL(v.blob);v.dur=Math.round((Date.now()-v.t0)/1000);VUP=v;VREC=null;render()};v.mr.stop()}
+function pickVoice(inp){const f=inp.files[0];inp.value="";if(!f)return;if(f.size>600000){toast(t("voiceTooBig"));return}VREC=null;VUP={blob:f,mt:f.type||"audio/mpeg",url:URL.createObjectURL(f),dur:0};render()}
+function vDiscard(){if(VUP&&VUP.url)URL.revokeObjectURL(VUP.url);VUP=null;render()}
+function vSave(){const v=VUP;if(!v||!v.blob)return;const ti=vv("vT").slice(0,80)||"🎙️";if(v.blob.size>600000){toast(t("voiceTooBig"));return}
+if(!window.FB||!FB.putVoice){toast(t("phOff"));return}
+const r=new FileReader();r.onload=async()=>{const id=Date.now().toString(36)+Math.random().toString(36).slice(2,6);try{await FB.putVoice(id,{a:r.result,by:cur,ts:Date.now()})}catch(e){toast(t("phOff"));return}
+const L=mine("voice"),l=(L[cur]||[]).slice();l.push({id,t:ti,d:today(),dur:v.dur||0,ts:Date.now()});L[cur]=l.slice(-100);VCACHE[id]=r.result;VUP=null;
+const g=earn("voice",3,3);logAct("voice",ti);save();conf();snd("fan");toast(t("voiceDone")+(g?" · 🪙 +"+g:""));render()};r.readAsDataURL(v.blob)}
+function vPlay(id){const play=a=>{const au=new Audio(a);au.play().catch(()=>toast(t("voiceNoPlay")))};if(VCACHE[id])return play(VCACHE[id]);if(!window.FB||!FB.getVoice)return;
+FB.getVoice(id).then(d=>{if(d&&d.a){VCACHE[id]=d.a;play(d.a)}else toast(t("voiceGone"))}).catch(()=>toast(t("phOff")))}
+async function vDel(id){if(!confirm(t("voiceDel")))return;try{if(window.FB&&FB.delVoice)await FB.delVoice(id)}catch(e){console.warn(e)}const L=mine("voice");L[cur]=(L[cur]||[]).filter(v=>v.id!=id);delete VCACHE[id];save();render()}
+function voiceView(){const o=other(),mv=voicesOf(cur),th=voicesOf(o);
+const box=VREC?`<div class="vrec">${t("voiceRecing")}</div><p style="text-align:center"><button class="btn big" onclick="vStop()">${t("voiceStop")}</button></p>`
+:VUP?`<audio controls src="${VUP.url}" class="vpl"></audio><p><input id="vT" maxlength="80" placeholder="${t("voiceTitle")}" style="width:100%"></p><div class="row"><button class="btn" onclick="vSave()">${t("voiceSave")}</button><button class="btn g" onclick="vDiscard()">${t("cancel")}</button></div>`
+:`<div class="row" style="justify-content:center">${voiceSupported()?`<button class="btn big" onclick="vStart()">${t("voiceRec")}</button>`:""}<label class="btn g" style="cursor:pointer">${t("voiceUp")}<input type="file" accept="audio/*" hidden onchange="pickVoice(this)"></label></div><p class="mut" style="text-align:center">${t("voiceHint")}</p>`;
+const row=(v,u)=>`<div class="vrow"><button class="btn" onclick="vPlay('${v.id}')" aria-label="${t("listen")}">▶️</button><div style="flex:1;min-width:0"><b>${esc(v.t)}</b><small>${NM[u].ic} ${nm(u)} · ${fmtD(v.d)}</small></div>${u==cur?`<button class="x" onclick="vDel('${v.id}')" aria-label="✕">✕</button>`:""}</div>`;
+const all=[...mv.map(v=>[v,cur]),...th.map(v=>[v,o])].sort((a,b)=>b[0].d.localeCompare(a[0].d)||(b[0].ts||0)-(a[0].ts||0));
+return`<div class="card">${box}</div><div class="card"><h2>${t("voiceList")}</h2>${all.length?all.map(([v,u])=>row(v,u)).join(""):`<p class="mut">${t("voiceNone")}</p>`}</div>`}
+// our recap: the cover, our numbers, every photo (with both of your words), letters that opened, and an end card
+function recSlides(){const td=today(),A=albAll().slice().sort((a,b)=>(a.d||"").localeCompare(b.d||"")),C=capsIn().filter(c=>c.d<=td).sort((a,b)=>a.d.localeCompare(b.d));
+return[{k:"cover"},{k:"stats"},...A.map(x=>({k:"ph",x})),...C.map(c=>({k:"cap",c})),{k:"end"}]}
+function recSlide(s){const loc=loc0();
+if(s.k=="cover"){const n=relDays(),s0=relStart();return`<div class="rs cover"><div class="mut">${t("recCover")}</div><div class="bign">${n||"💞"}</div><b>${n?t("daysTog"):t("recStart")}</b>${s0?`<div class="mut">${t("sinceL")} ${pd(s0).toLocaleDateString(loc,{day:"numeric",month:"long",year:"numeric"})}</div>`:""}</div>`}
+if(s.k=="stats"){const td=today(),ph=albAll().length,dts=D.dates.filter(x=>x.d<=td).length,lt=D.msgs.length,hg=D.nudges.filter(n=>n.k=="hug").length;
+return`<div class="rs"><h2>${t("recStats")}</h2><div class="statg">${[["📸",ph,t("recPhotos")],["🎟️",dts,t("recDates")],["💌",lt,t("recLetters")],["🤗",hg,t("recHugs")]].map(([e,n,l])=>`<div><b>${e} ${n}</b><small>${l}</small></div>`).join("")}</div></div>`}
+if(s.k=="ph"){const x=s.x,p=PH[x.id]||{},tg=tagOf(x.tag);loadPh(x.id);
+return`<div class="rs"><div class="rsp-img">${p.th?`<img src="${p.th}" alt="">`:`<span class="pld">📷</span>`}</div><small class="mut">${fmtD(x.d)}${tg?" · "+tg[1]+" "+(D.lang=="ar"?tg[2]:tg[3]):""}</small>${[cur,other()].map(u=>{const c=capOf(u,x);return c?`<p>${NM[u].ic} ${esc(c)}</p>`:""}).join("")}</div>`}
+if(s.k=="cap")return`<div class="rs"><b>💌 ${t("capFrom").replace("{p}",nm(other()))}</b><small class="mut">${fmtD(s.c.d)}</small><p class="capbig">${esc(s.c.t)}</p></div>`;
+return`<div class="rs cover"><div style="font-size:46px">💞</div><b>${t("recEnd")}</b></div>`}
+function recHtml(){const S=recSlides();RECI=Math.min(RECI,S.length-1);
+return`<div class="card rec"><h2>${t("recT")}</h2><div id="recS" class="recS">${recSlide(S[RECI])}</div><div class="row recN"><button class="btn g" onclick="recStep(-1)" aria-label="‹">‹</button><div id="recD" class="recD">${S.map((_,i)=>`<i class="${i==RECI?"on":""}"></i>`).join("")}</div><button class="btn g" onclick="recStep(1)" aria-label="›">›</button><button class="btn" onclick="recPlayT()">${RECP?t("recPause"):t("recPlay")}</button></div></div>`}
+function recGo(i){const S=recSlides(),el=document.getElementById("recS");if(!el)return;RECI=((i%S.length)+S.length)%S.length;el.innerHTML=recSlide(S[RECI]);const d=document.getElementById("recD");if(d)d.innerHTML=S.map((_,j)=>`<i class="${j==RECI?"on":""}"></i>`).join("")}
+function recStep(n){recGo(RECI+n)}
+function recPlayT(){RECP=!RECP;clearInterval(RECT2);if(RECP)RECT2=setInterval(()=>{if(!document.getElementById("recS")){clearInterval(RECT2);RECP=false;return}recGo(RECI+1)},5000);render()}
+// the album: photos (filter by tag or place), our story, letters for later, voices, and the recap
 function albumView(){const A=albAll();A.forEach(x=>loadPh(x.id));
+const tabs=[["📸",t("tPh")],["📖",t("tStory")],["💌",t("tCap")],["🎙️",t("tVoice")],["🎬",t("tRec")]];
+const anni=eventsOn(today()).some(e=>e.k=="anni");
 const up=`<div class="card" style="text-align:center"><label class="btn big" style="display:inline-block">${t("addPh")}<input type="file" accept="image/*" multiple hidden onchange="pickPhotos(this)"></label>${D.home.own.photo?"":`<p class="mut">${t("phNeedFrame")}</p>`}</div>`;
-const tabs=`<div class="tabs"><button class="${ALV?"":"on"}" onclick="ALV=0;render()">📸 ${t("grid")}</button><button class="${ALV?"on":""}" onclick="ALV=1;render()">📖 ${t("story")}</button></div>`;
-const grid=A.length?`<div class="pgrid">${A.map(x=>{const p=PH[x.id];return`<button class="pth" onclick="openPh('${x.id}')">${p&&p.th?`<img src="${p.th}" alt="${esc(x.cap||"")}">`:`<span class="pld">📷</span>`}<small>${fmtD(x.d)}</small></button>`}).join("")}</div>`:`<p class="mut" style="text-align:center">${t("phNone")}</p>`;
-return head("att","📸 "+t("album"),t("sAlbum"))+up+tabs+(ALV?storyHtml(A):grid)}
+const tabsH=`<div class="tabs">${tabs.map((x,i)=>`<button class="${ALV==i?"on":""}" onclick="ALV=${i};render()">${x[0]} ${x[1]}</button>`).join("")}</div>`;
+const shown=A.filter(x=>(!ALF||x.tag==ALF)&&(!ALP||(x.place||"")==ALP));
+const filt=`<div class="tabs tags"><button class="${!ALF?"on":""}" onclick="ALF='';render()">${t("filterAll")}</button>${TAGS.map(x=>`<button class="${ALF==x[0]?"on":""}" onclick="ALF='${x[0]}';render()">${x[1]} ${D.lang=="ar"?x[2]:x[3]}</button>`).join("")}</div>`;
+const places=[...new Set(A.map(x=>x.place).filter(Boolean))];
+const plH=places.length?`<div class="tabs tags"><button class="${!ALP?"on":""}" onclick="ALP='';render()">📍 ${t("placesT")}</button>${places.map(p=>`<button class="${ALP==p?"on":""}" onclick="ALP='${esc(p).replace(/'/g,"")}';render()">${esc(p)} · ${A.filter(x=>x.place==p).length}</button>`).join("")}</div>`:"";
+const grid=shown.length?`<div class="pgrid">${shown.map(x=>{const p=PH[x.id],tg=tagOf(x.tag);return`<button class="pth" onclick="openPh('${x.id}')">${p&&p.th?`<img src="${p.th}" alt="${esc(capOf(x.by,x))}">`:`<span class="pld">📷</span>`}<small>${tg?tg[1]+" ":""}${fmtD(x.d)}</small></button>`}).join("")}</div>`:`<p class="mut" style="text-align:center">${t("phNone")}</p>`;
+const body=[()=>filt+plH+grid,()=>storyHtml(A),()=>capsView(),()=>voiceView(),()=>recHtml()][ALV]();
+return head("att","📸 "+t("album"),t("sAlbum"))+(anni?`<div class="card msg evb" onclick="ALV=4;render()">${t("recAnn")}</div>`:"")+memCard()+(ALV==0?up:"")+tabsH+body}
 function storyHtml(A){const s0=relStart(),td=today(),it=[];
 if(s0){it.push({d:s0,k:"start"});for(let y=1;y<60;y++){const d=String(+s0.slice(0,4)+y)+s0.slice(4);if(d>td)break;it.push({d,k:"anni",y})}MILES.forEach(n=>{const d=addD(s0,n-1);if(d<=td)it.push({d,k:"mile",n})})}
 D.dates.filter(x=>x.d<=td).forEach(x=>it.push({d:x.d,k:"date",x}));A.forEach(x=>it.push({d:x.d,k:"ph",x}));it.sort((a,b)=>a.d.localeCompare(b.d));
 if(!it.length)return`<p class="mut" style="text-align:center">${t("phNone")}</p>`;let yr="";
 return`<div class="story">${it.map(e=>{const y=e.d.slice(0,4),h=y!=yr?(yr=y,`<h3 class="sty">${y}</h3>`):"",p=e.k=="ph"&&PH[e.x.id];
-const body=e.k=="start"?`<b>${t("storyStart")}</b>`:e.k=="anni"?`<b>${t("evAnni").replace("{y}",yrs(e.y))}</b>`:e.k=="mile"?`<b>${t("evMile").replace("{n}",e.n)}</b>`:e.k=="date"?`<b>🎟️ ${esc(e.x.ti)}</b>${e.x.img?`<img src="${e.x.img}" alt="">`:""}`:`${p&&p.th?`<img src="${p.th}" alt="" onclick="openPh('${e.x.id}')">`:`<span class="pld">📷</span>`}${e.x.cap?`<b>${esc(e.x.cap)}</b>`:""}`;
+const body=e.k=="start"?`<b>${t("storyStart")}</b>`:e.k=="anni"?`<b>${t("evAnni").replace("{y}",yrs(e.y))}</b>`:e.k=="mile"?`<b>${t("evMile").replace("{n}",e.n)}</b>`:e.k=="date"?`<b>🎟️ ${esc(e.x.ti)}</b>${e.x.img?`<img src="${e.x.img}" alt="">`:""}`:`${p&&p.th?`<img src="${p.th}" alt="" onclick="openPh('${e.x.id}')">`:`<span class="pld">📷</span>`}${capOf(e.x.by,e.x)?`<b>${esc(capOf(e.x.by,e.x))}</b>`:""}`;
 return h+`<div class="sti ${e.k}"><small>${fmtD(e.d)}</small>${body}</div>`}).join("")}</div>`}
 function shrink(f,max,q){return new Promise((ok,no)=>{const r=new FileReader();r.onerror=no;r.onload=()=>{const im=new Image();im.onerror=no;im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.max(1,Math.round(im.width*k));c.height=Math.max(1,Math.round(im.height*k));c.getContext("2d").drawImage(im,0,0,c.width,c.height);let u=c.toDataURL("image/jpeg",q);if(u.length>900000)u=c.toDataURL("image/jpeg",.45);ok(u)};im.src=r.result};r.readAsDataURL(f)})}
 async function pickPhotos(inp){const fs=[...inp.files].slice(0,8);inp.value="";if(!fs.length)return;if(!window.FB||!FB.putPhoto){toast(t("phOff"));return}toast(t("phUp"));let n=0;
@@ -1439,12 +1542,18 @@ for(const f of fs){try{const[img,th]=await Promise.all([shrink(f,1100,.72),shrin
 await FB.putPhoto(id,{img,th,by:cur,ts:Date.now()});PH[id]={th};const L=mine("alb");L[cur]=(L[cur]||[]).concat([{id,d,cap:"",ts:Date.now()}]).slice(-200);earn("photo",3,3);n++}
 catch(e){console.warn("photo",e);toast(/permission|denied/i.test(String(e&&(e.code||e.message)))?t("phOff"):"⚠️ "+(e&&(e.code||e.message)||e));break}}
 if(n){logAct("photo");save();conf();toast(t("phDone"));render()}}
-function openPh(id){const x=albAll().find(y=>y.id==id);if(!x)return;const p=PH[id]||{},me=x.by==cur;
-const o=sheet("pov",`<div class="pv">${p.img||p.th?`<img src="${p.img||p.th}" alt="">`:`<span class="pld">📷</span>`}</div><p class="mut">${NM[x.by].ic} ${nm(x.by)} · ${fmtD(x.d)}</p>${x.cap?`<h2>${esc(x.cap)}</h2>`:""}
-${me?`<div class="row"><input id="pcC" maxlength="120" placeholder="${t("phCap")}" value="${esc(x.cap||"")}" style="flex:1;min-width:140px"><label>${t("phDate")} <input id="pcD" type="date" value="${esc(x.d)}" max="${today()}"></label><button class="btn" onclick="savePh('${id}')">${t("ad")}</button></div>`:""}
-<div class="row" style="margin-top:10px">${D.home.own.photo?`<button class="btn g" onclick="framePh('${id}')">${t("phFrame")}</button>`:""}${me?`<button class="btn g" onclick="delPh('${id}')" aria-label="🗑️">🗑️</button>`:""}<button class="btn g" onclick="document.getElementById('pov').remove()">✕</button></div>`);
-if(!p.img&&window.FB&&FB.getPhoto)FB.getPhoto(id).then(d=>{if(d&&d.img){PH[id]=Object.assign({},PH[id],{img:d.img});const v=o.querySelector(".pv");if(v)v.innerHTML=`<img src="${d.img}" alt="">`}}).catch(()=>{})}
-function savePh(id){const L=mine("alb"),x=(L[cur]||[]).find(y=>y.id==id);if(!x)return;x.cap=vv("pcC").slice(0,120);const d=document.getElementById("pcD").value;if(d&&d<=today())x.d=d;save();document.getElementById("pov")?.remove();snd("ding");render()}
+function openPh(id){const x=albAll().find(y=>y.id==id);if(!x)return;const p=PH[id]||{},me=x.by==cur,o=other(),tg=tagOf(x.tag);
+const heart=`<button class="hrt ${hearted(cur,id)?"on":""}" onclick="toggleHeart('${id}');openPh('${id}')" aria-label="💗">💗 ${hearted(cur,id)?1:0}</button><span class="hrt2 ${hearted(o,id)?"on":""}">${NM[o].ic} ${hearted(o,id)?"💗":"·"}</span>`;
+const sh=sheet("pov",`<div class="pv">${p.img||p.th?`<img src="${p.img||p.th}" alt="">`:`<span class="pld">📷</span>`}</div><p class="mut">${NM[x.by].ic} ${nm(x.by)} · ${fmtD(x.d)}${tg?" · "+tg[1]+" "+(D.lang=="ar"?tg[2]:tg[3]):""}${x.place?" · 📍 "+esc(x.place):""}</p>
+<div class="pcs">${[cur,o].map(u=>{const c=capOf(u,x);return u==cur?`<div class="pcm"><b>${NM[cur].ic} ${t("pcMine")}</b><textarea id="pcC" rows="2" maxlength="200" placeholder="${t("pcPh")}">${esc(c)}</textarea></div>`:c?`<div class="pco"><b>${NM[o].ic} ${t("pcTheirs").replace("{p}",nm(o))}</b><p>${esc(c)}</p></div>`:`<p class="mut">${gs(tp("pcNone"),o)}</p>`}).join("")}</div>
+<div class="row" style="margin-top:8px">${heart}</div>
+${me?`<div class="row pmeta"><label>${t("phDate")} <input id="pcD" type="date" value="${esc(x.d)}" max="${today()}"></label><input id="pcP" maxlength="40" placeholder="${t("placeT")}" value="${esc(x.place||"")}" style="flex:1;min-width:120px"></div><div class="tabs tags">${TAGS.map(k=>`<button class="${x.tag==k[0]?"on":""}" onclick="pickTag('${id}','${k[0]}')">${k[1]} ${D.lang=="ar"?k[2]:k[3]}</button>`).join("")}</div>`:""}
+<div class="row" style="margin-top:10px"><button class="btn" onclick="savePh('${id}')">${t("ad")}</button>${D.home.own.photo?`<button class="btn g" onclick="framePh('${id}')">${t("phFrame")}</button>`:""}${me?`<button class="btn g" onclick="delPh('${id}')" aria-label="🗑️">🗑️</button>`:""}<button class="btn g" onclick="document.getElementById('pov').remove()">✕</button></div>`);
+if(!p.img&&window.FB&&FB.getPhoto)FB.getPhoto(id).then(d=>{if(d&&d.img){PH[id]=Object.assign({},PH[id],{img:d.img});const v=sh.querySelector(".pv");if(v)v.innerHTML=`<img src="${d.img}" alt="">`}}).catch(()=>{})}
+function pickTag(id,k){const L=mine("alb"),x=(L[cur]||[]).find(y=>y.id==id);if(!x)return;x.tag=x.tag==k?"":k;save();openPh(id)}
+function savePh(id){const c=vv("pcC").slice(0,200),pc=mine("pc"),m=Object.assign({},pc[cur]||{});if(c)m[id]=c;else delete m[id];pc[cur]=m;
+const L=mine("alb"),x=(L[cur]||[]).find(y=>y.id==id);if(x){x.cap=c;const d=document.getElementById("pcD")?.value;if(d&&d<=today())x.d=d;x.place=vv("pcP").slice(0,40)}
+save();document.getElementById("pov")?.remove();snd("ding");toast(t("pcSaved"));render()}
 function framePh(id){hset(["frame"],id);document.getElementById("pov")?.remove();toast(t("phFramed"));seeIt("photo")}
 async function delPh(id){if(!confirm(t("phDel")))return;try{if(window.FB&&FB.delPhoto)await FB.delPhoto(id)}catch(e){console.warn(e)}const L=mine("alb");L[cur]=(L[cur]||[]).filter(y=>y.id!=id);delete PH[id];if(D.home.frame==id)hset(["frame"],"");save();document.getElementById("pov")?.remove();render()}
 
@@ -1566,6 +1675,9 @@ async putPhoto(id,d){await setDoc(doc(db,"world","ph_"+id),{img:d.img,by:d.by,ts
 async getPhoto(id){const x=await getDoc(doc(db,"world","ph_"+id));return x.exists()?x.data():null},
 async getThumb(id){const x=await getDoc(doc(db,"world","pt_"+id));return x.exists()?x.data():null},
 async delPhoto(id){await deleteDoc(doc(db,"world","ph_"+id));await deleteDoc(doc(db,"world","pt_"+id))},
+async putVoice(id,d){await setDoc(doc(db,"world","vo_"+id),{a:d.a,by:d.by,ts:d.ts})},
+async getVoice(id){const x=await getDoc(doc(db,"world","vo_"+id));return x.exists()?x.data():null},
+async delVoice(id){await deleteDoc(doc(db,"world","vo_"+id))},
 async claim(k){try{await setDoc(doc(db,"slots",k),{uid:auth.currentUser.uid});AS.s="ok";D.tab="house";start(k);A.render()}catch(x){A.toast("⚠️ "+(x.code||x.message))}}};
 </script>
 </body>
