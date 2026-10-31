@@ -389,6 +389,53 @@ details summary{cursor:pointer;font-weight:700;color:var(--ac);margin-top:6px}
 .si svg{width:100%;border-radius:14px;background:linear-gradient(#fdf3fa,#efe6ff)}
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+/* ================= the game: the whole house on one screen ================= */
+body.gm nav,body.gm .top{display:none}
+body.gm main{max-width:none;padding:0}
+body.gm.gw{overflow:hidden;height:100vh;height:100dvh}
+.wview{position:fixed;inset:0;overflow:hidden;touch-action:none;background:#cfe9c8;z-index:1;user-select:none;-webkit-user-select:none;cursor:pointer}
+.night .wview{background:#1d1a3e}
+.wview.dim{pointer-events:none}.wview.dim::after{content:"";position:absolute;inset:0;background:#130f2b8c}
+#wcam{position:absolute;left:0;top:0;will-change:transform}
+.wsvg{display:block}
+.wch{transition:transform .17s linear}
+.wnpc{transition:transform 1.4s linear}
+.wnpc.joy .wcb{animation:whop .7s ease-in-out infinite}@keyframes whop{50%{transform:translateY(-2px)}}
+.wtags{position:absolute;left:0;top:0;width:0;height:0;pointer-events:none}
+.wtag{position:absolute;transform:translate(-50%,-100%);background:#fff;color:#2b2350;border-radius:10px;padding:2px 7px;font:700 12px/1.35 var(--fb);white-space:nowrap;box-shadow:0 2px 0 #3b2b4d33;pointer-events:none;transition:left .17s linear,top .17s linear}
+.wtag.say{max-width:170px;width:max-content;white-space:normal;text-align:center;font-weight:600;border:2px solid #3b2b4d;animation:pop2 .35s}
+.wtag.say::after{content:"";position:absolute;left:50%;bottom:-8px;margin-left:-5px;border:5px solid transparent;border-top-color:#3b2b4d}
+.wtag.ic{background:none;box-shadow:none;font-size:16px;padding:0;animation:bob 2s infinite}
+.wtag.hot{background:var(--ac);color:#fff;font-size:15px;padding:2px 6px;box-shadow:0 0 0 3px #ffffffaa,0 3px 0 #3b2b4d40;animation:bob 1.6s infinite}
+.wtag.hint{pointer-events:auto;cursor:pointer;background:#fffffff0;border:1.5px dashed #c98b5b;font:700 12px var(--fd);padding:4px 10px;transform:translate(-50%,-50%)}
+.whud{position:fixed;z-index:20;display:flex;align-items:center;gap:6px}
+.wtop{top:calc(8px + env(safe-area-inset-top,0px));inset-inline:10px;justify-content:space-between;pointer-events:none}
+.wtop>*{pointer-events:auto}
+.wgrp{display:flex;align-items:center;gap:6px;min-width:0}
+.wf{position:relative;flex:none;width:40px;height:40px;border-radius:50%;border:2.5px solid #fff;background:#cfe7ff;padding:0;cursor:pointer;box-shadow:0 3px 0 #3b2b4d33}
+.wf svg{width:100%;height:100%;border-radius:50%;display:block}
+.wf.on::before,.wf.off::before{content:"";position:absolute;top:-2px;inset-inline-start:-2px;width:10px;height:10px;border-radius:50%;background:#b9b4d6;box-shadow:0 0 0 2px #fff}.wf.on::before{background:#39c46a}
+.wf i{position:absolute;bottom:-5px;inset-inline-end:-7px;font-style:normal;font-size:15px;line-height:1}
+.wroom,.wcoin,.wib{background:#fffffff0;color:#2b2350;border:0;border-radius:999px;font:700 13px var(--fd);padding:7px 11px;box-shadow:0 3px 0 #3b2b4d26;white-space:nowrap}
+.wroom{overflow:hidden;text-overflow:ellipsis;min-width:0}
+.wcoin,.wib{cursor:pointer;flex:none}
+.wib{width:36px;height:36px;padding:0;display:grid;place-items:center;font-size:17px}
+.wban{position:fixed;z-index:19;top:calc(58px + env(safe-area-inset-top,0px));inset-inline:60px;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
+.wban button{pointer-events:auto;border:0;border-radius:999px;background:linear-gradient(135deg,#f07aa4,#a487c9);color:#fff;font:700 13px var(--fd);padding:7px 14px;box-shadow:0 3px 0 #3b2b4d33;cursor:pointer;animation:pop2 .4s;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wside{top:calc(60px + env(safe-area-inset-top,0px));inset-inline-end:10px;flex-direction:column;gap:7px}
+.wside button{position:relative;width:42px;height:42px;border-radius:14px;border:0;background:#fffffff0;font-size:20px;cursor:pointer;box-shadow:0 3px 0 #3b2b4d26;display:grid;place-items:center;padding:0;transition:transform .15s}
+.wside button:active,.wf:active,.wme:active{transform:scale(.92)}
+.wside i{position:absolute;top:-3px;inset-inline-end:-3px;width:11px;height:11px;border-radius:50%;background:var(--ac);box-shadow:0 0 0 2px #fff}
+.wbot{bottom:calc(10px + env(safe-area-inset-bottom,0px));inset-inline:10px;max-width:520px;margin:0 auto;background:#fffffff2;border-radius:20px;padding:6px;box-shadow:0 4px 0 #3b2b4d26,0 10px 26px #2b235033}
+.wbot input{flex:1;min-width:0;border-radius:14px;background:#f6f1fb;color:#2b2350;border-color:transparent}
+.wme{width:42px;height:42px;flex:none;border-radius:14px;border:0;background:#e3d9fa;font-size:21px;cursor:pointer;padding:0}
+.wbot .btn{flex:none;padding:9px 14px}
+.whint{position:fixed;z-index:19;bottom:calc(74px + env(safe-area-inset-bottom,0px));inset-inline:16px;margin:0 auto;max-width:360px;text-align:center;background:#2b2350e6;color:#fff;border-radius:14px;padding:8px 12px;font-size:13px;pointer-events:none;animation:up .5s both}
+.gpan{position:relative;z-index:12;max-width:760px;margin:0 auto;padding:0 16px 60px;min-height:100vh;background:var(--bg);box-shadow:0 0 40px #0005}
+.gph{position:sticky;top:0;z-index:9;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:calc(10px + env(safe-area-inset-top,0px)) 0 10px;background:var(--bg)}
+.gpan .rhd{display:none}
+.wpf svg{width:56px;height:56px;border-radius:50%;background:#cfe7ff;display:block}
+@media(min-width:800px){.gpan{margin:24px auto;min-height:calc(100vh - 48px);border-radius:28px;padding:0 24px 40px}.gph{border-radius:28px 28px 0 0}}
 </style>
 </head>
 <body>
@@ -516,6 +563,8 @@ voiceRec:"🔴 Record a memory",voiceStop:"⏹️ Stop",voiceUp:"📎 Upload aud
 recT:"🎬 Our story recap",recPlay:"▶️ Play",recPause:"⏸️ Pause",recCover:"Our story",recStart:"Our story began 💞",recStats:"Our numbers",recPhotos:"photos",recDates:"dates",recLetters:"letters",recHugs:"hugs",recEnd:"To be continued ❤️",recAnn:"🎉 Your anniversary! See the recap"});
 Object.assign(T.ar,{apt:"شقتنا",aptSub:"شقة صغيرة إلكم الثنين 🧱",aptPhone:"📱 شاشة الهاتف",aptPhoneSub:"شو عم يعمل كل واحد، وآخر صورة",aptNotePh:"شو عم تعمل هلأ؟",aptNoteSaved:"انحفظت حالتك ✓",aptHint:"اضغط على الأرض لتمشي، واضغط على الأغراض لتستعملها",aptDecor:"✏️ ترتيب",aptDone:"خلصت ✓",aptDecorOn:"اختار قطعة من مفروشاتك، وبعدين اضغط مكان بالأرض",aptPick2:"اضغط مكان فاضي بالأرض لتحط القطعة",aptPick:"اختار مكان جديد للقطعة",aptPlaced:"انحطت ✓",aptBlocked:"المكان مشغول أو برّا الأرض",aptNoWay:"ما فيني أوصل هونيك 🚧",aptBox:"🎁 صندوق اليوم",aptBoxUsed:"فتحتوا صندوق اليوم، بكرا في غيره 🎁",aptBoxGot:"🎁 طلع: {i}",aptBoxAll:"كل القطع عندكم! 🪙 +10",aptShop:"محل الشقة",aptInv:"مفروشاتي",aptOnFloor:"على الأرض",aptNoInv:"ما في قطع جديدة. اشتري من المحل تحت",aptBack:"↩️ شيلها",aptEggHint:"اضغط البيضة بالأرض 3 مرات 🥚",aptNoPet:"اشتروا بيضة من المحل وفقّسوها 🐣",aptHatched:"🎉 طلع {k}!",aptPetSub:"بيتمشّى بالشقة، اضغطه لتدلّعه 💗",aptPetHi:"{n} بيحبكم 💗",pk_cat:"قطّة",pk_bunny:"أرنب",pk_dog:"جرو",pk_chick:"صوص"});
 Object.assign(T.en,{apt:"Our apartment",aptSub:"A little apartment for you two 🧱",aptPhone:"📱 Phone screen",aptPhoneSub:"What each of you is doing, and the last photo",aptNotePh:"What are you doing now?",aptNoteSaved:"Status saved ✓",aptHint:"Tap the floor to walk, tap things to use them",aptDecor:"✏️ Arrange",aptDone:"Done ✓",aptDecorOn:"Pick a piece from your things, then tap a spot on the floor",aptPick2:"Tap an empty spot on the floor to place it",aptPick:"Pick a new spot for it",aptPlaced:"Placed ✓",aptBlocked:"That spot is taken or off the floor",aptNoWay:"I can't get there 🚧",aptBox:"🎁 Today's box",aptBoxUsed:"You opened today's box, another one tomorrow 🎁",aptBoxGot:"🎁 You got: {i}",aptBoxAll:"You have every piece! 🪙 +10",aptShop:"Apartment shop",aptInv:"My things",aptOnFloor:"On the floor",aptNoInv:"No new pieces. Buy some in the shop below",aptBack:"↩️ Put away",aptEggHint:"Tap the egg on the floor 3 times 🥚",aptNoPet:"Buy an egg in the shop and hatch it 🐣",aptHatched:"🎉 A {k} hatched!",aptPetSub:"Walks around the apartment, tap to pet it 💗",aptPetHi:"{n} loves you both 💗",pk_cat:"Cat",pk_bunny:"Bunny",pk_dog:"Puppy",pk_chick:"Chick"});
+Object.assign(T.ar,{rKit:"المطبخ",wBack:"↩️ للبيت",wArr:"رتّب الصالة",wHint:"اضغط عالأرض لتمشي، وعالأغراض لتستعملها 🏠",sayPh:"{قول|قولي} إشي…",sayL:"احكي",send:"ابعت",wNew:"في إشي جديد من {p} 💗",wAway:"{إنت|إنتِ} برّا البيت هلأ 🚗",wOutP:"{p} برّا البيت 🚗",wAwayP:"{p} مش بالبيت هلأ",gmOn:"🎮 وضع اللعبة",gmOff:"🌐 الموقع العادي",oBed:"السرير",oWard:"الخزانة",oEasel:"لوحة الرسم",oCal:"التقويم",oTeddy:"الدبدوب",oTub:"البانيو",oSink:"المراية",oTv:"التلفزيون",oBean:"القعدة",oArc:"آلة الألعاب",oTro:"رف الكؤوس",oPoster:"المحل",oGuitar:"الغيتار",oPhotos:"حيط الصور",oRadio:"الراديو",oFridge:"البراد",oStove:"المطبخ",oTable:"طاولة السفرة",oBowl:"صحن لولو",oDesk:"المكتب",oBooks:"المكتبة",oCatBed:"زاوية لولو",oFish:"حوض السمك",oChest:"صندوق الذكريات",oMail:"صندوق البريد",oBox:"طرد على الباب",oFlowers:"حوض الورد",oGift:"هدية اليوم",oBench:"المقعد",oSwing:"الأرجوحة",oGarage:"الكراج"});
+Object.assign(T.en,{rKit:"Kitchen",wBack:"↩️ Back to the house",wArr:"Arrange the living room",wHint:"Tap the floor to walk, tap things to use them 🏠",sayPh:"Say something…",sayL:"Say",send:"Send",wNew:"Something new from {p} 💗",wAway:"You're out right now 🚗",wOutP:"{p} is out 🚗",wAwayP:"{p} isn't home right now",gmOn:"🎮 Game mode",gmOff:"🌐 Classic site",oBed:"Bed",oWard:"Wardrobe",oEasel:"Easel",oCal:"Calendar",oTeddy:"Teddy",oTub:"Bathtub",oSink:"Mirror",oTv:"TV",oBean:"Beanbag",oArc:"Arcade",oTro:"Trophy shelf",oPoster:"Shop",oGuitar:"Guitar",oPhotos:"Photo wall",oRadio:"Radio",oFridge:"Fridge",oStove:"Kitchen",oTable:"Dining table",oBowl:"Lulu's bowl",oDesk:"Desk",oBooks:"Bookshelf",oCatBed:"Lulu's corner",oFish:"Fish tank",oChest:"Memory chest",oMail:"Mailbox",oBox:"Parcel at the door",oFlowers:"Flower bed",oGift:"Today's gift",oBench:"Bench",oSwing:"Swing",oGarage:"Garage"});
 const STG={ar:["هريرة صغيرة","قطة يافعة","قطة أنيقة","ملكة القطط 👑"],en:["Kitten","Young cat","Stylish cat","Cat royalty 👑"]};
 // What Lulu says, by her mood (her mood follows the two of you, see luluMood)
 const CL={ar:{nap:["خرررر… 💤","عم بحلم فيكم… 😴"],hugme:["أنا هون جنبك 🧸","جبتلك دبدوبي، رح يصير أحسن 💗","خليني أعطيك حضن صغير 🐾"],hugthemM:["{p} زعلان… خلينا نروح نحضنه 🥺","رح أضل قاعدة جنب {p} لحد ما ينبسط 💗"],hugthemF:["{p} زعلانة… خلينا نروح نحضنها 🥺","رح أضل قاعدة جنب {p} لحد ما تنبسط 💗"],
@@ -603,13 +652,13 @@ const EARN=[["t",2,0,"✅","مهمة","A task"],["all",5,1,"🌙","يوم كام
 /* ================= state ================= */
 const mk=()=>[["☀️","Wake up early","الاستيقاظ مبكرًا",5],["☀️","Brush teeth","تنظيف الأسنان",5],["☀️","Drink water","شرب الماء",5],["📚","Study Mathematics","مذاكرة الرياضيات",10],["📚","Review English","مراجعة الإنجليزي",10],["💪","Exercise","تمرين رياضي",15]].map((t,i)=>({id:i,ic:t[0],en:t[1],ar:t[2],xp:t[3],done:false}));
 const G0=()=>({mem:{},fish:{},bub:{},quiz:{},gift:{},ach:{},best:{},xo:{b:Array(9).fill(""),t:"rawan",w:"",g:0,n:0,s:{}}});
-const D={lang:"ar",theme:"system",tab:"house",cat:{xp:640,name:""},u:{rawan:{xp:420,streak:8,tasks:mk(),cyc:{last:"",len:28,share:false,log:[]}},yousef:{xp:300,streak:5,tasks:mk()}},msgs:[],dates:[],nudges:[],log:[],games:G0(),home:{p:{},own:{},av:{},nt:{},song:{},draw:{},prm:{},bd:{},alb:{},pos:{},wall:{},flo:{},rel:{},pn:{},cap:{},pc:{},rx:{},voice:{},px:{},box:{},apt:{},pet:{}}};
-let SND=true;
-try{const s=JSON.parse(localStorage.getItem("olw_ui")||"null");if(s){D.lang=s.lang||D.lang;D.theme=s.theme||D.theme;if(s.snd===false)SND=false}}catch(e){}
+const D={lang:"ar",theme:"system",tab:"house",cat:{xp:640,name:""},u:{rawan:{xp:420,streak:8,tasks:mk(),cyc:{last:"",len:28,share:false,log:[]}},yousef:{xp:300,streak:5,tasks:mk()}},msgs:[],dates:[],nudges:[],log:[],games:G0(),home:{p:{},own:{},av:{},nt:{},song:{},draw:{},prm:{},bd:{},alb:{},pos:{},wall:{},flo:{},rel:{},pn:{},cap:{},pc:{},rx:{},voice:{},px:{},box:{},apt:{},pet:{},wp:{}}};
+let SND=true,GMODE=true;
+try{const s=JSON.parse(localStorage.getItem("olw_ui")||"null");if(s){D.lang=s.lang||D.lang;D.theme=s.theme||D.theme;if(s.snd===false)SND=false;if(s.gm===false)GMODE=false}}catch(e){}
 let cur=null,busy=false,editId=null,dImg="",dataOk=false;
 
 /* ================= helpers ================= */
-const save=()=>{try{localStorage.setItem("olw_ui",JSON.stringify({lang:D.lang,theme:D.theme,snd:SND}))}catch(e){}window.FB&&FB.push()};
+const save=()=>{try{localStorage.setItem("olw_ui",JSON.stringify({lang:D.lang,theme:D.theme,snd:SND,gm:GMODE}))}catch(e){}window.FB&&FB.push()};
 const esc=x=>String(x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const cn=()=>D.cat.name?esc(D.cat.name):(D.lang=="ar"?"لولو":"Lulu");
 const t=k=>{const v=T[D.lang][k];if(v==null)return k;return D.cat.name?v.replace(/لولو|Lulu/g,esc(D.cat.name)):v};
@@ -897,7 +946,7 @@ return dx||dy?`<g transform="translate(${dx} ${dy})">${g}</g>`:g}).join("");
 let HPATCH=[];
 function hset(path,v){let o=D.home;for(let i=0;i<path.length-1;i++){const k=path[i];if(!o[k]||typeof o[k]!="object"||Array.isArray(o[k]))o[k]={};o=o[k]}o[path[path.length-1]]=v;HPATCH.push([path,v]);save()}
 // each of you writes only your own entry of these
-const MINE=["p","av","song","draw","prm","nt","bd","alb","cap","pc","rx","voice","px","box"];
+const MINE=["p","av","song","draw","prm","nt","bd","alb","cap","pc","rx","voice","px","box","wp"];
 const SHK=["own","pos","wall","flo","scene","rel","pn","frame","apt","pet"];
 const mine=k=>{const H=D.home;H[k]=H[k]||{};return H[k]};
 const WALL0={our:"pHeart",bath:"pTile",games:"pStar",liv:"pStripe",desk:"pDot",cat:"pPaw"};
@@ -1230,7 +1279,7 @@ function enter(k){snd("whoosh");if(k=="games")GM=null;if(!RFL[k]){go(k);return}c
 function seeIt(id){const i=SHOP.find(x=>x.id==id);if(!i)return;go("house");const[x,y,w,h]=i.bb.split(" ").map(Number),W=Math.max(w*1.6,150),H=Math.max(h*1.6,110),box={x:x+w/2-W/2,y:y+h/2-H/2,w:W,h:H};
 setTimeout(()=>{const z=document.getElementById("hz");if(!z||reduced())return;clearTimeout(luT);snd("whoosh");z.classList.add("look");z.style.transform=zoomT(z,box);setTimeout(()=>{if(document.getElementById("hz")===z){z.style.transform="";z.classList.remove("look");luT=setTimeout(luluTick,1500)}},2600)},450)}
 function zoomOut(k){const z=document.getElementById("hz");if(!z||!ROOMS[k]||reduced())return;z.style.transition="none";z.style.transform=zoomT(z,k);void z.offsetWidth;z.style.transition="";requestAnimationFrame(()=>requestAnimationFrame(()=>{z.style.transform=""}))}
-function go(k){clearInterval(RECT2);RECP=false;clearTimeout(APTW);clearInterval(APTT);if(k!="play"&&GW){clearTimeout(GW);GW=null;window.HOLD=false}if(k=="house"&&ROOMS[D.tab])ZF=D.tab=="cyc"?"our":D.tab;if(k!="house")DECO=false;if(k!="draw")DRW=null;if(k!="games")fishStop();if(k!="bath")bubStop();D.tab=k;render();scrollTo(0,0)}
+function go(k){clearTimeout(WWT);WWT=null;clearInterval(WNT);clearInterval(RECT2);RECP=false;clearTimeout(APTW);clearInterval(APTT);if(k!="play"&&GW){clearTimeout(GW);GW=null;window.HOLD=false}if(k=="house"&&ROOMS[D.tab])ZF=D.tab=="cyc"?"our":D.tab;if(k!="house")DECO=false;if(k!="draw")DRW=null;if(k!="games")fishStop();if(k!="bath")bubStop();D.tab=k;render();scrollTo(0,0)}
 // Lulu wanders: walks along a floor, or slips upstairs/downstairs with a quick fade.
 const LROOMS=["cat","cat","liv","our","games","desk","bath","liv"];
 function luluTick(){clearTimeout(luT);const el=document.getElementById("lulu");if(!el||!(D.tab=="house"&&el.closest("#hz")||D.tab=="play"&&el.closest("#gcam")))return;
@@ -1250,7 +1299,7 @@ const tags=tag(P("our"),t("rOur"),Math.round((pctOf(cur)+pctOf(o))/2)+"%")+tag(P
 const wn=week().filter(togOn).length,lm=luluMood(),ev=eventsOn(td),n=relDays(),rit=["song","draw","prm"].filter(k=>dayOf(k,cur)).length;
 const chips=[(memToday().n?`<button class="chip hot" onclick="ALV=0;go('album')">${t("memToday")}</button>`:""),`<button class="chip ${left?"":"hot"}" onclick="go('desk')">${left?"📋 "+left+" "+t("leftN"):"✅ "+t("allDone")}</button>`,`<button class="chip ${rit<3?"hot":""}" onclick="go('today')">☀️ ${t("today")} ${rit}/3</button>`,giftReady()?`<button class="chip hot" onclick="openGift(event)">${t("gift")}</button>`:"",qn?`<button class="chip hot" onclick="GM='quiz';go('games')">${t("qNew")}</button>`:"",`<button class="chip ${togOn(td)?"hot":""}" onclick="go('liv')">💞 ${t("warm")} ${wn}/7</button>`,`<button class="chip" onclick="go('gdn')">🔥 ${U.streak||0} ${t("streak")}</button>`].join("");
 const lline=`<div class="lline"><span class="lic">🐱</span><div><b>${cn()}</b> ${luluLine()}</div>${lm=="nap"?`<button class="btn g" onclick="wakeLulu(event)">${t("wake")}</button>`:lm=="hugthem"?`<button class="btn" onclick="hug()">${t("hug")}</button>`:""}</div>`;
-const tb=[["🧱",t("apt"),"go('apt')"],["🚶",t("play"),"go('play')"],["🙂",t("tbSt"),"openAct()"],["🎨",t("deco"),"startDeco()"],["👗",t("myLook"),"go('av')"],["🛍️",t("shop"),"go('shop')"],["🌤️",t("scene"),"openScene()"],["📸",t("tbSnap"),"snapHouse()"]];
+const tb=[["🎮",t("gmOn").replace(/^\S+\s/,""),"toggleGM()"],["🧱",t("apt"),"go('apt')"],["🚶",t("play"),"go('play')"],["🙂",t("tbSt"),"openAct()"],["🎨",t("deco"),"startDeco()"],["👗",t("myLook"),"go('av')"],["🛍️",t("shop"),"go('shop')"],["🌤️",t("scene"),"openScene()"],["📸",t("tbSnap"),"snapHouse()"]];
 const tools=`<div class="tbar">${tb.map(([e,l,f])=>`<button onclick="${f}"><b>${e}</b><small>${l}</small></button>`).join("")}</div>`;
 return`<section class="hello"><div><h1>${t(new Date().getHours()<12?"gm":"ge")}${D.lang=="ar"?"، ":", "}${nm(cur)} <span class="e">💗</span></h1><div class="mut">${new Date().toLocaleDateString(loc0(),{weekday:"long",day:"numeric",month:"long"})}</div></div><button class="dpill" onclick="go('events')">${n?`<b>${n}</b>${t("daysTog")} 💞`:`💞 ${t("relQ")}`}</button></section>${presence()}${nudgeCards()}
 ${ev.length?`<div class="card msg evb" onclick="go('events')">${ev.map(e=>t("evToday").replace("{e}",evName(e))).join("<br>")}</div>`:""}
@@ -1329,7 +1378,7 @@ return head("gar","🚗 "+t("rGar"),t("sGar"))
 function attView(){const have=new Set(D.games.ach[cur]||[]),a=D.lang=="ar";
 return head("att","🏆 "+t("rAtt"),t("sAtt"))
 +`<div class="card"><h2>${t("trophies")} <span class="mut">${have.size}/${ACH.length}</span></h2><div class="shelf">${ACH.map(x=>`<div class="tro ${have.has(x[0])?"":"lk"} ${ACH_NEW.includes(x[0])?"nw":""}"><b>${x[1]}</b>${a?x[2]:x[3]}<small>${a?x[4]:x[5]}</small></div>`).join("")}</div></div>`
-+`<div class="card"><h2>${t("settings")}</h2><div class="row"><button class="btn g" onclick="setLang()">🌍 ${t("lang")}</button><button class="btn g" onclick="setTheme()">🎨 ${t("theme")}: ${t("th_"+D.theme)}</button><button class="btn g" onclick="toggleSnd()">${t("sound")}: ${SND?t("sOn"):t("sOff")}</button></div></div>`
++`<div class="card"><h2>${t("settings")}</h2><div class="row"><button class="btn g" onclick="setLang()">🌍 ${t("lang")}</button><button class="btn g" onclick="setTheme()">🎨 ${t("theme")}: ${t("th_"+D.theme)}</button><button class="btn g" onclick="toggleSnd()">${t("sound")}: ${SND?t("sOn"):t("sOff")}</button><button class="btn g" onclick="toggleGM()">${t(GMODE?"gmOff":"gmOn")}</button></div></div>`
 +`<div class="card"><h2>🐱 ${t("cname")}</h2><div class="row"><input id="cnm" value="${esc(D.cat.name)}" placeholder="${t("cnph")}" maxlength="20"><button class="btn" onclick="setName()">${t("ad")}</button></div></div>`
 +`<div class="card"><div class="row"><button class="btn g" onclick="FB.resetMine()">🔑 ${t("change")}</button><button class="btn" onclick="FB.out()">🚪 ${t("out")}</button></div></div>`}
 
@@ -1358,7 +1407,7 @@ function sheet(id,html){document.getElementById(id)?.remove();const o=document.c
 function actHtml(){const S=D.u[cur].st||{},w=actOf(cur)[0];return`<h2>${t("mystat")}</h2><div class="row">${MOODS.map(m=>`<button class="btn g ${S.mood==m[1]?"sel":""}" onclick="pickMood('${m[1]}')">${m[0]} ${mLab(m,cur)}</button>`).join("")}</div><h2 style="margin-top:14px">${t("doing")}</h2><div class="acts">${ACTS.map(a=>`<button class="${w==a[0]?"on":""}" onclick="pickAct('${a[0]}')"><b>${a[1]}</b>${aLab(a)}</button>`).join("")}</div>`}
 function openAct(){sheet("aov",actHtml())}
 function pickMood(v){setSt("mood",v);const o=document.getElementById("aov");if(o)o.querySelector(".sh").innerHTML=actHtml()}
-function pickAct(a){document.getElementById("aov")?.remove();snd("pop");setSt("where",a);if(D.tab!="house")go("house")}
+function pickAct(a){if(GMODE&&cur)return wPickAct(a);document.getElementById("aov")?.remove();snd("pop");setSt("where",a);if(D.tab!="house")go("house")}
 
 /* ---------- character designer ---------- */
 let AVD=null;
@@ -1582,20 +1631,20 @@ function namePet(id){const v=vv("pn-"+id).slice(0,16);if(!v)return;hset(["pn",id
 function openScene(){sheet("sov",`<h2>🌤️ ${t("scene")}</h2><p class="mut">${t("sScene")}</p><div class="acts">${SCN.map(([k,e])=>`<button class="${sceneOf()==k?"on":""}" onclick="setScene('${k}')"><b>${e}</b>${t("sc_"+k)}</button>`).join("")}</div>`)}
 function setScene(k){document.getElementById("sov")?.remove();hset(["scene"],k);snd("whoosh");render()}
 let SNAP=null;
-function snapHouse(){const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 640" width="1200" height="1280">${art(0)}</svg>`,img=new Image();snd("whoosh");
-img.onload=()=>{const c=document.createElement("canvas");c.width=1200;c.height=1420;const g=c.getContext("2d");g.fillStyle="#fbf5fb";g.fillRect(0,0,1200,1420);g.drawImage(img,0,0,1200,1280);g.textAlign="center";g.direction=D.lang=="ar"?"rtl":"ltr";
-g.fillStyle="#2b2350";g.font='800 52px "Baloo Bhaijaan 2",sans-serif';g.fillText(t("brand")+" 🏡",600,1350);const n=relDays();g.fillStyle="#7b7899";g.font='500 32px Tajawal,sans-serif';g.fillText((n?n+" "+t("daysTog")+" 💞 · ":"")+new Date().toLocaleDateString(loc0(),{day:"numeric",month:"long",year:"numeric"}),600,1398);
+function snapHouse(){const G=GMODE,ih=G?933:1280,svg=G?`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288 224" width="1200" height="933" shape-rendering="crispEdges">${wArt()}</svg>`:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 640" width="1200" height="1280">${art(0)}</svg>`,img=new Image();snd("whoosh");
+img.onload=()=>{const c=document.createElement("canvas");c.width=1200;c.height=ih+140;const g=c.getContext("2d");g.fillStyle="#fbf5fb";g.fillRect(0,0,1200,ih+140);g.drawImage(img,0,0,1200,ih);g.textAlign="center";g.direction=D.lang=="ar"?"rtl":"ltr";
+g.fillStyle="#2b2350";g.font='800 52px "Baloo Bhaijaan 2",sans-serif';g.fillText(t("brand")+" 🏡",600,ih+70);const n=relDays();g.fillStyle="#7b7899";g.font='500 32px Tajawal,sans-serif';g.fillText((n?n+" "+t("daysTog")+" 💞 · ":"")+new Date().toLocaleDateString(loc0(),{day:"numeric",month:"long",year:"numeric"}),600,ih+118);
 c.toBlob(b=>{if(!b)return;if(SNAP)URL.revokeObjectURL(SNAP.u);SNAP={b,u:URL.createObjectURL(b)};sheet("snv",`<h2>📸 ${t("snap")}</h2><p class="mut">${t("snapS")}</p><img class="snapi" src="${SNAP.u}" alt="${t("snap")}"><p style="text-align:center"><button class="btn big" onclick="shareSnap()">${t("snapSave")}</button></p>`)},"image/png")};
 img.onerror=()=>toast("⚠️");img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg)}
 async function shareSnap(){if(!SNAP)return;const f=new File([SNAP.b],"our-little-home.png",{type:"image/png"});try{if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:t("brand")});return}}catch(e){if(e&&e.name=="AbortError")return}
 const a=document.createElement("a");a.href=SNAP.u;a.download="our-little-home.png";document.body.appendChild(a);a.click();a.remove()}
-function moreView(){const tl=[["🧱",t("apt"),"go('apt')"],["🚶",t("play"),"go('play')"],["🎨",t("deco"),"startDeco()"],["🛍️",t("shop"),"go('shop')"],["👗",t("myLook"),"go('av')"],["🐾",t("pets"),"go('pets')"],["🎉",t("events"),"go('events')"],["📸",t("album"),"go('album')"],["📝",t("notes"),"go('notes')"],["🌤️",t("scene"),"openScene()"],["📷",t("snap"),"snapHouse()"],["☀️",t("today"),"go('today')"],["🚗",t("dates"),"go('gar')"],["💌",t("rMail"),"go('mail')"],["🐱",cn(),"go('cat')"],["🛋️",t("rLiv"),"go('liv')"],["🛏️",t("rOur"),"go('our')"],["🌷",t("gdn"),"go('gdn')"],["🏆",t("rAtt"),"go('att')"],["⚙️",t("settings").replace(/\s*⚙️/,""),"go('att')"]].concat(cur=="rawan"?[["🌸",t("rCyc"),"go('cyc')"]]:[]);
+function moreView(){const tl=[[GMODE?"🌐":"🎮",t(GMODE?"gmOff":"gmOn"),"toggleGM()"],["🧱",t("apt"),"go('apt')"],["🚶",t("play"),"go('play')"],["🎨",t("deco"),"startDeco()"],["🛍️",t("shop"),"go('shop')"],["👗",t("myLook"),"go('av')"],["🐾",t("pets"),"go('pets')"],["🎉",t("events"),"go('events')"],["📸",t("album"),"go('album')"],["📝",t("notes"),"go('notes')"],["🌤️",t("scene"),"openScene()"],["📷",t("snap"),"snapHouse()"],["☀️",t("today"),"go('today')"],["🚗",t("dates"),"go('gar')"],["💌",t("rMail"),"go('mail')"],["🐱",cn(),"go('cat')"],["🛋️",t("rLiv"),"go('liv')"],["🛏️",t("rOur"),"go('our')"],["🌷",t("gdn"),"go('gdn')"],["🏆",t("rAtt"),"go('att')"],["⚙️",t("settings").replace(/\s*⚙️/,""),"go('att')"]].concat(cur=="rawan"?[["🌸",t("rCyc"),"go('cyc')"]]:[]);
 return`<section class="hello"><div><h1>${t("more")} <span class="e">✨</span></h1><div class="mut">${t("sMore")}</div></div></section><div class="tiles">${tl.map(([e,l,f])=>`<button class="tile" onclick="${f}"><b>${e}</b>${l}</button>`).join("")}</div>`}
 
 /* ---------- decorating: drag what you bought, pick wallpapers and floors ---------- */
 let DROOM="liv",DG=null;
-function startDeco(){DECO=true;snd("whoosh");if(D.tab!="house")go("house");else render()}
-function endDeco(){DECO=false;snd("ding");render()}
+function startDeco(){if(GMODE){snd("whoosh");return go("deco")}DECO=true;snd("whoosh");if(D.tab!="house")go("house");else render()}
+function endDeco(){DECO=false;snd("ding");if(GMODE)return go("house");render()}
 function decoPanel(){const rooms=["our","bath","games","liv","desk","cat"],cw=(D.home.wall||{})[DROOM],cf=(D.home.flo||{})[DROOM];
 const sw=(kind,x)=>{const id=x[0],ok=decOk(kind,id),on=(kind=="w"?(decOk("w",cw)?cw:WALL0[DROOM]):(decOk("f",cf)?cf:FLOOR0[DROOM]))==id,fill=id[0]=="#"?id:`url(#${id})`,lab=D.lang=="ar"?x[2]:x[3];
 return`<button class="dsw ${on?"on":""} ${ok?"":"lk"}" onclick="${ok?`setDec('${kind}','${id}')`:`SHOPC='${kind=="w"?"wall":"floor"}';DECO=false;go('shop')`}" aria-label="${lab}"><svg viewBox="0 0 40 28" aria-hidden="true"><rect width="40" height="28" fill="${fill}"/></svg><small>${ok?lab:"🪙 "+x[1]}</small></button>`};
@@ -1732,6 +1781,320 @@ return`<section class="hello"><div><h1>${t("apt")} <span class="e">🏡</span></
 +(APTED?aptDecor():"")+aptPetCard()+`<h2 style="margin-top:14px">${t("aptShop")}</h2>`+aptShop()}
 
 
+/* ================= the whole house as one game: walk through every room and use what's in it ================= */
+// 36×28 cells of 8 units. Rows 0-2 and 9-11 are back walls, 3-8 and 12-17 floors, row 18 the front wall, 19-26 the garden, 27 the fence.
+const WGW=36,WGH=28;
+const WR={our:[0,3,12,6],bath:[13,3,11,6],games:[25,3,11,6],liv:[0,12,12,6],kit:[13,12,11,6],desk:[25,12,11,6],gdn:[0,19,36,8]};
+const WRN={our:"rOur",bath:"rBath",games:"rGame",liv:"rLiv",kit:"rKit",desk:"rDesk",gdn:"gdn"};
+const WDOOR=[[12,6],[24,6],[12,15],[24,15],[10,9],[10,10],[10,11],[18,9],[18,10],[18,11],[30,9],[30,10],[30,11],[5,18],[19,18]];
+// a status set on the classic page, mapped to a room of this house
+const WCLS={att:"games",our:"our",bath:"bath",games:"games",liv:"liv",desk:"desk",cat:"desk",mail:"gdn",gdn:"gdn",gar:"gdn",kit:"kit"};
+const wRoomAt=(x,y)=>{for(const k in WR){const[a,b,w,h]=WR[k];if(x>=a&&x<a+w&&y>=b&&y<b+h)return k}return null};
+const wDoorAt=(x,y)=>WDOOR.some(d=>d[0]==x&&d[1]==y);
+const wFloor=(x,y)=>x>=0&&y>=0&&x<WGW&&y<WGH&&(!!wRoomAt(x,y)||wDoorAt(x,y));
+const wOwn=id=>!!(D.home.own||{})[id];
+const wSofa=()=>{const p=aptOwned("a_sofa")&&aptPlacedAt("a_sofa");return p?[p.x,p.y+9]:null};
+const wOut=()=>["rawan","yousef"].some(u=>actOf(u)[0]=="out"&&(u==cur||inHouse(u)||Date.now()-((D.u[u].st||{}).ts||0)<20*36e5));
+// everything you can use. x,y,w,h: the cells it stands on (wall pieces stand on wall cells); t: how many cells it reaches up; b:0 lets you walk over it
+const WOBJ=[
+{k:"bed",x:1,y:3,w:3,h:3,t:1,ic:"🛏️",n:"oBed",acts:()=>[["😴",gs(t("sleepL"),cur),"s:sleep"],["🛏️",aLab(ACTS[1]),"s:room"],["💬",t("prm"),"p:prm"],["📖",t("rOur"),"p:our"]],
+ d:(X,Y)=>PXR(X,Y-7,24,9,"#b98450")+PXR(X+1,Y-6,22,2,"#d19a63")+PXR(X,Y+2,24,20,"#b98450")+PXR(X+1,Y+1,22,19,"#ffffff")+PXR(X+2,Y+1,9,5,"#fde7f1")+PXR(X+13,Y+1,9,5,"#fde7f1")+PXR(X+1,Y+8,22,13,"#f59ab9")+PXR(X+1,Y+8,22,2,"#fbd3e4")+PXR(X+6,Y+13,2,2,"#fff")+PXR(X+15,Y+16,2,2,"#fff")+PXR(X+10,Y+18,2,2,"#fff")+PXR(X,Y+22,2,2,"#8b5a3c")+PXR(X+22,Y+22,2,2,"#8b5a3c")},
+{k:"ward",x:10,y:3,w:2,h:1,t:2,ic:"👗",n:"oWard",acts:()=>[["👗",t("myLook"),"p:av"]],
+ d:(X,Y)=>PXR(X,Y-14,16,22,"#c98b5b")+PXR(X,Y-14,16,1,"#a8703f")+PXR(X+1,Y-13,6,19,"#d9a066")+PXR(X+9,Y-13,6,19,"#d9a066")+PXR(X+6,Y-5,1,3,"#8b5a3c")+PXR(X+9,Y-5,1,3,"#8b5a3c")+PXR(X+1,Y+6,2,2,"#8b5a3c")+PXR(X+13,Y+6,2,2,"#8b5a3c")},
+{k:"easel",x:8,y:3,w:1,h:1,t:1,ic:"🎨",n:"oEasel",dot:()=>!!dayOf("draw",other())&&!dayOf("draw",cur),acts:()=>[["🎨",t("draw"),"p:draw"]],
+ d:(X,Y)=>PXR(X+1,Y-3,1,11,"#8b5a3c")+PXR(X+6,Y-3,1,11,"#8b5a3c")+PXR(X,Y-11,8,9,"#ffffff")+PXR(X,Y-11,8,1,"#d4c4b0")+PXR(X+1,Y-9,3,3,"#f59ab9")+PXR(X+4,Y-7,3,3,"#6dd5fa")+PXR(X+2,Y-5,4,2,"#ffd45c")},
+{k:"cal",x:4,y:0,w:2,h:3,wall:1,ic:"💞",n:"oCal",dot:()=>eventsOn(today()).length>0,acts:()=>[["💞",t("events"),"p:events"],cur=="rawan"?["🌸",t("rCyc"),"p:cyc"]:null],
+ d:(X,Y)=>PXR(X+2,Y+5,12,12,"#ffffff")+PXR(X+2,Y+5,12,3,"#e8608f")+PXR(X+4,Y+3,1,3,"#3b2b4d")+PXR(X+11,Y+3,1,3,"#3b2b4d")+[0,1,2].map(r=>[0,1,2,3].map(c=>PXR(X+3+c*3,Y+9+r*3,2,2,r==1&&c==2?"#e8608f":"#e3d9fa")).join("")).join("")},
+{k:"teddy",x:1,y:7,w:1,h:1,ic:"🧸",n:"oTeddy",on:()=>wOwn("teddy"),acts:()=>[["🧸",t("hug"),"f:teddy"]],
+ d:(X,Y)=>PXR(X+1,Y+1,2,2,"#b98450")+PXR(X+5,Y+1,2,2,"#b98450")+PXR(X+2,Y+2,4,3,"#c98b5b")+PXR(X+1,Y+5,6,3,"#c98b5b")+PXR(X+3,Y+3,1,1,"#2b2350")+PXR(X+5,Y+3,1,1,"#2b2350")+PXR(X+3,Y+5,2,1,"#e8608f")},
+{k:"tub",x:14,y:3,w:3,h:2,t:1,ic:"🛁",n:"oTub",acts:()=>[["🛁",t("bathL"),"s:bath"],["🫧",t("gBub"),"p:bath"]],
+ d:(X,Y)=>PXR(X+11,Y-7,2,4,"#b0bec5")+PXR(X,Y-3,24,17,"#ffffff")+PXR(X,Y-3,24,1,"#cfe3ee")+PXR(X+2,Y-1,20,9,"#9fd8f5")+PXR(X+4,Y,3,2,"#fff")+PXR(X+12,Y+2,3,2,"#fff")+PXR(X+18,Y,2,2,"#fff")+PXR(X,Y+13,24,1,"#cfe3ee")+PXR(X+1,Y+14,2,2,"#b0bec5")+PXR(X+21,Y+14,2,2,"#b0bec5")},
+{k:"sink",x:19,y:3,w:1,h:1,t:2,ic:"🪞",n:"oSink",acts:()=>[["🪞",t("myLook"),"p:av"]],
+ d:(X,Y)=>PXR(X,Y-16,8,11,"#c98b5b")+PXR(X+1,Y-15,6,9,"#cfe9f5")+PXR(X+2,Y-14,2,3,"#ffffff")+PXR(X-.6,Y-1.6,9.2,5.2,"#9fb8c6")+PXR(X,Y-1,8,4,"#ffffff")+PXR(X+1,Y,6,2,"#dff2fb")+PXR(X+3,Y+3,2,5,"#e3eef3")+PXR(X+3,Y-3,2,2,"#b0bec5")},
+{k:"toilet",x:22,y:3,w:1,h:1,t:1,ic:"🚽",n:"",d:(X,Y)=>PXR(X+.4,Y-6.6,7.2,6.2,"#9fb8c6")+PXR(X+.4,Y-.6,7.2,7.2,"#9fb8c6")+PXR(X+1,Y-6,6,5,"#ffffff")+PXR(X+1,Y-6,6,1,"#cfe3ee")+PXR(X+1,Y,6,6,"#ffffff")+PXR(X+2,Y+1,4,3,"#dff2fb")+PXR(X+3,Y+6,2,2,"#e3eef3")},
+{k:"tv",x:28,y:3,w:3,h:1,t:2,ic:"📺",n:"oTv",acts:()=>[["📺",gs(t("tvL"),cur),"s:tv"],["🕹️",gs(t("playL"),cur),"s:game"],["🎮",t("games"),"p:games"]],
+ d:(X,Y)=>PXR(X+2,Y-18,20,14,"#2b2350")+PXR(X+3,Y-17,18,12,["tv","game"].some(a=>wSeen(a))?"#ffb3d1":"#6dd5fa")+PXR(X+4,Y-16,5,2,"#ffffff")+PXR(X+11,Y-4,2,3,"#2b2350")+PXR(X,Y-1,24,9,"#8b5a3c")+PXR(X+1,Y,22,3,"#a8703f")+PXR(X+9,Y+1,6,2,"#ffffff")+PXR(X+2,Y+4,8,3,"#a8703f")+PXR(X+14,Y+4,8,3,"#a8703f")},
+{k:"bean1",x:28,y:6,w:1,h:1,b:0,ic:"🕹️",n:"oBean",acts:()=>[["🕹️",gs(t("playL"),cur),"s:game"],["📺",gs(t("tvL"),cur),"s:tv"]],d:(X,Y)=>wBean(X,Y,"#e8608f","#f59ab9")},
+{k:"bean2",x:30,y:6,w:1,h:1,b:0,ic:"🕹️",n:"oBean",acts:()=>[["🕹️",gs(t("playL"),cur),"s:game"],["📺",gs(t("tvL"),cur),"s:tv"]],d:(X,Y)=>wBean(X,Y,"#6c8fe6","#a9c3f7")},
+{k:"arcade",x:34,y:3,w:1,h:1,t:2,ic:"🎮",n:"oArc",dot:()=>myXoTurn()||!!qTheirs()&&!qMine(),acts:()=>[["🎮",t("games"),"p:games"],["❓",t("gQuiz"),"p:quiz"]],
+ d:(X,Y)=>PXR(X,Y-14,8,22,"#6c4ab6")+PXR(X,Y-15,8,3,"#e8608f")+PXR(X+1,Y-11,6,6,"#2b2350")+PXR(X+2,Y-10,4,4,"#6dd5fa")+PXR(X+3,Y-9,1,1,"#ffd45c")+PXR(X+1,Y-4,6,2,"#4a3290")+PXR(X+2,Y-4,1,1,"#ffd45c")+PXR(X+5,Y-4,1,1,"#e8608f")+PXR(X+1,Y+6,6,2,"#4a3290")},
+{k:"trophy",x:25,y:0,w:2,h:3,wall:1,ic:"🏆",n:"oTro",acts:()=>[["🏆",t("rAtt"),"p:att"]],
+ d:(X,Y)=>PXR(X+1,Y+15,14,2,"#8b5a3c")+PXR(X+3,Y+9,4,4,"#ffd45c")+PXR(X+4,Y+13,2,2,"#d9a52e")+PXR(X+2,Y+9,1,2,"#ffd45c")+PXR(X+7,Y+9,1,2,"#ffd45c")+PXR(X+10,Y+10,3,3,"#cfd8e3")+PXR(X+11,Y+13,1,2,"#9aa7b4")+PXR(X+1,Y+6,14,1,"#8b5a3c")+PXR(X+4,Y+2,3,4,"#e8608f")+PXR(X+9,Y+3,4,3,"#5fbf72")},
+{k:"poster",x:32,y:0,w:2,h:3,wall:1,ic:"🛍️",n:"oPoster",acts:()=>[["🛍️",t("shop"),"p:shop"]],
+ d:(X,Y)=>PXR(X+1,Y+3,14,15,"#e8608f")+PXR(X+2,Y+4,12,13,"#fff3a8")+PXR(X+5,Y+9,6,6,"#e8608f")+PXR(X+6,Y+7,1,3,"#e8608f")+PXR(X+9,Y+7,1,3,"#e8608f")+PXR(X+6,Y+7,4,1,"#e8608f")+PXR(X+7,Y+11,2,2,"#ffd45c")},
+{k:"guitar",x:35,y:8,w:1,h:1,t:1,ic:"🎸",n:"oGuitar",on:()=>wOwn("guitar"),acts:()=>[["🎵",t("song"),"p:song"]],
+ d:(X,Y)=>PXR(X+3,Y-7,2,8,"#8b5a3c")+PXR(X+2,Y-8,4,2,"#3b2b4d")+PXR(X+1,Y,6,7,"#e8945a")+PXR(X+3,Y+2,2,2,"#3b2b4d")},
+{k:"photos",x:1,y:9,w:3,h:3,wall:1,ic:"📸",n:"oPhotos",dot:()=>memToday().n>0,acts:()=>[["📸",t("album"),"p:album"]],
+ d:(X,Y)=>(wOwn("photo")?PXR(X+1,Y+2,12,10,"#ffd45c")+PXR(X+2,Y+3,10,8,"#fbd3e4")+PXR(X+4,Y+6,2,2,"#e8608f")+PXR(X+8,Y+6,2,2,"#e8608f")+PXR(X+5,Y+8,4,2,"#e8608f"):PXR(X+1,Y+3,10,8,"#8b5a3c")+PXR(X+2,Y+4,8,6,"#fbd3e4")+PXR(X+4,Y+6,4,2,"#e8608f"))+PXR(X+14,Y+2,9,8,"#8b5a3c")+PXR(X+15,Y+3,7,6,"#cfe9f5")+PXR(X+16,Y+6,5,3,"#5fbf72")+PXR(X+6,Y+13,8,7,"#8b5a3c")+PXR(X+7,Y+14,6,5,"#fff3a8")+PXR(X+9,Y+15,2,2,"#ffb02e")},
+{k:"radio",x:5,y:9,w:2,h:3,wall:1,ic:"🎵",n:"oRadio",dot:()=>!!dayOf("song",other())&&!dayOf("song",cur),acts:()=>[["🎵",t("song"),"p:song"]],
+ d:(X,Y)=>PXR(X+1,Y+15,14,2,"#8b5a3c")+PXR(X+3,Y+9,10,6,"#e8608f")+PXR(X+4,Y+10,4,4,"#3b2b4d")+PXR(X+5,Y+11,2,2,"#6c4ab6")+PXR(X+10,Y+10,2,2,"#ffd45c")+PXR(X+10,Y+13,2,1,"#fff")+PXR(X+11,Y+5,1,4,"#3b2b4d")+(dayOf("song",cur)||dayOf("song",other())?PXR(X+1,Y+4,2,2,"#6c4ab6")+PXR(X+2,Y+1,1,3,"#6c4ab6")+PXR(X+14,Y+6,2,2,"#e8608f")+PXR(X+15,Y+3,1,3,"#e8608f"):"")},
+{k:"fridge",x:13,y:12,w:2,h:1,t:2,ic:"📝",n:"oFridge",acts:()=>[["📝",t("notes"),"p:notes"],["🍳",gs(t("cookL"),cur),"s:cook"]],
+ d:(X,Y)=>PXR(X,Y-15,16,23,"#f4f7fb")+PXR(X,Y-15,16,1,"#cfd8e3")+PXR(X,Y-6,16,1,"#cfd8e3")+PXR(X+13,Y-13,1,5,"#9aa7b4")+PXR(X+13,Y-4,1,5,"#9aa7b4")+PXR(X+2,Y-12,3,3,"#ffd45c")+PXR(X+6,Y-10,3,3,"#f59ab9")+PXR(X+3,Y-3,4,3,"#6dd5fa")+PXR(X+1,Y+7,14,1,"#cfd8e3")},
+{k:"stove",x:15,y:12,w:3,h:1,t:1,ic:"🍳",n:"oStove",acts:()=>[["🍳",gs(t("cookL"),cur),"s:cook"],["☀️",t("today"),"p:today"]],
+ d:(X,Y)=>PXR(X,Y-2,24,10,"#c98b5b")+PXR(X,Y-3,24,2,"#efe0c4")+PXR(X+2,Y-3,4,1,"#3b2b4d")+PXR(X+8,Y-3,4,1,"#3b2b4d")+PXR(X+2,Y-7,5,4,"#9aa7b4")+PXR(X+1,Y-7,7,1,"#b0bec5")+PXR(X+1,Y,12,7,"#3b2b4d")+PXR(X+2,Y+1,10,4,wSeen("cook")?"#ffb02e":"#5a4d80")+PXR(X+14,Y,9,7,"#d9a066")+PXR(X+18,Y+3,1,1,"#8b5a3c")},
+{k:"counter",x:19,y:12,w:3,h:1,t:1,ic:"🍳",n:"oStove",acts:()=>[["🍳",gs(t("cookL"),cur),"s:cook"]],
+ d:(X,Y)=>PXR(X,Y-2,24,10,"#c98b5b")+PXR(X,Y-3,24,2,"#efe0c4")+PXR(X+3,Y-3,8,2,"#cfe9f5")+PXR(X+6,Y-7,1,4,"#9aa7b4")+PXR(X+6,Y-7,3,1,"#9aa7b4")+PXR(X+16,Y-9,5,5,"#5fbf72")+PXR(X+17,Y-4,3,2,"#e8945a")+PXR(X+2,Y+1,9,6,"#d9a066")+PXR(X+13,Y+1,9,6,"#d9a066")+PXR(X+10,Y+3,1,1,"#8b5a3c")+PXR(X+13,Y+3,1,1,"#8b5a3c")},
+{k:"table",x:15,y:15,w:3,h:2,ic:"☀️",n:"oTable",dot:()=>todayDot(),acts:()=>[["☀️",t("today"),"p:today"],["❓",t("gQuiz"),"p:quiz"],["💬",t("prm"),"p:prm"]],
+ d:(X,Y)=>PXR(X,Y+2,24,10,"#d9a066")+PXR(X,Y+11,24,2,"#b98450")+PXR(X+1,Y+13,2,3,"#8b5a3c")+PXR(X+21,Y+13,2,3,"#8b5a3c")+PXR(X+4,Y+4,5,4,"#ffffff")+PXR(X+15,Y+4,5,4,"#ffffff")+PXR(X+5,Y+5,3,2,"#ffb02e")+PXR(X+16,Y+5,3,2,"#e8608f")+PXR(X+11,Y+3,2,3,"#6dd5fa")},
+{k:"bowl",x:22,y:17,w:1,h:1,b:0,ic:"🐟",n:"oBowl",acts:()=>[["🐟",t("feed"),"f:feed"]],
+ d:(X,Y)=>PXR(X+1,Y+4,6,3,"#e8608f")+PXR(X+2,Y+3,4,1,"#c98b5b")+PXR(X+2,Y+7,4,1,"#b14d78")},
+{k:"desk",x:26,y:12,w:3,h:1,t:1,ic:"📋",n:"oDesk",acts:()=>[["📋",t("tasks"),"p:desk"],["📚",gs(t("studyL"),cur),"s:study"]],
+ d:(X,Y)=>PXR(X+3,Y-11,11,8,"#2b2350")+PXR(X+4,Y-10,9,6,wSeen("study")?"#a9f0c0":"#6dd5fa")+PXR(X+8,Y-3,1,2,"#2b2350")+PXR(X,Y-2,24,4,"#b98450")+PXR(X,Y+1,24,1,"#8b5a3c")+PXR(X+1,Y+2,2,6,"#8b5a3c")+PXR(X+21,Y+2,2,6,"#8b5a3c")+PXR(X+18,Y-8,4,3,"#ffd45c")+PXR(X+19,Y-5,1,3,"#8b5a3c")+PXR(X+15,Y-5,1,3,"#e8608f")+PXR(X+16,Y-5,1,3,"#6c8fe6")+(wOwn("globe")?PXR(X+19,Y-12,3,3,"#4f8fe6")+PXR(X+20,Y-11,1,1,"#5fbf72"):"")+(wOwn("cactus")?PXR(X+1,Y-7,2,4,"#5fbf72")+PXR(X,Y-3,4,1,"#e8945a"):"")},
+{k:"books",x:33,y:12,w:2,h:1,t:2,ic:"📚",n:"oBooks",acts:()=>[["📚",gs(t("studyL"),cur),"s:study"],["🏆",t("rAtt"),"p:att"]],
+ d:(X,Y)=>PXR(X,Y-16,16,24,"#b98450")+[0,1,2].map(r=>PXR(X+1,Y-15+r*7,14,6,"#8b5a3c")+["#e8608f","#6c8fe6","#ffd45c","#5fbf72","#a487c9","#ff9f43"].map((c,i)=>PXR(X+2+i*2,Y-14+r*7+(i+r)%2,2,5-(i+r)%2,c)).join("")).join("")},
+{k:"catbed",x:34,y:16,w:1,h:1,b:0,ic:"🐱",n:"oCatBed",dot:()=>!!catNeed(),acts:()=>[["🐱",t("rCat"),"p:cat"],["💗",gs(t("luluL"),cur),"s:lulu"],["🐾",t("pets"),"p:pets"]],
+ d:(X,Y)=>PXR(X,Y+3,8,5,"#f59ab9")+PXR(X+1,Y+4,6,3,"#fbd3e4")+PXR(X+9,Y-6,2,13,"#d9a066")+PXR(X+8,Y-7,4,2,"#c98b5b")+PXR(X+8,Y+6,4,2,"#c98b5b")+PXR(X+10,Y-3,1,1,"#ffd45c")},
+{k:"fish",x:26,y:17,w:2,h:1,t:1,ic:"🐠",n:"oFish",on:()=>wOwn("fish"),acts:()=>[["🐾",t("pets"),"p:pets"]],
+ d:(X,Y)=>PXR(X,Y+2,16,6,"#8b5a3c")+PXR(X+1,Y-6,14,8,"#9fd8f5")+PXR(X+1,Y-6,14,1,"#cfe9f5")+PXR(X+4,Y-3,3,2,"#ff9f43")+PXR(X+10,Y-4,3,2,"#e8608f")+PXR(X+7,Y-2,1,4,"#5fbf72")},
+{k:"chest",x:31,y:17,w:1,h:1,ic:"💝",n:"oChest",on:()=>wOwn("chest"),acts:()=>[["📸",t("album"),"p:album"]],
+ d:(X,Y)=>PXR(X,Y+1,8,7,"#c98b5b")+PXR(X,Y,8,2,"#a8703f")+PXR(X+3,Y+3,2,2,"#e8608f")+PXR(X,Y+4,8,1,"#8b5a3c")},
+{k:"mailbox",x:2,y:19,w:1,h:1,t:1,ic:"💌",n:"oMail",dot:()=>letterReady()&&D.msgs.some(m=>m.to==cur),acts:()=>[["💌",t("rMail"),"p:mail"]],
+ d:(X,Y)=>PXR(X+3,Y-2,2,10,"#8b5a3c")+PXR(X,Y-8,8,6,"#e8608f")+PXR(X,Y-8,8,1,"#f59ab9")+PXR(X+1,Y-6,4,1,"#b14d78")+PXR(X+7,Y-11,1,5,letterReady()&&D.msgs.some(m=>m.to==cur)?"#ffd45c":"#b0bec5")},
+{k:"box",x:7,y:19,w:1,h:1,ic:"📦",n:"oBox",on:()=>((D.home.box||{})[cur])!=today(),dot:()=>true,acts:()=>[["📦",t("aptBox"),"f:box"]],
+ d:(X,Y)=>PXR(X+1,Y+1,6,6,"#c98b5b")+PXR(X+1,Y+1,6,1,"#d9a066")+PXR(X+3,Y+1,2,6,"#efe0c4")+PXR(X+2,Y-1,4,2,"#e8608f")},
+{k:"flowers",x:9,y:20,w:5,h:1,ic:"🌷",n:"oFlowers",acts:()=>[["🌷",t("gdn"),"p:gdn"],["🌳",aLab(ACTS[9]),"s:garden"]],
+ d:(X,Y)=>PXR(X,Y+2,40,6,"#8b5a3c")+PXR(X,Y+2,40,1,"#a8703f")+["#f59ab9","#ffd45c","#e8608f","#a487c9","#ff9f43","#f59ab9"].map((c,i)=>PXR(X+3+i*6,Y+1,1,3,"#4ea862")+PXR(X+2+i*6,Y-2,3,3,c)+PXR(X+3+i*6,Y-1,1,1,"#fff3a8")).join("")},
+{k:"tree",x:16,y:19,w:2,h:2,t:2,ic:"🌳",n:"",d:(X,Y)=>PXR(X+6,Y+2,4,14,"#8b5a3c")+PXR(X-2,Y-12,20,15,"#5fbf72")+PXR(X,Y-14,16,2,"#5fbf72")+PXR(X+1,Y-11,6,4,"#7fd18d")+PXR(X+11,Y-6,3,2,"#4ea862")+PXR(X+3,Y-3,2,2,"#e8608f")+PXR(X+12,Y-10,2,2,"#e8608f")},
+{k:"gift",x:18,y:20,w:1,h:1,ic:"🎁",n:"oGift",on:()=>giftReady(),dot:()=>true,acts:()=>[["🎁",t("giftOpen"),"f:gift"]],
+ d:(X,Y)=>PXR(X+1,Y+2,6,6,"#e8608f")+PXR(X+3,Y+2,2,6,"#ffd45c")+PXR(X+1,Y+4,6,1,"#ffd45c")+PXR(X+1,Y,2,2,"#ffd45c")+PXR(X+5,Y,2,2,"#ffd45c")},
+{k:"bench",x:8,y:23,w:2,h:1,ic:"🪑",n:"oBench",on:()=>wOwn("bench"),acts:()=>[["🪑",gs(t("sitL"),cur),"s:garden"]],
+ d:(X,Y)=>PXR(X,Y-3,16,2,"#a8703f")+PXR(X,Y,16,3,"#b98450")+PXR(X+1,Y+3,2,4,"#8b5a3c")+PXR(X+13,Y+3,2,4,"#8b5a3c")},
+{k:"swing",x:21,y:22,w:2,h:2,t:1,ic:"🌳",n:"oSwing",on:()=>wOwn("swing"),acts:()=>[["🌳",aLab(ACTS[9]),"s:garden"]],
+ d:(X,Y)=>PXR(X,Y-10,1,26,"#8b5a3c")+PXR(X+15,Y-10,1,26,"#8b5a3c")+PXR(X,Y-10,16,2,"#8b5a3c")+PXR(X+4,Y-8,1,14,"#efe0c4")+PXR(X+11,Y-8,1,14,"#efe0c4")+PXR(X+3,Y+6,10,2,"#e8608f")},
+{k:"bird",x:14,y:23,w:1,h:1,t:1,ic:"🐦",n:"",on:()=>wOwn("bird"),d:(X,Y)=>PXR(X+3,Y-4,2,12,"#8b5a3c")+PXR(X+1,Y-10,6,6,"#ffd45c")+PXR(X,Y-11,8,2,"#e8608f")+PXR(X+3,Y-8,2,2,"#3b2b4d")+PXR(X+6,Y-13,2,2,"#6c8fe6")},
+{k:"pond",x:1,y:24,w:3,h:2,ic:"",n:"",d:(X,Y)=>PXR(X+2,Y+1,20,14,"#6dd5fa")+PXR(X,Y+3,24,10,"#6dd5fa")+PXR(X+4,Y+3,6,1,"#bfe6ff")+PXR(X+14,Y+8,4,3,"#5fbf72")+PXR(X+15,Y+8,1,1,"#f59ab9")},
+{k:"garage",x:27,y:19,w:8,h:3,t:1,ic:"🚗",n:"oGarage",acts:()=>[["🚗",t("dates"),"p:gar"],["🚙",gs(t("outL"),cur),"s:out"]],
+ d:(X,Y)=>PXR(X-1,Y-5,66,5,"#b14d78")+PXR(X-1,Y-5,66,1,"#c8557f")+PXR(X,Y,64,24,"#f6dbe9")+PXR(X+12,Y+6,40,18,"#cfd8e3")+[0,1,2,3].map(i=>PXR(X+12,Y+9+i*4,40,1,"#b0bec5")).join("")+PXR(X+3,Y+5,6,6,"#bfe6ff")+PXR(X+55,Y+5,6,6,"#bfe6ff")},
+{k:"car",x:29,y:22,w:3,h:2,ic:"🚗",n:"oGarage",on:()=>!wOut(),acts:()=>[["🚙",gs(t("outL"),cur),"s:out"],["🚗",t("dates"),"p:gar"]],
+ d:(X,Y)=>PXR(X+1,Y+4,22,8,"#e8608f")+PXR(X+5,Y,14,5,"#e8608f")+PXR(X+6,Y+1,5,3,"#cfe9f5")+PXR(X+13,Y+1,5,3,"#cfe9f5")+PXR(X+1,Y+7,22,1,"#b14d78")+PXR(X+21,Y+5,2,2,"#ffd45c")+PXR(X+3,Y+11,5,4,"#2b2350")+PXR(X+16,Y+11,5,4,"#2b2350")}
+];
+const wObj=k=>WOBJ.find(o=>o.k==k);
+const wOn=o=>!o.on||o.on();
+const wBean=(X,Y,a,b)=>PXR(X+1,Y+2,6,5,a)+PXR(X+2,Y+1,4,1,a)+PXR(X+2,Y+2,2,2,b);
+// is anybody doing this right now (lights the tv, the oven, the screen)
+const wSeen=a=>["rawan","yousef"].some(u=>inHouse(u)&&actOf(u)[0]==a);
+// where each of you goes for a status: cells (fractions allowed) for Rawan and Yousef, and how you're drawn
+function wSpot(a,i){const sofa=wSofa(),bench=wOwn("bench");
+const S={sleep:{o:"bed",p:"head",s:[[1.3,3.05],[2.65,3.05]]},room:{p:"stand",s:[[5,6],[7,6]]},bath:{o:"tub",p:"head",s:[[14.6,3.1],[15.9,3.1]]},
+study:{o:"desk",p:"stand",s:[[26.6,13],[28.2,13.2]]},game:{o:"bean1",p:"sit",s:[[28,6],[30,6]]},tv:{o:"bean1",p:"sit",s:[[28,6],[30,6]]},
+cook:{o:"stove",p:"stand",s:[[15.6,13],[17,13]]},lulu:{o:"catbed",p:"stand",s:[[33,16],[32,16]]},
+garden:bench?{o:"bench",p:"sit",s:[[8.1,23],[9,23]]}:{p:"stand",s:[[10,22],[12,22]]},
+liv:sofa?{p:"sit",s:[[sofa[0]+.3,sofa[1]],[sofa[0]+1.7,sofa[1]]]}:{p:"stand",s:[[4,15],[6,15]]}}[a];
+if(!S)return null;const[x,y]=S.s[i];return{x,y,p:S.p,o:S.o}}
+// cells nothing solid stands on (rugs, beanbags and bowls can be walked over)
+function wBlocked(){const B=new Set(),add=(x,y,w,h)=>{for(let dx=0;dx<w;dx++)for(let dy=0;dy<h;dy++)B.add((x+dx)+","+(y+dy))};
+WOBJ.forEach(o=>{if(o.b!==0&&!o.wall&&wOn(o))add(o.x,o.y,o.w,o.h)});
+aptList().forEach(p=>{if(!p.it.pass)add(p.x,p.y+9,p.it.w,p.it.h)});return B}
+const wFree=(x,y,B)=>wFloor(x,y)&&!B.has(x+","+y);
+// shortest walk to the nearest of the goal cells
+function wBfs(a,goals,B){const K=(x,y)=>x+","+y,G=new Set(goals.map(g=>K(g[0],g[1]))),prev=new Map([[K(a[0],a[1]),null]]),q=[a];
+while(q.length){const c=q.shift();if(G.has(K(c[0],c[1]))){const path=[];let k=K(c[0],c[1]);while(k!=null){const[x,y]=k.split(",").map(Number);path.unshift([x,y]);k=prev.get(k)}return path}
+for(const[dx,dy]of[[1,0],[-1,0],[0,1],[0,-1]]){const n=[c[0]+dx,c[1]+dy];if(!wFree(n[0],n[1],B)||prev.has(K(n[0],n[1])))continue;prev.set(K(n[0],n[1]),K(c[0],c[1]));q.push(n)}}return null}
+// the cells you can stand on to use a thing
+function wNear(x,y,w,h,pass,B){const out=[];if(pass){for(let dx=0;dx<w;dx++)for(let dy=0;dy<h;dy++)if(wFloor(x+dx,y+dy))out.push([x+dx,y+dy]);return out}
+for(let dx=-1;dx<=w;dx++)for(let dy=-1;dy<=h;dy++){const ex=dx==-1||dx==w,ey=dy==-1||dy==h;if(ex==ey)continue;const cx=x+dx,cy=y+dy;if(wFree(cx,cy,B))out.push([cx,cy])}return out}
+// where someone is drawn: on their status spot, where they walked to, or somewhere in the room the classic page says
+const WSTART={rawan:[4,15],yousef:[7,15]};
+function wPosOf(u){if(!inHouse(u))return null;const S=D.u[u].st||{},w=S.where,W=(D.home.wp||{})[u],wts=W&&W.ts||0,sts=S.ts||0,i=u=="rawan"?0:1;
+if(w&&w!="walk"&&(!W||sts>=wts)){const sp=wSpot(w,i);if(sp)return sp}
+if(W&&W.x!=null&&(w!="walk"||wts>=sts-3000)&&wFloor(W.x,W.y))return{x:W.x,y:W.y,p:"stand"};
+if(w=="walk"&&WCLS[S.room]){const[a,b,ww,hh]=WR[WCLS[S.room]];return{x:a+Math.floor(ww/2)-1+i*2,y:b+Math.floor(hh/2),p:"stand"}}
+const sp=w&&wSpot(w,i);if(sp)return sp;const s=WSTART[u];return{x:s[0],y:s[1],p:"stand"}}
+const wCell=P=>[Math.round(P.x),Math.round(P.y)];
+
+/* ---------- drawing ---------- */
+const WFL={our:"wood",liv:"wood",bath:"tile",games:"carpet",kit:"tile2",desk:"wood2",gdn:"grass"};
+const WWALL={our:["#f6dbe9","#f9e7f0"],bath:["#dff2fb","#ecf8fd"],games:["#e3d9fa","#ece5fc"],liv:["#fff1d9","#fff7e8"],kit:["#e2f4e6","#eef9f0"],desk:["#e6eefc","#f0f5fe"]};
+function wFloorArt(k){const[a,b,w,h]=WR[k],X=a*8,Y=b*8,W=w*8,H=h*8,fl=(D.home.flo||{})[k];let s="";
+if(fl&&k!="kit"&&k!="gdn"&&decOk("f",fl))return PXR(X,Y,W,H,fl[0]=="#"?fl:`url(#${fl})`);
+const st=WFL[k];
+if(st=="wood"||st=="wood2"){const c=st=="wood"?["#e6c39f","#d4ab82"]:["#dcb08a","#c99a72"];s+=PXR(X,Y,W,H,c[0]);for(let y=Y;y<Y+H;y+=4){s+=PXR(X,y+3,W,1,c[1]);for(let x=X+((y/4)%2)*12;x<X+W;x+=24)s+=PXR(x,y,1,3,c[1])}}
+else if(st=="tile"||st=="tile2"){const c=st=="tile"?["#eaf6fb","#d6ecf6"]:["#fbf3e4","#efe0c4"];s+=PXR(X,Y,W,H,c[0]);for(let y=0;y<h;y++)for(let x=(y%2);x<w;x+=2)s+=PXR(X+x*8,Y+y*8,8,8,c[1])}
+else if(st=="carpet"){s+=PXR(X,Y,W,H,"#cdbcf5");for(let y=Y+2;y<Y+H;y+=4)for(let x=X+((y-Y)%8?4:1);x<X+W;x+=8)s+=PXR(x,y,1,1,"#b9a5ee")}
+else{s+=PXR(X,Y,W,H,"#a6d99f");let r=7;for(let i=0;i<70;i++){r=(r*73+19)%997;const x=X+r%W,y=Y+(r*7)%H;s+=PXR(x,y,1,2,"#8fca86")+PXR(x+1,y+1,1,1,"#8fca86")}}
+return s}
+// a back wall: wallpaper, a stripe of light, the skirting
+function wWallArt(k,Y){const[a,,w]=WR[k],X=a*8,W=w*8,wl=(D.home.wall||{})[k],c=WWALL[k];let s="";
+if(wl&&decOk("w",wl))s+=PXR(X,Y,W,21,wl[0]=="#"?wl:`url(#${wl})`);else{s+=PXR(X,Y,W,21,c[0]);for(let x=X;x<X+W;x+=6)s+=PXR(x,Y,2,21,c[1])}
+return s+PXR(X,Y+20,W,1,"#00000014")+PXR(X,Y+21,W,3,"#c98b5b")+PXR(X,Y+23,W,1,"#a8703f")}
+function wWin(X,Y,w,h){const n=isNight(),g=n?"#2b3a78":"#bfe6ff",g2=n?"#3b4c94":"#d9f1ff";
+return PXR(X,Y,w,h,"#ffffff")+PXR(X+1,Y+1,w-2,h-2,g)+PXR(X+1,Y+1,w-2,Math.floor(h/3),g2)+PXR(X+w/2-.5,Y+1,1,h-2,"#ffffff")+PXR(X+1,Y+h/2,w-2,1,"#ffffff")+(n?PXR(X+3,Y+3,2,2,"#fff3a8")+PXR(X+w-5,Y+4,1,1,"#fff"):"")}
+function wWalls(){let s="";const cap="#8f7aa8",wt="#cdb8de";
+["our","bath","games"].forEach(k=>s+=wWallArt(k,0));["liv","kit","desk"].forEach(k=>s+=wWallArt(k,72));
+// the dividing walls between rooms, the front wall, the top of each back wall
+s+=PXR(96,0,8,144,wt)+PXR(96,0,1,144,cap)+PXR(103,0,1,144,cap)+PXR(192,0,8,144,wt)+PXR(192,0,1,144,cap)+PXR(199,0,1,144,cap);
+s+=PXR(0,72,288,2,cap)+PXR(0,144,288,8,wt)+PXR(0,144,288,1,cap)+PXR(0,151,288,1,cap);
+// doorways
+const th=(x,y)=>PXR(x*8,y*8,8,8,"#e9d6bd")+PXR(x*8,y*8,8,1,"#d4b48c");
+[[12,6],[24,6],[12,15],[24,15]].forEach(([x,y])=>s+=th(x,y));
+[10,18,30].forEach(x=>{s+=PXR(x*8,72,8,24,"#e9d6bd")+PXR(x*8-1,72,1,24,"#8b5a3c")+PXR(x*8+8,72,1,24,"#8b5a3c")+PXR(x*8-1,72,10,2,"#8b5a3c")});
+[[5,18],[19,18]].forEach(([x,y])=>{s+=PXR(x*8,y*8,8,8,"#e9d6bd")+PXR(x*8-1,y*8,1,8,"#8b5a3c")+PXR(x*8+8,y*8,1,8,"#8b5a3c")+PXR(x*8+1,y*8+9,6,3,"#e8608f")});
+// windows, a picture and a clock
+s+=wWin(50,4,14,12)+PXR(47,3,3,15,"#f59ab9")+PXR(63,3,3,15,"#f59ab9")+PXR(47,2,19,2,"#e8608f");
+s+=wWin(57,76,14,12)+wWin(154,76,14,12)+wWin(250,76,12,12)+wWin(164,4,12,12);
+s+=PXR(178,78,8,8,"#3b2b4d")+PXR(179,79,6,6,"#ffffff")+PXR(181.5,80,1,3,"#3b2b4d")+PXR(181.5,82,2,1,"#3b2b4d");
+// bought extras that live on the walls
+if(wOwn("lights"))for(let x=2;x<94;x+=6)s+=PXR(x,2+(x%12?1:0),2,2,["#ffd45c","#e8608f","#6dd5fa","#5fbf72"][(x/6|0)%4]);
+if(wOwn("fanoos"))s+=PXR(75,72,1,6,"#8b5a3c")+PXR(72,78,7,8,"#ffb02e")+PXR(73,79,5,6,"#fff3a8")+PXR(72,77,7,1,"#8b5a3c");
+if(wOwn("disco"))s+=PXR(249.5,0,1,4,"#9aa7b4")+PXR(246,4,8,8,"#cfd8e3")+PXR(247,5,2,2,"#ffffff")+PXR(250,8,2,2,"#a487c9")+PXR(251,5,2,2,"#ffd45c");
+return s}
+// rugs, chairs and paths that lie on the floor
+function wRugs(){let s=PXR(33,42,30,16,"#f7b6d2")+PXR(35,44,26,12,"#fbd3e4")+PXR(16,110,40,20,"#c9d8f7")+PXR(18,112,36,16,"#dfe8fb");
+if(wOwn("mat"))s+=PXR(121,49,14,6,"#9fd8f5")+PXR(123,50,10,1,"#ffffff")+PXR(123,53,10,1,"#ffffff");
+s+=PXR(112,121,7,7,"#d9a066")+PXR(112,119,7,2,"#b98450")+PXR(149,121,7,7,"#d9a066")+PXR(149,119,7,2,"#b98450")+PXR(215,105,10,8,"#5a4d80")+PXR(216,104,8,2,"#6c4ab6");
+for(let y=19;y<25;y++)s+=PXR(41+(y%2),y*8+2,6,4,"#e9d6bd");for(let x=6;x<31;x++)s+=PXR(x*8+1,194+(x%2),6,4,"#e9d6bd");
+// the fence along the bottom, with lights if you bought them
+s+=PXR(0,219,288,1,"#ffffff")+PXR(0,222,288,1,"#ffffff");for(let x=2;x<288;x+=8)s+=PXR(x,216,2,8,"#ffffff");
+if(wOwn("fence"))for(let x=2;x<288;x+=8)s+=PXR(x,214,2,2,["#ffd45c","#e8608f","#6dd5fa"][(x/8|0)%3]);
+if(wOwn("kite"))s+=PXR(200,158,6,6,"#e8608f")+PXR(202,156,2,10,"#ffd45c")+PXR(203,164,1,12,"#ffffff");
+return s}
+// a character in pixels, standing, sitting or just a head on a pillow
+function pxBody(u){const A=avOf(u),sk=SKIN[A.sk],hc=HAIRC[A.hc],oc=CLOTH[A.oc],long=A.hs=="long"||A.hs=="pony"||A.hs=="bob",hij=A.hs=="hijab";
+const R=[];if(long)R.push([0,2,1,5,hc],[6,2,1,5,hc]);
+if(hij)R.push([0,0,7,5,hc],[2,2,3,3,sk]);else R.push([1,0,5,2,hc],[1,2,5,3,sk],[1,2,1,1,hc],[5,2,1,1,hc]);
+R.push([1,5,5,3,oc],[0,5,1,3,oc],[6,5,1,3,oc],[2,8,1,2,"#3b3366"],[4,8,1,2,"#3b3366"]);return R}
+function wTr(P){return P.p=="head"?`translate(${(P.x*8).toFixed(1)}px,${(P.y*8).toFixed(1)}px)`:P.p=="sit"?`translate(${(P.x*8+.5).toFixed(1)}px,${(P.y*8-3).toFixed(1)}px)`:`translate(${(P.x*8+.5).toFixed(1)}px,${(P.y*8-4).toFixed(1)}px)`}
+function wChar(u,P){let R=pxBody(u);if(P.p=="head")R=R.filter(r=>r[1]<5).map(r=>[r[0],r[1],r[2],Math.min(r[3],5-r[1]),r[4]]);if(P.p=="sit")R=R.filter(r=>r[1]<8);
+const out=R.map(([a,b,w,h])=>PXR(a-.6,b-.6,w+1.2,h+1.2,"#3b2b4d")).join(""),col=R.map(([a,b,w,h,f])=>PXR(a,b,w,h,f)).join(""),sl=P.p=="head"&&actOf(u)[0]=="sleep";
+const face=sl?PXR(2,3,1,.5,"#2b2350")+PXR(4,3,1,.5,"#2b2350"):PXR(2,3,1,1,"#2b2350")+PXR(4,3,1,1,"#2b2350");
+return`<g id="w-${u}" class="wch" data-p="${P.p}" style="transform:${wTr(P)}">${P.p=="stand"?`<rect x="0" y="10.4" width="7" height="1.4" fill="#00000026"/>`:""}<g class="${P.p=="head"?"":"pxb"}" transform="scale(1.15)" style="transform-origin:3.5px 10px">${out}${col}${face}${PXR(1.5,4,1,.6,"#f7a8c4")}${PXR(4.5,4,1,.6,"#f7a8c4")}</g></g>`}
+// Lulu and the pets, drawn from the same little pixel shapes as the apartment pet
+function wCritter(id,kind,P,cls,extra){return`<g id="${id}" class="wnpc ${cls||""}" style="transform:translate(${P[0]*8+1}px,${P[1]*8+2}px)"><rect x="0" y="4.6" width="7" height="1.2" fill="#00000026"/><g class="wcb"><g transform="translate(-.5 -2) scale(1.3)">${APTPET[kind].map(([x,y,w,h])=>PXR(x-.5,y-.5,w+1,h+1,"#3b2b4d")).join("")}${petRects(kind)}${extra||""}</g></g></g>`}
+// the whole house
+function wArt(){const L=aptList(),items=WOBJ.filter(wOn);let s=`<defs>${DECOR_DEFS}</defs>`+PXR(-40,-40,368,304,isNight()?"#1d1a3e":"#cfe9c8");
+Object.keys(WR).forEach(k=>s+=wFloorArt(k));s+=wWalls()+wRugs();
+// furniture from the apartment shop lives in the living room
+const fl=[...L.filter(p=>p.it.pass).map(p=>({y:-1,s:p.it.d(p.x*8,(p.y+9)*8,p.it.w*8,p.it.h*8)}))];
+items.forEach(o=>fl.push({y:o.wall?-1:o.y+o.h,s:o.d(o.x*8,o.y*8)}));
+L.filter(p=>!p.it.pass).forEach(p=>fl.push({y:p.y+9+p.it.h,s:PXR(p.x*8+1,(p.y+9+p.it.h)*8-1,p.it.w*8-2,2,"#00000022")+p.it.d(p.x*8,(p.y+9)*8,p.it.w*8,p.it.h*8)}));
+// people and animals, sorted so whoever is lower stands in front
+["rawan","yousef"].forEach(u=>{const P=wPosOf(u);if(P)fl.push({y:P.p=="head"?99:P.y+(P.p=="sit"?1.5:1),s:wChar(u,P)})});
+const lm=luluMood();if(WL)fl.push({y:WL[1]+1,s:wCritter("w-lulu","cat",WL,lm=="nap"?"nap":lm=="joy"?"joy":"",PXR(3,3,3,.6,"#e8608f"))});
+const pet=D.home.pet&&D.home.pet.k;if(pet&&WAP)fl.push({y:WAP[1]+1,s:wCritter("w-apet",pet,WAP)});
+["chick","bunny","dog"].filter(wOwn).forEach(id=>{const P=WPP[id];if(P)fl.push({y:P[1]+1,s:wCritter("w-p-"+id,id,P)})});
+fl.sort((a,b)=>a.y-b.y).forEach(f=>s+=f.s);
+if(isNight())s+=`<rect x="0" y="152" width="288" height="72" fill="#14113a" opacity=".32"/>`;
+return s}
+function wSvg(){return`<svg class="wsvg" viewBox="0 0 288 224" width="${288*WS}" height="${224*WS}" shape-rendering="crispEdges" role="img" aria-label="${t("brand")}">${wArt()}</svg>`}
+
+/* ---------- the camera, taps and walking ---------- */
+let WS=4,WCAM=null,WD=null,WWT=null,WNT=null,WRT=null,WROOM="liv",WL=null,WAP=null,WPP={},WSAY=null;
+const wScale=()=>Math.max(3,Math.min(innerWidth/86,innerHeight/60,5));
+const WTOP=60,WBOT=70;
+// the side buttons sit on one edge, so the house can slide a little past it
+function wClamp(x,y){const W=288*WS,H=224*WS,vw=innerWidth,vh=innerHeight,sp=58,rtl=document.documentElement.dir=="rtl";
+return{x:W<=vw-sp?(vw-W)/2:Math.min(rtl?sp:0,Math.max(vw-W-(rtl?0:sp),x)),y:H<=vh-WTOP-WBOT?WTOP+(vh-WTOP-WBOT-H)/2:Math.min(WTOP,Math.max(vh-WBOT-H,y))}}
+function wCamSet(anim){const el=document.getElementById("wcam");if(!el||!WCAM)return;el.style.transition=anim?"transform .45s ease-out":"none";el.style.transform=`translate(${WCAM.x.toFixed(1)}px,${WCAM.y.toFixed(1)}px)`}
+function wLook(x,y,anim){WCAM=wClamp(innerWidth/2-(x*8+4)*WS,(innerHeight+WTOP-WBOT)/2-(y*8)*WS);wCamSet(anim)}
+function wFocus(u){const P=wPosOf(u);if(!P){toast(u==cur?gs(t("wAway"),cur):(actOf(u)[0]=="out"?t("wOutP"):t("wAwayP")).replace("{p}",nm(u)));return}snd("whoosh");wLook(P.x,P.y,true)}
+function wDown(e){if(e.button>0)return;WD={x:e.clientX,y:e.clientY,cx:WCAM.x,cy:WCAM.y,m:false};window.HOLD=true;try{e.currentTarget.setPointerCapture(e.pointerId)}catch(x){}}
+function wMove(e){if(!WD)return;const dx=e.clientX-WD.x,dy=e.clientY-WD.y;if(!WD.m&&Math.hypot(dx,dy)<9)return;WD.m=true;WCAM=wClamp(WD.cx+dx,WD.cy+dy);wCamSet(false)}
+function wUp(e){if(!WD)return;const d=WD;WD=null;window.HOLD=false;if(!d.m)wTap(e.clientX,e.clientY)}
+// what did I tap: an animal, one of us, a thing, or the floor
+function wTap(cx,cy){if(!cur)return;const ux=(cx-WCAM.x)/WS,uy=(cy-WCAM.y)/WS,gx=Math.floor(ux/8),gy=Math.floor(uy/8);
+const hitC=P=>P&&ux>=P[0]*8-1&&ux<=P[0]*8+9&&uy>=P[1]*8-2&&uy<=P[1]*8+9;
+if(hitC(WL))return wLulu(cx,cy);
+const pet=D.home.pet&&D.home.pet.k;if(pet&&hitC(WAP))return aptPetTap();
+for(const id of["chick","bunny","dog"])if(wOwn(id)&&hitC(WPP[id]))return petPet({clientX:cx,clientY:cy},id);
+for(const u of[other(),cur]){const P=wPosOf(u);if(!P)continue;const hx=P.x*8,hy=P.p=="head"?P.y*8:P.y*8-4;if(ux>=hx-1&&ux<=hx+9&&uy>=hy-1&&uy<=hy+(P.p=="head"?7:12))return u==cur?openAct():wPartner()}
+const objs=WOBJ.filter(o=>wOn(o)&&o.acts).sort((a,b)=>(b.y+b.h)-(a.y+a.h));
+for(const o of objs){const t0=o.t||0;if(gx>=o.x&&gx<o.x+o.w&&gy>=o.y-t0&&gy<o.y+o.h)return wGoUse(o)}
+const ap=aptItemAt(gx,gy-9);if(ap&&wRoomAt(gx,gy)=="liv")return wGoApt(ap);
+const B=wBlocked();if(wFree(gx,gy,B))return wWalkTo([[gx,gy]]);
+snd("tap")}
+function wHere(){const P=wPosOf(cur);if(!P)return[...WSTART[cur]];const W=(D.home.wp||{})[cur];if(P.p!="stand"&&W&&W.x!=null&&wFloor(W.x,W.y))return[W.x,W.y];return wCell(P)}
+// walk to the nearest of these cells, then do something
+function wWalkTo(goals,then){const B=wBlocked();let from=wHere();if(!wFloor(from[0],from[1]))from=[...WSTART[cur]];
+if(goals.some(g=>g[0]==from[0]&&g[1]==from[1])){const P=wPosOf(cur);if(P&&P.p!="stand")wStep(from,true);if(then)then();return}
+const path=wBfs(from,goals,B);if(!path){snd("fail");toast(t("aptNoWay"));return}
+clearTimeout(WWT);let i=1;snd("tap");
+const step=()=>{wStep(path[i],i==1);i++;if(i<path.length)WWT=setTimeout(step,170);else WWT=setTimeout(()=>{WWT=null;wArrive();if(then)then()},190)};step()}
+// one step: remember where I am, move my little person and the camera
+function wStep(c,first){const[x,y]=c,now=Date.now();mine("wp")[cur]={x,y,ts:now};const rm=wRoomAt(x,y);
+const S=D.u[cur].st||(D.u[cur].st={});if(first||(rm&&rm!=WROOM)){if(rm)WROOM=rm;const cr=WROOM=="kit"?"liv":WROOM;if(S.where!="walk"||S.room!=cr)Object.assign(S,{where:"walk",room:cr,ts:now})}
+// getting up from the bed, the bath or a seat: draw me standing first
+let el=document.getElementById("w-"+cur);if(!el||el.dataset.p!="stand"){render();el=null}
+if(el){el.style.transition="transform .17s linear";el.style.transform=wTr({x,y,p:"stand"})}
+const bb=document.getElementById("wb-"+cur);if(bb){bb.style.left=((x*8+4)*WS)+"px";bb.style.top=((y*8-5)*WS)+"px"}
+wLook(x,y,true);const rp=document.getElementById("wroom");if(rp)rp.textContent="📍 "+t(WRN[WROOM]);save()}
+function wArrive(){const P=wPosOf(cur);if(P)WROOM=wRoomAt(...wCell(P))||WROOM}
+// use a thing: walk next to it, then show what you can do there
+function wGoUse(o){const B=wBlocked(),g=wNear(o.x,o.y,o.w,o.h,o.b===0,B);if(!g.length)return wUse(o);wWalkTo(g,()=>wUse(o))}
+function wUse(o){const A=o.acts().filter(Boolean);hintDone();if(A.length==1&&A[0][2][0]=="p")return wDo(A[0][2]);
+sheet("wov",`<h2 style="margin-top:0">${o.ic} ${t(o.n)}</h2><div class="acts">${A.map(([e,l,a])=>`<button onclick="wDo('${a}')"><b>${e}</b>${l}</button>`).join("")}</div>`)}
+function wGoApt(p){const B=wBlocked(),g=wNear(p.x,p.y+9,p.it.w,p.it.h,!!p.it.pass,B),use=()=>{if(p.k=="a_egg"&&!(D.home.pet&&D.home.pet.k))return aptEgg();
+const A=[p.k=="a_sofa"?["🛋️",gs(t("sitL"),cur),"s:liv"]:null,p.k=="a_tv"?["📺",gs(t("tvL"),cur),"s:tv"]:null,p.k=="a_shelf"?["📚",gs(t("studyL"),cur),"s:study"]:null,["🧱",t("wArr"),"p:apt"]].filter(Boolean);
+hintDone();sheet("wov",`<h2 style="margin-top:0">${iName(p.it)}</h2><div class="acts">${A.map(([e,l,a])=>`<button onclick="wDo('${a}')"><b>${e}</b>${l}</button>`).join("")}</div>`)};
+if(!g.length)return use();wWalkTo(g,use)}
+// do it: open a page, set what I'm doing, or something small right here
+function wDo(a){document.getElementById("wov")?.remove();const[ty,v]=a.split(":");
+if(ty=="p"){if(v=="quiz"){GM="quiz";return go("games")}if(v=="games")GM=null;if(v=="album")ALV=0;return go(v)}
+if(ty=="s"){snd("pop");return setSt("where",v)}
+const F={gift:()=>openGift(),box:()=>aptBox(),feed:()=>{D.cat.xp+=2;const g=earn("feed",1,1);logAct("eat");snd("meow");hrt();toast(t("yum")+(g?" · 🪙 +"+g:""));save();render()},
+teddy:()=>{snd("pop");hrt();toast("🧸 💗")},hug:()=>{hug();render()},go:()=>wGoPartner()};F[v]&&F[v]()}
+// tapping Lulu: wake her up, or pet her
+function wLulu(cx,cy){const e={clientX:cx,clientY:cy,stopPropagation(){}};luluMood()=="nap"?wakeLulu(e):petLulu(e)}
+function wPartner(){const o=other(),a=actOf(o),S=D.u[o].st||{},say=wSayOf(o);
+sheet("wov",`<div style="display:flex;gap:12px;align-items:center"><span class="wpf">${faceSvg(o)}</span><div><h2 style="margin:0">${nm(o)}</h2><p class="mut" style="margin:2px 0">${a[0]=="walk"?"🚶 "+t(WRN[wRoomAt(...wCell(wPosOf(o)||{x:4,y:15}))||"liv"]):a[1]+" "+aLab(a)}${S.ts?" · "+ago(S.ts):""}</p>${say?`<div class="bubble" style="margin:4px 0 0">💬 ${esc(say)}</div>`:""}</div></div><div class="acts" style="margin-top:12px"><button onclick="wDo('f:hug')"><b>🤗</b>${t("hug")}</button><button onclick="wDo('f:go')"><b>🚶</b>${t("goTo").replace("{p}",nm(o))}</button><button onclick="document.getElementById('wov')?.remove();document.getElementById('wsay')?.focus()"><b>💬</b>${gs(t("sayL"),cur)}</button></div>`)}
+function wGoPartner(){const P=wPosOf(other());if(!P)return;const c=wCell(P),B=wBlocked(),g=wNear(c[0],c[1],1,1,false,B);if(g.length)wWalkTo(g,()=>{snd("ding");toast(t("meetT"))})}
+// the status sheet in the game: walk to where you'll be, then set it
+function wPickAct(a){document.getElementById("aov")?.remove();const i=cur=="rawan"?0:1,sp=wSpot(a,i);hintDone();
+const done=()=>{snd("pop");setSt("where",a)};
+if(a=="out"){const c=wObj("car"),B=wBlocked();const g=wNear(c.x,c.y,c.w,c.h,false,B);return g.length?wWalkTo(g,done):done()}
+if(!sp)return done();const B=wBlocked();let g=[];if(sp.o){const o=wObj(sp.o);g=wNear(o.x,o.y,o.w,o.h,o.b===0,B)}else{const c=wCell(sp);if(wFree(c[0],c[1],B))g=[c]}
+if(a=="liv"){const s=wSofa();if(s)g=wNear(s[0],s[1],3,1,false,B)}
+g.length?wWalkTo(g,done):done()}
+// little speech bubbles: what you say stays above your head for five minutes
+const wSayOf=u=>{const s=(D.u[u].st||{}).say;return s&&s.t&&Date.now()-s.ts<5*6e4?s.t:""};
+function wSay(){const el=document.getElementById("wsay");if(!el)return;const v=el.value.trim().slice(0,60);if(!v)return;const S=D.u[cur].st||(D.u[cur].st={});S.say={t:v,ts:Date.now()};el.value="";el.blur();snd("pop");save();render()}
+function wSayCheck(){if(!dataOk)return;const s=(D.u[other()].st||{}).say,ts=s&&s.ts||0;if(WSAY==null){WSAY=ts;return}if(ts>WSAY){WSAY=ts;if(Date.now()-ts<5*6e4&&s.t){snd("ding");toast(NM[other()].ic+" "+nm(other())+": "+s.t)}}}
+// the HTML layer on top of the house: speech bubbles and little signs on the things that have news
+function wTags(){let s="";const tag=(x,y,html,cls,id)=>`<div ${id?`id="${id}"`:""} class="wtag ${cls||""}" style="left:${(x*WS).toFixed(1)}px;top:${(y*WS).toFixed(1)}px">${html}</div>`;
+// when you two stand close, the second bubble goes a little higher so they don't cover each other
+const bub=[];["rawan","yousef"].forEach(u=>{const P=wPosOf(u);if(!P)return;const say=wSayOf(u),a=actOf(u),ic=a[0]!="walk"&&a[0]!="liv"&&a[0]!="room"?a[1]:"";let top=P.p=="head"?P.y*8-2:P.p=="sit"?P.y*8-4:P.y*8-5;const x=P.x*8+4;
+if(!say&&!ic)return;const near=bub.find(b=>Math.abs(b.x-x)*WS<130&&Math.abs(b.top-top)<10);if(near)top=Math.min(top,near.top)-26/WS;bub.push({x,top});
+s+=tag(x,top,say?esc(say):ic,say?"say":"ic","wb-"+u)});
+WOBJ.filter(o=>wOn(o)&&o.dot&&o.dot()).forEach(o=>s+=tag((o.x+o.w/2)*8,o.wall?o.y*8+4:(o.y-(o.t||0))*8-1,o.ic,"hot"));
+if(!aptList().length)s+=`<button class="wtag hint" style="left:${(48*WS).toFixed(1)}px;top:${(101*WS).toFixed(1)}px" onpointerdown="event.stopPropagation()" onpointerup="event.stopPropagation()" onclick="go('apt')">🧱 ${t("wArr")}</button>`;
+const lm=luluMood();if(WL&&LM[lm])s+=tag(WL[0]*8+4,WL[1]*8-1,LM[lm],"ic","wb-lulu");
+return s}
+// the animals move around on their own every couple of seconds
+function wNpcInit(){const B=wBlocked();if(!WL)WL=[32,16];if(D.home.pet&&D.home.pet.k&&!WAP){const s=aptSpot();WAP=[s[0],s[1]+9]}
+["chick","bunny","dog"].forEach((id,i)=>{if(wOwn(id)&&!WPP[id])WPP[id]=[6+i*5,25+(i%2)]})}
+function wWander(P,room,B){const opts=[[1,0],[-1,0],[0,1],[0,-1]].map(([dx,dy])=>[P[0]+dx,P[1]+dy]).filter(([x,y])=>wFree(x,y,B)&&(!room||wRoomAt(x,y)==room));return opts.length?opts[Math.floor(Math.random()*opts.length)]:P}
+function wToward(P,T,B){if(!T)return P;const g=wNear(T[0],T[1],1,1,false,B);if(g.some(c=>c[0]==P[0]&&c[1]==P[1]))return P;const path=wBfs(P,g,B);return path&&path.length>1?path[1]:P}
+function wNpcTick(){if(!GMODE||!document.getElementById("wcam")){clearInterval(WNT);return}const B=wBlocked(),lm=luluMood();
+const mv=(id,P,dx,dy)=>{const el=document.getElementById(id);if(el)el.style.transform=`translate(${P[0]*8+1+(dx||0)}px,${P[1]*8+2+(dy||0)}px)`};
+if(WL){const me=wPosOf(cur),po=wPosOf(other());WL=lm=="nap"?[34,16]:lm=="hugme"&&me?wToward(WL,wCell(me),B):lm=="hugthem"&&po?wToward(WL,wCell(po),B):Math.random()<.6?wWander(WL,null,B):WL;mv("w-lulu",WL);
+const b=document.getElementById("wb-lulu");if(b){b.style.left=((WL[0]*8+4)*WS)+"px";b.style.top=((WL[1]*8-1)*WS)+"px"}}
+if(WAP&&Math.random()<.6){WAP=wWander(WAP,"liv",B);mv("w-apet",WAP)}
+for(const id in WPP)if(wOwn(id)&&Math.random()<.6){WPP[id]=wWander(WPP[id],"gdn",B);mv("w-p-"+id,WPP[id])}}
+function wNpcGo(){clearInterval(WNT);WNT=setInterval(wNpcTick,1800)}
+// a hint at the bottom until you've used something once
+let WHINT=(()=>{try{return localStorage.getItem("olw_wh")!="1"}catch(e){return true}})();
+function hintDone(){if(!WHINT)return;WHINT=false;try{localStorage.setItem("olw_wh","1")}catch(e){}document.getElementById("whint")?.remove()}
+
+/* ---------- the screen around the house ---------- */
+function wHud(){const o=other(),ev=eventsOn(today()),mt=memToday().n,nu=unseenNudges(),qn=!!qTheirs()&&!qMine();
+const face=u=>{const m=MOODS.find(x=>x[1]==recentMood(u)),away=!wPosOf(u);return`<button class="wf ${u==o?(online(o)?"on":"off"):"me"}" onclick="wFocus('${u}')" aria-label="${nm(u)}">${faceSvg(u)}${m?`<i>${m[0]}</i>`:away&&u==o?`<i>${actOf(o)[0]=="out"?"🚗":"💤"}</i>`:""}</button>`};
+const side=[["☀️",t("today"),"go('today')",todayDot()],["📋",t("tasks"),"go('desk')",false],["🎮",t("games"),"GM=null;go('games')",myXoTurn()||qn],["💌",t("rMail"),"go('mail')",letterReady()&&D.msgs.some(m=>m.to==cur)],["📸",t("album"),"ALV=0;go('album')",mt>0],["🧱",t("apt"),"go('apt')",((D.home.box||{})[cur])!=today()],["✨",t("more"),"go('more')",false]];
+const ban=[nu?`<button onclick="go('liv')">💗 ${t("wNew").replace("{p}",nm(o))}</button>`:"",ev.length?`<button onclick="go('events')">${t("evToday").replace("{e}",evName(ev[0]))}</button>`:"",mt?`<button onclick="ALV=0;go('album')">${t("memToday")}</button>`:""].filter(Boolean).slice(0,2).join("");
+return`<div class="whud wtop"><div class="wgrp">${face(cur)}${face(o)}<span class="wroom" id="wroom">📍 ${t(WRN[WROOM])}</span></div><div class="wgrp"><button class="wcoin" onclick="go('shop')" aria-label="${t("pts")}">🪙 <b>${bal()}</b></button><button class="wib" onclick="toggleSnd()" aria-label="${t("sound")}">${icon(SND?"snd":"mute",18)}</button><button class="wib" onclick="go('att')" aria-label="${t("settings")}">⚙️</button></div></div>`
++(ban?`<div class="wban">${ban}</div>`:"")
++`<div class="whud wside">${side.map(([e,l,f,d])=>`<button onclick="${f}" aria-label="${l}" title="${l}">${e}${d?`<i></i>`:""}</button>`).join("")}</div>`
++(WHINT?`<div class="whint" id="whint">${t("wHint")}</div>`:"")
++`<div class="whud wbot"><button class="wme" onclick="openAct()" aria-label="${t("tbSt")}">${actOf(cur)[1]}</button><input id="wsay" maxlength="60" placeholder="${gs(t("sayPh"),cur)}" onkeydown="if(event.key=='Enter')wSay()" aria-label="${gs(t("sayL"),cur)}"><button class="btn" onclick="wSay()" aria-label="${t("send")}">➤</button></div>`}
+function wPanel(){return`<div class="gpan"><div class="gph"><button class="btn g" onclick="go('house')">${t("wBack")}</button><button class="wcoin" onclick="go('shop')">🪙 <b>${bal()}</b></button></div>${(VIEWS[D.tab]||houseView)()}</div>`}
+// draw the game: the house always, and a page on top when one is open
+function wRender(M){const pan=D.tab!="house"&&D.tab!="play",me=wPosOf(cur);WS=wScale();wNpcInit();wSayCheck();
+if(me)WROOM=wRoomAt(...wCell(me))||WROOM;document.body.classList.toggle("gw",!pan);
+const first=!WCAM;if(first){const P=me||{x:WSTART[cur][0],y:WSTART[cur][1]};WCAM={x:0,y:0};wLook(P.x,P.y,false)}else WCAM=wClamp(WCAM.x,WCAM.y);
+M.innerHTML=`<div id="wview" class="wview${pan?" dim":""}" onpointerdown="wDown(event)" onpointermove="wMove(event)" onpointerup="wUp(event)" onpointercancel="WD=null;window.HOLD=false"><div id="wcam" style="transform:translate(${WCAM.x.toFixed(1)}px,${WCAM.y.toFixed(1)}px)">${wSvg()}<div class="wtags">${wTags()}</div></div></div>`+(pan?wPanel():wHud());
+checkAch();if(D.tab=="draw")dInit();if(D.tab=="apt")aptPetGo();ACH_NEW=D.tab=="att"?ACH_NEW:[];ZF=null;if(!pan)wNpcGo();else clearInterval(WNT)}
+function toggleGM(){GMODE=!GMODE;WCAM=null;D.tab="house";save();snd("whoosh");render();scrollTo(0,0)}
+addEventListener("resize",()=>{if(!GMODE||!cur||!document.getElementById("wview"))return;clearTimeout(WRT);WRT=setTimeout(()=>{const a=document.activeElement;if(a&&(a.tagName=="INPUT"||a.tagName=="TEXTAREA")||document.querySelector(".ov")||window.HOLD)return;const n=wScale();if(Math.abs(n-WS)>.01||D.tab=="house"){const P=wPosOf(cur);render();if(P)wLook(P.x,P.y,false)}},200)});
+
+
 /* ================= front door (login) ================= */
 const AS={s:"loading",err:"",taken:[]};
 function loginView(){let b;
@@ -1743,12 +2106,13 @@ return`<div class="entry"><div class="fdoor"><span class="wreath">💐</span><sp
 function doLogin(){FB.login(vv("em"),document.getElementById("pw2").value)}
 
 /* ================= render ================= */
-const VIEWS={house:houseView,liv:livView,desk:deskView,cat:catView,our:ourView,cyc:cycView,games:gamesView,mail:mailView,gar:garView,att:attView,gdn:gdnView,bath:bathView,shop:shopView,av:avView,today:todayView,song:songView,draw:drawView,prm:prmView,notes:notesView,events:eventsView,album:albumView,pets:petsView,more:moreView,play:playView,apt:aptView};
+const VIEWS={house:houseView,liv:livView,desk:deskView,cat:catView,our:ourView,cyc:cycView,games:gamesView,mail:mailView,gar:garView,att:attView,gdn:gdnView,bath:bathView,shop:shopView,av:avView,today:todayView,song:songView,draw:drawView,prm:prmView,notes:notesView,events:eventsView,album:albumView,pets:petsView,more:moreView,play:playView,apt:aptView,deco:()=>`<section class="hello"><div><h1>${t("deco")} <span class="e">🎨</span></h1></div></section>`+decoPanel()};
 const todayDot=()=>giftReady()||["song","draw","prm"].some(k=>dayOf(k,other())&&!dayOf(k,cur))||(!!qTheirs()&&!qMine());
 function nav(){const n=!cur?[]:[["house","house",t("house"),unseenNudges()],["desk","tasks",t("tasks")],["today","sun",t("today"),todayDot()],["games","game",t("rGame"),myXoTurn()],["mail","mail",t("rMail"),letterReady()&&D.msgs.some(m=>m.to==cur)],["more","more",t("more")]];
 document.getElementById("nav").innerHTML=cur?n.map(x=>`<button class="${D.tab==x[0]||x[0]=="house"&&D.tab=="play"?"on":""}" onclick="${x[0]=="games"?"GM=null;":""}go('${x[0]}')" aria-label="${x[2]}">${icon(x[1])}<span>${x[2]}</span>${x[3]?`<i class="dot"></i>`:""}</button>`).join(""):"";
 const o=cur&&other();document.getElementById("top").innerHTML=cur?`<button class="brand" onclick="go('house')">${LOGO}<span>${t("brand")}</span></button><div class="tr"><button class="pts" onclick="go('shop')" aria-label="${t("pts")}">🪙 <b>${bal()}</b></button><button class="fcs" onclick="go('av')" aria-label="${t("myLook")}">${[cur,o].map(u=>{const m=MOODS.find(x=>x[1]==recentMood(u));return`<span class="fc ${u==o?online(o)?"on":"off":""}" title="${nm(u)}">${faceSvg(u)}${m?`<i>${m[0]}</i>`:""}</span>`}).join("")}</button><button class="ib" onclick="toggleSnd()" aria-label="${t("sound")}">${icon(SND?"snd":"mute",19)}</button></div>`:""}
-function render(){apply();nav();const M=document.getElementById("main");if(!cur){M.innerHTML=loginView();return}dayReset();homeTick();if(D.tab=="cyc"&&cur!="rawan")D.tab="house";M.innerHTML=(VIEWS[D.tab]||houseView)();afterRender()}
+function render(){apply();nav();const M=document.getElementById("main"),B=document.body.classList;if(!cur){B.remove("gm","gw");M.innerHTML=loginView();return}dayReset();homeTick();if(D.tab=="cyc"&&cur!="rawan")D.tab="house";
+if(GMODE){B.add("gm");return wRender(M)}B.remove("gm","gw");clearInterval(WNT);M.innerHTML=(VIEWS[D.tab]||houseView)();afterRender()}
 function afterRender(){checkAch();if(D.tab=="draw")dInit();if(D.tab=="apt")aptPetGo();if(D.tab=="play"){gSetup();clearTimeout(luT);luT=setTimeout(luluTick,2200)}ACH_NEW=D.tab=="att"?ACH_NEW:[];if(D.tab=="house"){if(ZF){zoomOut(ZF);ZF=null}clearTimeout(luT);luT=setTimeout(luluTick,2200)}else ZF=null}
 
 setInterval(()=>{if(cur&&D.u[cur].day!==today()&&!busy)render()},60000);
