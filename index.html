@@ -436,6 +436,21 @@ body.gm.gw{overflow:hidden;height:100vh;height:100dvh}
 .gpan .rhd{display:none}
 .wpf svg{width:56px;height:56px;border-radius:50%;background:#cfe7ff;display:block}
 @media(min-width:800px){.gpan{margin:24px auto;min-height:calc(100vh - 48px);border-radius:28px;padding:0 24px 40px}.gph{border-radius:28px 28px 0 0}}
+/* ================= the safe ================= */
+.hxlk{text-align:center}.hxsafe{font-size:54px;line-height:1.2;animation:bob 2.4s infinite}
+.hxlk input{width:100%;max-width:280px;text-align:center}
+.hxpend{font-weight:700;color:var(--ac)}
+.hxnew{display:flex;flex-direction:column;align-items:center;gap:2px;width:100%;border:0;border-radius:20px;padding:16px;margin:10px 0;background:linear-gradient(135deg,#f07aa4,#ff9f43);color:#fff;font:800 16px var(--fd);cursor:pointer;box-shadow:0 4px 0 #b14d7840;animation:pop2 .4s}.hxnew small{font:600 13px var(--fb);opacity:.92}
+.hxpick{display:block;text-align:center;margin:10px 0;cursor:pointer}
+.hxg{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
+.hxt{position:relative;aspect-ratio:1;border:0;border-radius:18px;background:linear-gradient(160deg,#3b2b4d,#6c4ab6);color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font:700 12px var(--fb);transition:transform .15s}.hxt:active{transform:scale(.95)}
+.hxt b{font-size:28px;line-height:1.1}.hxt span svg{position:absolute;top:6px;inset-inline-start:6px;width:24px;height:24px;border-radius:50%;background:#cfe7ff}
+.hxt.nw::after{content:"";position:absolute;top:7px;inset-inline-end:7px;width:10px;height:10px;border-radius:50%;background:#ff6b9a;box-shadow:0 0 0 2px #fff}
+.hxm{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}.hxm:last-child{border:0}.hxm b{flex:1;color:var(--mut);font-weight:600}.hxm b.ok{color:#2e9e57}
+.hxov{background:#0b0918f5;padding:16px}
+.hxbox{width:100%;max-width:560px;color:#fff;display:flex;flex-direction:column;align-items:center;gap:12px;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.hxbox .row{width:100%}.hxbox .x{color:#fff;font-size:20px}
+#hxc{max-width:100%;border-radius:14px;background:#1d1a3e;min-width:140px;min-height:140px;-webkit-touch-callout:none}#hxc.on{min-width:0;min-height:0}
 </style>
 </head>
 <body>
@@ -565,6 +580,8 @@ Object.assign(T.ar,{apt:"شقتنا",aptSub:"شقة صغيرة إلكم الثن
 Object.assign(T.en,{apt:"Our apartment",aptSub:"A little apartment for you two 🧱",aptPhone:"📱 Phone screen",aptPhoneSub:"What each of you is doing, and the last photo",aptNotePh:"What are you doing now?",aptNoteSaved:"Status saved ✓",aptHint:"Tap the floor to walk, tap things to use them",aptDecor:"✏️ Arrange",aptDone:"Done ✓",aptDecorOn:"Pick a piece from your things, then tap a spot on the floor",aptPick2:"Tap an empty spot on the floor to place it",aptPick:"Pick a new spot for it",aptPlaced:"Placed ✓",aptBlocked:"That spot is taken or off the floor",aptNoWay:"I can't get there 🚧",aptBox:"🎁 Today's box",aptBoxUsed:"You opened today's box, another one tomorrow 🎁",aptBoxGot:"🎁 You got: {i}",aptBoxAll:"You have every piece! 🪙 +10",aptShop:"Apartment shop",aptInv:"My things",aptOnFloor:"On the floor",aptNoInv:"No new pieces. Buy some in the shop below",aptBack:"↩️ Put away",aptEggHint:"Tap the egg on the floor 3 times 🥚",aptNoPet:"Buy an egg in the shop and hatch it 🐣",aptHatched:"🎉 A {k} hatched!",aptPetSub:"Walks around the apartment, tap to pet it 💗",aptPetHi:"{n} loves you both 💗",pk_cat:"Cat",pk_bunny:"Bunny",pk_dog:"Puppy",pk_chick:"Chick"});
 Object.assign(T.ar,{rKit:"المطبخ",wBack:"↩️ للبيت",wArr:"رتّب الصالة",wHint:"اضغط عالأرض لتمشي، وعالأغراض لتستعملها 🏠",sayPh:"{قول|قولي} إشي…",sayL:"احكي",send:"ابعت",wNew:"في إشي جديد من {p} 💗",wAway:"{إنت|إنتِ} برّا البيت هلأ 🚗",wOutP:"{p} برّا البيت 🚗",wAwayP:"{p} مش بالبيت هلأ",gmOn:"🎮 وضع اللعبة",gmOff:"🌐 الموقع العادي",oBed:"السرير",oWard:"الخزانة",oEasel:"لوحة الرسم",oCal:"التقويم",oTeddy:"الدبدوب",oTub:"البانيو",oSink:"المراية",oTv:"التلفزيون",oBean:"القعدة",oArc:"آلة الألعاب",oTro:"رف الكؤوس",oPoster:"المحل",oGuitar:"الغيتار",oPhotos:"حيط الصور",oRadio:"الراديو",oFridge:"البراد",oStove:"المطبخ",oTable:"طاولة السفرة",oBowl:"صحن لولو",oDesk:"المكتب",oBooks:"المكتبة",oCatBed:"زاوية لولو",oFish:"حوض السمك",oChest:"صندوق الذكريات",oMail:"صندوق البريد",oBox:"طرد على الباب",oFlowers:"حوض الورد",oGift:"هدية اليوم",oBench:"المقعد",oSwing:"الأرجوحة",oGarage:"الكراج"});
 Object.assign(T.en,{rKit:"Kitchen",wBack:"↩️ Back to the house",wArr:"Arrange the living room",wHint:"Tap the floor to walk, tap things to use them 🏠",sayPh:"Say something…",sayL:"Say",send:"Send",wNew:"Something new from {p} 💗",wAway:"You're out right now 🚗",wOutP:"{p} is out 🚗",wAwayP:"{p} isn't home right now",gmOn:"🎮 Game mode",gmOff:"🌐 Classic site",oBed:"Bed",oWard:"Wardrobe",oEasel:"Easel",oCal:"Calendar",oTeddy:"Teddy",oTub:"Bathtub",oSink:"Mirror",oTv:"TV",oBean:"Beanbag",oArc:"Arcade",oTro:"Trophy shelf",oPoster:"Shop",oGuitar:"Guitar",oPhotos:"Photo wall",oRadio:"Radio",oFridge:"Fridge",oStove:"Kitchen",oTable:"Dining table",oBowl:"Lulu's bowl",oDesk:"Desk",oBooks:"Bookshelf",oCatBed:"Lulu's corner",oFish:"Fish tank",oChest:"Memory chest",oMail:"Mailbox",oBox:"Parcel at the door",oFlowers:"Flower bed",oGift:"Today's gift",oBench:"Bench",oSwing:"Swing",oGarage:"Garage"});
+Object.assign(T.ar,{vault:"الخزنة",vaultSub:"صور إلكم الثنين وبس 🔥",oSafe:"الخزنة",hxSet:"اختاروا كلمة سر للخزنة",hxSetSub:"خبّروا بعض فيها. ما بتنحفظ بأي مكان، والصور بتتشفّر فيها قبل ما تطلع من التلفون، فما حدا بيقدر يفتحها بدونها 🔐",hxPw:"كلمة السر",hxPw2:"{أعد|أعيدي} كلمة السر",hxSave:"🔒 قفّل الخزنة",hxShort:"كلمة السر لازم تكون ٤ أحرف أو أكثر",hxMismatch:"الكلمتين مش متل بعض",hxReady:"🔒 الخزنة جاهزة. {خبّر|خبّري} {p} بكلمة السر",hxOpen:"{افتح|افتحي} الخزنة",hxWrong:"كلمة السر غلط 🙈",hxWait:"{استنّى|استنّي} شوي وجرّب كمان مرة",hxLocked:"الخزنة مقفلة 🔒",hxWaitFor:"🔥 {p} {حطلك|حطتلك} إشي جديد",hxForgot:"نسيتوا كلمة السر؟",hxReset:"بتنمسح كل الصور اللي بعتّها بالخزنة، وبتختاروا كلمة سر جديدة. متأكد؟",hxLock:"🔒 قفل",hxWorking:"لحظة… 🔐",hxSend:"🔥 {ابعت|ابعتي} صورة",hxOnce:"👁️ تنشاف مرة وحدة",hxKeep:"📌 تنحفظ بالخزنة",hxOnceD:"{p} {بيشوفها|بتشوفها} مرة وحدة، وبعدين بتنمسح من كل مكان 💨",hxKeepD:"بتضل بالخزنة، وبتفتحوها كل ما بدكم بكلمة السر",hxPick:"{اختار|اختاري} صورة",hxNote:"المتصفح ما بيقدر يمنع سكرين شوت، فخلّوها بينكم 💗",hxSent:"🔥 انبعتت",hxNewFrom:"🔥 صورة جديدة من {p}",hxOnceTag:"👁️ مرة وحدة",hxTap:"{اضغط|اضغطي} لتشوفها",hxGone:"بتنمسح لما {تسكّرها|تسكّريها}",hxGoneT:"الصورة انمسحت 💨",hxOnceMine:"هاي {بعتّها|بعتيها} مرة وحدة، ما بتنفتح عندك",hxSaved:"المحفوظة 📌",hxNone:"لسا ما في صور هون",hxMine:"اللي {بعتّها|بعتيها} مرة وحدة",hxWaiting:"ما انشافت لسا",hxSeen:"انشافت ✓",hxUnsend:"↩️ رجّعها",hxDel:"تمسح الصورة من الخزنة؟",hxDelB:"امسحها",hxFail:"ما زبطت، جرّب كمان مرة",hxNoCrypto:"هالمتصفح ما بيدعم التشفير، جرّبوا متصفح أحدث",hxBan:"🔒 في إشي جديد بالخزنة",hxNewT:"🔒 {p} {حط|حطت} إشي جديد بالخزنة"});
+Object.assign(T.en,{vault:"The safe",vaultSub:"Photos just for the two of you 🔥",oSafe:"Safe",hxSet:"Choose a password for the safe",hxSetSub:"Tell each other. It isn't saved anywhere, and photos are encrypted with it before they leave the phone, so nobody can open them without it 🔐",hxPw:"Password",hxPw2:"Password again",hxSave:"🔒 Lock the safe",hxShort:"The password needs at least 4 characters",hxMismatch:"The two don't match",hxReady:"🔒 The safe is ready. Tell {p} the password",hxOpen:"Open the safe",hxWrong:"Wrong password 🙈",hxWait:"Wait a moment and try again",hxLocked:"The safe is locked 🔒",hxWaitFor:"🔥 {p} left you something new",hxForgot:"Forgot the password?",hxReset:"All the photos you sent to the safe will be deleted, and you'll choose a new password. Sure?",hxLock:"🔒 Lock",hxWorking:"One moment… 🔐",hxSend:"🔥 Send a photo",hxOnce:"👁️ View once",hxKeep:"📌 Keep in the safe",hxOnceD:"{p} sees it once, then it's deleted everywhere 💨",hxKeepD:"It stays in the safe, open it any time with the password",hxPick:"Pick a photo",hxNote:"A browser can't block screenshots, so keep it between you 💗",hxSent:"🔥 Sent",hxNewFrom:"🔥 A new photo from {p}",hxOnceTag:"👁️ View once",hxTap:"Tap to see it",hxGone:"deleted when you close it",hxGoneT:"That photo is gone 💨",hxOnceMine:"You sent this one as view-once, it won't open for you",hxSaved:"Kept 📌",hxNone:"No photos here yet",hxMine:"Your view-once photos",hxWaiting:"Not seen yet",hxSeen:"Seen ✓",hxUnsend:"↩️ Unsend",hxDel:"Delete this photo from the safe?",hxDelB:"Delete",hxFail:"That didn't work, try again",hxNoCrypto:"This browser can't encrypt, try a newer one",hxBan:"🔒 Something new in the safe",hxNewT:"🔒 {p} left something new in the safe"});
 const STG={ar:["هريرة صغيرة","قطة يافعة","قطة أنيقة","ملكة القطط 👑"],en:["Kitten","Young cat","Stylish cat","Cat royalty 👑"]};
 // What Lulu says, by her mood (her mood follows the two of you, see luluMood)
 const CL={ar:{nap:["خرررر… 💤","عم بحلم فيكم… 😴"],hugme:["أنا هون جنبك 🧸","جبتلك دبدوبي، رح يصير أحسن 💗","خليني أعطيك حضن صغير 🐾"],hugthemM:["{p} زعلان… خلينا نروح نحضنه 🥺","رح أضل قاعدة جنب {p} لحد ما ينبسط 💗"],hugthemF:["{p} زعلانة… خلينا نروح نحضنها 🥺","رح أضل قاعدة جنب {p} لحد ما تنبسط 💗"],
@@ -652,7 +669,7 @@ const EARN=[["t",2,0,"✅","مهمة","A task"],["all",5,1,"🌙","يوم كام
 /* ================= state ================= */
 const mk=()=>[["☀️","Wake up early","الاستيقاظ مبكرًا",5],["☀️","Brush teeth","تنظيف الأسنان",5],["☀️","Drink water","شرب الماء",5],["📚","Study Mathematics","مذاكرة الرياضيات",10],["📚","Review English","مراجعة الإنجليزي",10],["💪","Exercise","تمرين رياضي",15]].map((t,i)=>({id:i,ic:t[0],en:t[1],ar:t[2],xp:t[3],done:false}));
 const G0=()=>({mem:{},fish:{},bub:{},quiz:{},gift:{},ach:{},best:{},xo:{b:Array(9).fill(""),t:"rawan",w:"",g:0,n:0,s:{}}});
-const D={lang:"ar",theme:"system",tab:"house",cat:{xp:640,name:""},u:{rawan:{xp:420,streak:8,tasks:mk(),cyc:{last:"",len:28,share:false,log:[]}},yousef:{xp:300,streak:5,tasks:mk()}},msgs:[],dates:[],nudges:[],log:[],games:G0(),home:{p:{},own:{},av:{},nt:{},song:{},draw:{},prm:{},bd:{},alb:{},pos:{},wall:{},flo:{},rel:{},pn:{},cap:{},pc:{},rx:{},voice:{},px:{},box:{},apt:{},pet:{},wp:{}}};
+const D={lang:"ar",theme:"system",tab:"house",cat:{xp:640,name:""},u:{rawan:{xp:420,streak:8,tasks:mk(),cyc:{last:"",len:28,share:false,log:[]}},yousef:{xp:300,streak:5,tasks:mk()}},msgs:[],dates:[],nudges:[],log:[],games:G0(),home:{p:{},own:{},av:{},nt:{},song:{},draw:{},prm:{},bd:{},alb:{},pos:{},wall:{},flo:{},rel:{},pn:{},cap:{},pc:{},rx:{},voice:{},px:{},box:{},apt:{},pet:{},wp:{},hx:{},hxo:{}}};
 let SND=true,GMODE=true;
 try{const s=JSON.parse(localStorage.getItem("olw_ui")||"null");if(s){D.lang=s.lang||D.lang;D.theme=s.theme||D.theme;if(s.snd===false)SND=false;if(s.gm===false)GMODE=false}}catch(e){}
 let cur=null,busy=false,editId=null,dImg="",dataOk=false;
@@ -922,10 +939,10 @@ const bc=Array.isArray(b.c)?b.c:[];if(!Array.isArray(a.c))a.c=[];
 if((b.d||"")>(a.d||"")){a.d=b.d;a.c=bc.slice()}else if(b.d==a.d)for(const k of new Set(bc)){const m=bc.filter(x=>x==k).length-cnt(a,k);for(let i=0;i<m;i++)a.c.push(k)}}
 // my own entries: this phone is the source once it has loaded; my partner's always come from the server
 for(const k of MINE)if(k!="p"){const R=r[k]||{},L=mine(k);for(const u of["rawan","yousef"]){const b=R[u];if(b===undefined)continue;
-if(u!=cur){if(live)announce(k,L[u],b);L[u]=b}else if(first||L[u]==null)L[u]=["nt","alb","cap","voice"].includes(k)?unionId(b,L[u]):b}}}
+if(u!=cur){if(live)announce(k,L[u],b);L[u]=b}else if(first||L[u]==null)L[u]=["nt","alb","cap","voice","hx"].includes(k)?unionId(b,L[u]):b}}}
 // tell me when my partner leaves something new
-function announce(k,a,b){const ids=x=>new Set((x||[]).map(n=>n.id)),fresh=["nt","alb","cap","voice"].includes(k)&&(b||[]).some(n=>!ids(a).has(n.id)),td=today();
-const msg=fresh?({nt:"noteNew",alb:"phNew",cap:"capNew",voice:"voiceNew"})[k]:k=="draw"&&b&&b.d==td&&(!a||a.d!=td||a.s!=b.s)?"drawNew":k=="song"&&b&&b.d==td&&(!a||a.d!=td||a.t!=b.t)?"songPick":"";
+function announce(k,a,b){const ids=x=>new Set((x||[]).map(n=>n.id)),fresh=["nt","alb","cap","voice","hx"].includes(k)&&(b||[]).some(n=>!ids(a).has(n.id)),td=today();
+const msg=fresh?({nt:"noteNew",alb:"phNew",cap:"capNew",voice:"voiceNew",hx:"hxNewT"})[k]:k=="draw"&&b&&b.d==td&&(!a||a.d!=td||a.s!=b.s)?"drawNew":k=="song"&&b&&b.d==td&&(!a||a.d!=td||a.t!=b.t)?"songPick":"";
 if(msg)setTimeout(()=>{snd("ding");toast(tq(msg),1)},600)}
 let BUYQ=null,BUYT=null;
 const iName=i=>i.e+" "+(D.lang=="ar"?i.ar:i.en);
@@ -946,8 +963,8 @@ return dx||dy?`<g transform="translate(${dx} ${dy})">${g}</g>`:g}).join("");
 let HPATCH=[];
 function hset(path,v){let o=D.home;for(let i=0;i<path.length-1;i++){const k=path[i];if(!o[k]||typeof o[k]!="object"||Array.isArray(o[k]))o[k]={};o=o[k]}o[path[path.length-1]]=v;HPATCH.push([path,v]);save()}
 // each of you writes only your own entry of these
-const MINE=["p","av","song","draw","prm","nt","bd","alb","cap","pc","rx","voice","px","box","wp"];
-const SHK=["own","pos","wall","flo","scene","rel","pn","frame","apt","pet"];
+const MINE=["p","av","song","draw","prm","nt","bd","alb","cap","pc","rx","voice","px","box","wp","hx","hxo"];
+const SHK=["own","pos","wall","flo","scene","rel","pn","frame","apt","pet","vault"];
 const mine=k=>{const H=D.home;H[k]=H[k]||{};return H[k]};
 const WALL0={our:"pHeart",bath:"pTile",games:"pStar",liv:"pStripe",desk:"pDot",cat:"pPaw"};
 const FLOOR0={our:"#e2b07c",bath:"#bfe0ef",games:"#b9a7e6",liv:"#d9a066",desk:"#c9925e",cat:"#c9a3e0"};
@@ -1279,7 +1296,7 @@ function enter(k){snd("whoosh");if(k=="games")GM=null;if(!RFL[k]){go(k);return}c
 function seeIt(id){const i=SHOP.find(x=>x.id==id);if(!i)return;go("house");const[x,y,w,h]=i.bb.split(" ").map(Number),W=Math.max(w*1.6,150),H=Math.max(h*1.6,110),box={x:x+w/2-W/2,y:y+h/2-H/2,w:W,h:H};
 setTimeout(()=>{const z=document.getElementById("hz");if(!z||reduced())return;clearTimeout(luT);snd("whoosh");z.classList.add("look");z.style.transform=zoomT(z,box);setTimeout(()=>{if(document.getElementById("hz")===z){z.style.transform="";z.classList.remove("look");luT=setTimeout(luluTick,1500)}},2600)},450)}
 function zoomOut(k){const z=document.getElementById("hz");if(!z||!ROOMS[k]||reduced())return;z.style.transition="none";z.style.transform=zoomT(z,k);void z.offsetWidth;z.style.transition="";requestAnimationFrame(()=>requestAnimationFrame(()=>{z.style.transform=""}))}
-function go(k){clearTimeout(WWT);WWT=null;clearInterval(WNT);clearInterval(RECT2);RECP=false;clearTimeout(APTW);clearInterval(APTT);if(k!="play"&&GW){clearTimeout(GW);GW=null;window.HOLD=false}if(k=="house"&&ROOMS[D.tab])ZF=D.tab=="cyc"?"our":D.tab;if(k!="house")DECO=false;if(k!="draw")DRW=null;if(k!="games")fishStop();if(k!="bath")bubStop();D.tab=k;render();scrollTo(0,0)}
+function go(k){if(k!="vault"&&(HXK||HXVIEW)){HXK=null;hxClose(true)}clearTimeout(WWT);WWT=null;clearInterval(WNT);clearInterval(RECT2);RECP=false;clearTimeout(APTW);clearInterval(APTT);if(k!="play"&&GW){clearTimeout(GW);GW=null;window.HOLD=false}if(k=="house"&&ROOMS[D.tab])ZF=D.tab=="cyc"?"our":D.tab;if(k!="house")DECO=false;if(k!="draw")DRW=null;if(k!="games")fishStop();if(k!="bath")bubStop();D.tab=k;render();scrollTo(0,0)}
 // Lulu wanders: walks along a floor, or slips upstairs/downstairs with a quick fade.
 const LROOMS=["cat","cat","liv","our","games","desk","bath","liv"];
 function luluTick(){clearTimeout(luT);const el=document.getElementById("lulu");if(!el||!(D.tab=="house"&&el.closest("#hz")||D.tab=="play"&&el.closest("#gcam")))return;
@@ -1297,7 +1314,7 @@ const P=k=>{const R=ROOMS[k];return`left:${((R.x+R.w/2)/6).toFixed(2)}%;top:${((
 const tags=tag(P("our"),t("rOur"),Math.round((pctOf(cur)+pctOf(o))/2)+"%")+tag(P("bath"),t("rBath"))+tag(P("games"),t("rGame"),myXoTurn()?"🎯":qn?"❓":"")+tag(P("liv"),t("rLiv"),unseenNudges()?"🔔":giftReady()?"🎁":"")+tag(P("desk"),t("rDesk"),left?"📋"+left:"✅")+tag(P("cat"),t("rCat"),need)
 +tag(at(300,150),t("rAtt"),ach?"🏆"+ach:"")+tag(at(124,540),t("rMail"),letterReady()?"💌":"")+tag(at(292,598),t("gdn"),U.streak?"🔥"+U.streak:"")+tag(at(518,530),t("rGar"),up?"🗓️"+up:"");
 const wn=week().filter(togOn).length,lm=luluMood(),ev=eventsOn(td),n=relDays(),rit=["song","draw","prm"].filter(k=>dayOf(k,cur)).length;
-const chips=[(memToday().n?`<button class="chip hot" onclick="ALV=0;go('album')">${t("memToday")}</button>`:""),`<button class="chip ${left?"":"hot"}" onclick="go('desk')">${left?"📋 "+left+" "+t("leftN"):"✅ "+t("allDone")}</button>`,`<button class="chip ${rit<3?"hot":""}" onclick="go('today')">☀️ ${t("today")} ${rit}/3</button>`,giftReady()?`<button class="chip hot" onclick="openGift(event)">${t("gift")}</button>`:"",qn?`<button class="chip hot" onclick="GM='quiz';go('games')">${t("qNew")}</button>`:"",`<button class="chip ${togOn(td)?"hot":""}" onclick="go('liv')">💞 ${t("warm")} ${wn}/7</button>`,`<button class="chip" onclick="go('gdn')">🔥 ${U.streak||0} ${t("streak")}</button>`].join("");
+const chips=[(hxNew()?`<button class="chip hot" onclick="go('vault')">${t("hxBan")}</button>`:""),(memToday().n?`<button class="chip hot" onclick="ALV=0;go('album')">${t("memToday")}</button>`:""),`<button class="chip ${left?"":"hot"}" onclick="go('desk')">${left?"📋 "+left+" "+t("leftN"):"✅ "+t("allDone")}</button>`,`<button class="chip ${rit<3?"hot":""}" onclick="go('today')">☀️ ${t("today")} ${rit}/3</button>`,giftReady()?`<button class="chip hot" onclick="openGift(event)">${t("gift")}</button>`:"",qn?`<button class="chip hot" onclick="GM='quiz';go('games')">${t("qNew")}</button>`:"",`<button class="chip ${togOn(td)?"hot":""}" onclick="go('liv')">💞 ${t("warm")} ${wn}/7</button>`,`<button class="chip" onclick="go('gdn')">🔥 ${U.streak||0} ${t("streak")}</button>`].join("");
 const lline=`<div class="lline"><span class="lic">🐱</span><div><b>${cn()}</b> ${luluLine()}</div>${lm=="nap"?`<button class="btn g" onclick="wakeLulu(event)">${t("wake")}</button>`:lm=="hugthem"?`<button class="btn" onclick="hug()">${t("hug")}</button>`:""}</div>`;
 const tb=[["🎮",t("gmOn").replace(/^\S+\s/,""),"toggleGM()"],["🧱",t("apt"),"go('apt')"],["🚶",t("play"),"go('play')"],["🙂",t("tbSt"),"openAct()"],["🎨",t("deco"),"startDeco()"],["👗",t("myLook"),"go('av')"],["🛍️",t("shop"),"go('shop')"],["🌤️",t("scene"),"openScene()"],["📸",t("tbSnap"),"snapHouse()"]];
 const tools=`<div class="tbar">${tb.map(([e,l,f])=>`<button onclick="${f}"><b>${e}</b><small>${l}</small></button>`).join("")}</div>`;
@@ -1638,7 +1655,7 @@ c.toBlob(b=>{if(!b)return;if(SNAP)URL.revokeObjectURL(SNAP.u);SNAP={b,u:URL.crea
 img.onerror=()=>toast("⚠️");img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg)}
 async function shareSnap(){if(!SNAP)return;const f=new File([SNAP.b],"our-little-home.png",{type:"image/png"});try{if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:t("brand")});return}}catch(e){if(e&&e.name=="AbortError")return}
 const a=document.createElement("a");a.href=SNAP.u;a.download="our-little-home.png";document.body.appendChild(a);a.click();a.remove()}
-function moreView(){const tl=[[GMODE?"🌐":"🎮",t(GMODE?"gmOff":"gmOn"),"toggleGM()"],["🧱",t("apt"),"go('apt')"],["🚶",t("play"),"go('play')"],["🎨",t("deco"),"startDeco()"],["🛍️",t("shop"),"go('shop')"],["👗",t("myLook"),"go('av')"],["🐾",t("pets"),"go('pets')"],["🎉",t("events"),"go('events')"],["📸",t("album"),"go('album')"],["📝",t("notes"),"go('notes')"],["🌤️",t("scene"),"openScene()"],["📷",t("snap"),"snapHouse()"],["☀️",t("today"),"go('today')"],["🚗",t("dates"),"go('gar')"],["💌",t("rMail"),"go('mail')"],["🐱",cn(),"go('cat')"],["🛋️",t("rLiv"),"go('liv')"],["🛏️",t("rOur"),"go('our')"],["🌷",t("gdn"),"go('gdn')"],["🏆",t("rAtt"),"go('att')"],["⚙️",t("settings").replace(/\s*⚙️/,""),"go('att')"]].concat(cur=="rawan"?[["🌸",t("rCyc"),"go('cyc')"]]:[]);
+function moreView(){const tl=[[GMODE?"🌐":"🎮",t(GMODE?"gmOff":"gmOn"),"toggleGM()"],["🧱",t("apt"),"go('apt')"],["🔒",t("vault"),"go('vault')"],["🚶",t("play"),"go('play')"],["🎨",t("deco"),"startDeco()"],["🛍️",t("shop"),"go('shop')"],["👗",t("myLook"),"go('av')"],["🐾",t("pets"),"go('pets')"],["🎉",t("events"),"go('events')"],["📸",t("album"),"go('album')"],["📝",t("notes"),"go('notes')"],["🌤️",t("scene"),"openScene()"],["📷",t("snap"),"snapHouse()"],["☀️",t("today"),"go('today')"],["🚗",t("dates"),"go('gar')"],["💌",t("rMail"),"go('mail')"],["🐱",cn(),"go('cat')"],["🛋️",t("rLiv"),"go('liv')"],["🛏️",t("rOur"),"go('our')"],["🌷",t("gdn"),"go('gdn')"],["🏆",t("rAtt"),"go('att')"],["⚙️",t("settings").replace(/\s*⚙️/,""),"go('att')"]].concat(cur=="rawan"?[["🌸",t("rCyc"),"go('cyc')"]]:[]);
 return`<section class="hello"><div><h1>${t("more")} <span class="e">✨</span></h1><div class="mut">${t("sMore")}</div></div></section><div class="tiles">${tl.map(([e,l,f])=>`<button class="tile" onclick="${f}"><b>${e}</b>${l}</button>`).join("")}</div>`}
 
 /* ---------- decorating: drag what you bought, pick wallpapers and floors ---------- */
@@ -1807,6 +1824,8 @@ const WOBJ=[
  d:(X,Y)=>PXR(X+2,Y+5,12,12,"#ffffff")+PXR(X+2,Y+5,12,3,"#e8608f")+PXR(X+4,Y+3,1,3,"#3b2b4d")+PXR(X+11,Y+3,1,3,"#3b2b4d")+[0,1,2].map(r=>[0,1,2,3].map(c=>PXR(X+3+c*3,Y+9+r*3,2,2,r==1&&c==2?"#e8608f":"#e3d9fa")).join("")).join("")},
 {k:"teddy",x:1,y:7,w:1,h:1,ic:"🧸",n:"oTeddy",on:()=>wOwn("teddy"),acts:()=>[["🧸",t("hug"),"f:teddy"]],
  d:(X,Y)=>PXR(X+1,Y+1,2,2,"#b98450")+PXR(X+5,Y+1,2,2,"#b98450")+PXR(X+2,Y+2,4,3,"#c98b5b")+PXR(X+1,Y+5,6,3,"#c98b5b")+PXR(X+3,Y+3,1,1,"#2b2350")+PXR(X+5,Y+3,1,1,"#2b2350")+PXR(X+3,Y+5,2,1,"#e8608f")},
+{k:"safe",x:11,y:8,w:1,h:1,ic:"🔒",n:"oSafe",dot:()=>hxNew()>0,acts:()=>[["🔒",t("vault"),"p:vault"]],
+ d:(X,Y)=>PXR(X+.4,Y-.6,7.2,8.2,"#3b2b4d")+PXR(X+1,Y,6,7,"#7d82a3")+PXR(X+1,Y,6,1,"#9aa0c0")+PXR(X+2,Y+2,4,4,"#9aa0c0")+PXR(X+3,Y+3,2,2,"#ffd45c")+PXR(X+5.4,Y+3,.8,2,"#3b2b4d")+PXR(X+1,Y+7.4,1.4,.6,"#3b2b4d")+PXR(X+5.6,Y+7.4,1.4,.6,"#3b2b4d")},
 {k:"tub",x:14,y:3,w:3,h:2,t:1,ic:"🛁",n:"oTub",acts:()=>[["🛁",t("bathL"),"s:bath"],["🫧",t("gBub"),"p:bath"]],
  d:(X,Y)=>PXR(X+11,Y-7,2,4,"#b0bec5")+PXR(X,Y-3,24,17,"#ffffff")+PXR(X,Y-3,24,1,"#cfe3ee")+PXR(X+2,Y-1,20,9,"#9fd8f5")+PXR(X+4,Y,3,2,"#fff")+PXR(X+12,Y+2,3,2,"#fff")+PXR(X+18,Y,2,2,"#fff")+PXR(X,Y+13,24,1,"#cfe3ee")+PXR(X+1,Y+14,2,2,"#b0bec5")+PXR(X+21,Y+14,2,2,"#b0bec5")},
 {k:"sink",x:19,y:3,w:1,h:1,t:2,ic:"🪞",n:"oSink",acts:()=>[["🪞",t("myLook"),"p:av"]],
@@ -2078,7 +2097,7 @@ function hintDone(){if(!WHINT)return;WHINT=false;try{localStorage.setItem("olw_w
 function wHud(){const o=other(),ev=eventsOn(today()),mt=memToday().n,nu=unseenNudges(),qn=!!qTheirs()&&!qMine();
 const face=u=>{const m=MOODS.find(x=>x[1]==recentMood(u)),away=!wPosOf(u);return`<button class="wf ${u==o?(online(o)?"on":"off"):"me"}" onclick="wFocus('${u}')" aria-label="${nm(u)}">${faceSvg(u)}${m?`<i>${m[0]}</i>`:away&&u==o?`<i>${actOf(o)[0]=="out"?"🚗":"💤"}</i>`:""}</button>`};
 const side=[["☀️",t("today"),"go('today')",todayDot()],["📋",t("tasks"),"go('desk')",false],["🎮",t("games"),"GM=null;go('games')",myXoTurn()||qn],["💌",t("rMail"),"go('mail')",letterReady()&&D.msgs.some(m=>m.to==cur)],["📸",t("album"),"ALV=0;go('album')",mt>0],["🧱",t("apt"),"go('apt')",((D.home.box||{})[cur])!=today()],["✨",t("more"),"go('more')",false]];
-const ban=[nu?`<button onclick="go('liv')">💗 ${t("wNew").replace("{p}",nm(o))}</button>`:"",ev.length?`<button onclick="go('events')">${t("evToday").replace("{e}",evName(ev[0]))}</button>`:"",mt?`<button onclick="ALV=0;go('album')">${t("memToday")}</button>`:""].filter(Boolean).slice(0,2).join("");
+const ban=[hxNew()?`<button onclick="go('vault')">${t("hxBan")}</button>`:"",nu?`<button onclick="go('liv')">💗 ${t("wNew").replace("{p}",nm(o))}</button>`:"",ev.length?`<button onclick="go('events')">${t("evToday").replace("{e}",evName(ev[0]))}</button>`:"",mt?`<button onclick="ALV=0;go('album')">${t("memToday")}</button>`:""].filter(Boolean).slice(0,2).join("");
 return`<div class="whud wtop"><div class="wgrp">${face(cur)}${face(o)}<span class="wroom" id="wroom">📍 ${t(WRN[WROOM])}</span></div><div class="wgrp"><button class="wcoin" onclick="go('shop')" aria-label="${t("pts")}">🪙 <b>${bal()}</b></button><button class="wib" onclick="toggleSnd()" aria-label="${t("sound")}">${icon(SND?"snd":"mute",18)}</button><button class="wib" onclick="go('att')" aria-label="${t("settings")}">⚙️</button></div></div>`
 +(ban?`<div class="wban">${ban}</div>`:"")
 +`<div class="whud wside">${side.map(([e,l,f,d])=>`<button onclick="${f}" aria-label="${l}" title="${l}">${e}${d?`<i></i>`:""}</button>`).join("")}</div>`
@@ -2095,6 +2114,77 @@ function toggleGM(){GMODE=!GMODE;WCAM=null;D.tab="house";save();snd("whoosh");re
 addEventListener("resize",()=>{if(!GMODE||!cur||!document.getElementById("wview"))return;clearTimeout(WRT);WRT=setTimeout(()=>{const a=document.activeElement;if(a&&(a.tagName=="INPUT"||a.tagName=="TEXTAREA")||document.querySelector(".ov")||window.HOLD)return;const n=wScale();if(Math.abs(n-WS)>.01||D.tab=="house"){const P=wPosOf(cur);render();if(P)wLook(P.x,P.y,false)}},200)});
 
 
+/* ================= the safe: photos just for the two of you, locked with a password ================= */
+// Each photo is encrypted on this phone before it leaves it: a key is made from your shared password (PBKDF2, 150k rounds)
+// and the photo is locked with AES-GCM. The password itself is never saved anywhere, so without it nobody can open them.
+const HXC="olw-vault-ok";
+let HXK=null,HXONCE=true,HXBUSY=false,HXBAD=0,HXUNTIL=0,HXVIEW=null;
+const b64=u=>{let s="";for(let i=0;i<u.length;i+=8192)s+=String.fromCharCode.apply(null,u.subarray(i,i+8192));return btoa(s)};
+const ub64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const hxOk=()=>!!(window.crypto&&crypto.subtle&&window.isSecureContext!==false);
+async function hxKey(pw,salt){const base=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveKey"]);return crypto.subtle.deriveKey({name:"PBKDF2",salt,iterations:150000,hash:"SHA-256"},base,{name:"AES-GCM",length:256},false,["encrypt","decrypt"])}
+async function hxEnc(k,bytes){const iv=crypto.getRandomValues(new Uint8Array(12)),c=new Uint8Array(await crypto.subtle.encrypt({name:"AES-GCM",iv},k,bytes));return{iv:b64(iv),c:b64(c)}}
+async function hxDec(k,o){return new Uint8Array(await crypto.subtle.decrypt({name:"AES-GCM",iv:ub64(o.iv)},k,ub64(o.c)))}
+const hxV=()=>{const V=D.home.vault;return V&&V.s&&V.c?V:null};
+const hxOpen=()=>{const V=hxV();return!!(V&&HXK&&HXK.v==V.v)};
+const hxSeen=(u,id)=>!!(((D.home.hxo||{})[u]||{})[id]);
+const hxList=u=>{const V=hxV();return V?((D.home.hx||{})[u]||[]).filter(x=>x&&x.v==V.v):[]};
+// what my partner left that I haven't opened yet
+const hxNew=()=>cur?hxList(other()).filter(x=>!hxSeen(cur,x.id)).length:0;
+const hxDate=ts=>new Date(ts).toLocaleDateString(loc0(),{day:"numeric",month:"short"});
+function hxMark(id){const m=mine("hxo");m[cur]=Object.assign({},m[cur]||{},{[id]:Date.now()});save()}
+// first time: choose the password together
+async function hxSetPw(){const a=document.getElementById("hxP1").value,b=document.getElementById("hxP2").value;
+if(a.length<4)return toast(t("hxShort"));if(a!==b)return toast(t("hxMismatch"));if(!hxOk())return toast(t("hxNoCrypto"));
+HXBUSY=true;render();try{const s=crypto.getRandomValues(new Uint8Array(16)),k=await hxKey(a,s),ck=await hxEnc(k,new TextEncoder().encode(HXC)),v=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+hset(["vault"],{s:b64(s),i:ck.iv,c:ck.c,v,by:cur,ts:Date.now()});HXK={k,v};snd("ding");toast(gs(tp("hxReady"),cur))}catch(e){console.warn(e);toast(t("hxFail"))}HXBUSY=false;render()}
+// open it: the password is right when it can unlock the little check word
+async function hxUnlock(){const V=hxV(),el=document.getElementById("hxP"),pw=el?el.value:"";if(!V||!pw)return;
+if(Date.now()<HXUNTIL)return toast(gs(t("hxWait"),cur));if(!hxOk())return toast(t("hxNoCrypto"));
+HXBUSY=true;render();let k=null;try{k=await hxKey(pw,ub64(V.s));if(new TextDecoder().decode(await hxDec(k,{iv:V.i,c:V.c}))!==HXC)k=null}catch(e){k=null}
+HXBUSY=false;if(!k){if(++HXBAD>=5){HXBAD=0;HXUNTIL=Date.now()+30000}snd("fail");toast(t("hxWrong"));render();return}
+HXBAD=0;HXK={k,v:V.v};snd("pop");hxTidy();render()}
+// my photos from an old password can't be opened any more: clear them away
+function hxTidy(){const V=hxV(),L=mine("hx"),my=L[cur]||[],old=my.filter(x=>x.v!=V.v);if(!old.length)return;
+old.forEach(x=>{window.FB&&FB.delHot&&FB.delHot(x.id).catch(()=>{})});L[cur]=my.filter(x=>x.v==V.v);save()}
+function hxLock(){HXK=null;hxClose(true);if(D.tab=="vault"&&cur)render()}
+// leaving the app or the page locks it again
+document.addEventListener("visibilitychange",()=>{if(document.hidden&&(HXK||HXVIEW))hxLock()});
+// send: shrink, encrypt, upload
+async function hxPick(inp){const f=inp.files[0];inp.value="";if(!f||!hxOpen())return;if(!window.FB||!FB.putHot){toast(t("phOff"));return}
+HXBUSY=true;render();try{let img=await shrink(f,1600,.82);if(img.length>700000)img=await shrink(f,1200,.7);if(img.length>700000)img=await shrink(f,900,.6);
+const o=await hxEnc(HXK.k,ub64(img.split(",")[1])),id=Date.now().toString(36)+Math.random().toString(36).slice(2,6),ts=Date.now();
+await FB.putHot(id,{iv:o.iv,c:o.c,by:cur,ts});const L=mine("hx");L[cur]=(L[cur]||[]).concat([{id,ts,once:HXONCE?1:0,v:HXK.v}]).slice(-120);
+save();snd("fan");hrt();toast(t("hxSent"))}catch(e){console.warn(e);toast(t("hxFail"))}HXBUSY=false;render()}
+// look at one: full screen, drawn on a canvas (no long-press save); a one-time photo is deleted from the server as soon as it's loaded
+async function hxView(u,id){if(!hxOpen()||HXVIEW)return;const it=hxList(u).find(x=>x.id==id);if(!it)return;
+if(it.once&&u==cur)return toast(gs(t("hxOnceMine"),cur));if(it.once&&hxSeen(cur,id))return;
+HXVIEW={id};const o=document.createElement("div");o.id="hxv";o.className="ov hxov";
+o.innerHTML=`<div class="hxbox" oncontextmenu="return false"><div class="row sb"><b>${it.once?t("hxOnceTag")+" · "+gs(t("hxGone"),cur):"🔥 "+nm(u)+" · "+hxDate(it.ts)}</b><button class="x" onclick="hxClose()" aria-label="✕">✕</button></div><canvas id="hxc" width="1" height="1"></canvas>${u==cur?`<button class="btn g" onclick="hxDel('${id}')">🗑️ ${t("hxDelB")}</button>`:""}</div>`;
+o.onclick=e=>{if(e.target===o)hxClose()};document.body.appendChild(o);
+try{const d=window.FB&&FB.getHot?await FB.getHot(id):null;if(!d)throw new Error("gone");const bytes=await hxDec(HXK.k,d);
+if(u!=cur){hxMark(id);if(it.once)FB.delHot(id).catch(()=>{})}
+const url=URL.createObjectURL(new Blob([bytes],{type:"image/jpeg"})),im=new Image();
+im.onload=()=>{const c=document.getElementById("hxc");if(c&&HXVIEW&&HXVIEW.id==id){const k=Math.min(1,(innerWidth-40)/im.width,(innerHeight*.72)/im.height);c.width=im.width;c.height=im.height;c.style.width=Math.round(im.width*k)+"px";c.style.height=Math.round(im.height*k)+"px";c.getContext("2d").drawImage(im,0,0);c.classList.add("on")}URL.revokeObjectURL(url)};im.src=url}
+catch(e){console.warn(e);if(u!=cur&&it.once)hxMark(id);hxClose();toast(t(e&&e.message=="gone"?"hxGoneT":"hxFail"))}}
+function hxClose(quiet){const c=document.getElementById("hxc");if(c){c.width=1;c.height=1}document.getElementById("hxv")?.remove();const was=HXVIEW;HXVIEW=null;if(was&&!quiet&&cur)render()}
+async function hxDel(id){if(!confirm(t("hxDel")))return;try{if(window.FB&&FB.delHot)await FB.delHot(id)}catch(e){console.warn(e)}const L=mine("hx");L[cur]=(L[cur]||[]).filter(x=>x.id!=id);save();hxClose(true);render()}
+// forgot the password: everything in the safe is gone for good, then choose a new one
+async function hxReset(){if(!confirm(t("hxReset")))return;for(const x of(mine("hx")[cur]||[]))try{if(window.FB&&FB.delHot)await FB.delHot(x.id)}catch(e){}
+mine("hx")[cur]=[];HXK=null;hset(["vault"],null);save();render()}
+function vaultView(){const V=hxV(),o=other();
+const h=`<section class="hello"><div><h1>${t("vault")} <span class="e">🔒</span></h1><div class="mut">${t("vaultSub")}</div></div>${hxOpen()?`<button class="dpill" onclick="hxLock()">${t("hxLock")}</button>`:""}</section>`;
+if(!hxOk())return h+`<div class="card hxlk"><div class="hxsafe">🔒</div><p>${t("hxNoCrypto")}</p></div>`;
+if(HXBUSY)return h+`<div class="card hxlk"><div class="hxsafe">🔐</div><p class="mut">${t("hxWorking")}</p></div>`;
+if(!V)return h+`<div class="card hxlk"><div class="hxsafe">🔒</div><h2>${t("hxSet")}</h2><p class="mut">${t("hxSetSub")}</p><p><input id="hxP1" type="password" autocomplete="new-password" placeholder="${t("hxPw")}"></p><p><input id="hxP2" type="password" autocomplete="new-password" placeholder="${gs(t("hxPw2"),cur)}" onkeydown="if(event.key=='Enter')hxSetPw()"></p><button class="btn big" onclick="hxSetPw()">${t("hxSave")}</button></div>`;
+if(!hxOpen()){const n=hxNew();return h+`<div class="card hxlk"><div class="hxsafe">🔒</div><h2>${t("hxLocked")}</h2>${n?`<p class="hxpend">${tq("hxWaitFor")}</p>`:""}<p><input id="hxP" type="password" autocomplete="current-password" placeholder="${t("hxPw")}" onkeydown="if(event.key=='Enter')hxUnlock()"></p><button class="btn big" onclick="hxUnlock()">${gs(t("hxOpen"),cur)}</button><p><button class="x" onclick="hxReset()">${t("hxForgot")}</button></p></div>`}
+const inbox=hxList(o).filter(x=>x.once&&!hxSeen(cur,x.id)).reverse(),kept=[...hxList(cur).map(x=>[cur,x]),...hxList(o).map(x=>[o,x])].filter(a=>!a[1].once).sort((a,b)=>b[1].ts-a[1].ts),sent=hxList(cur).filter(x=>x.once).slice(-6).reverse();
+return h+inbox.map(x=>`<button class="hxnew" onclick="hxView('${o}','${x.id}')">${tq("hxNewFrom")} · ${t("hxOnceTag")}<small>${gs(t("hxTap"),cur)} · ${hxDate(x.ts)}</small></button>`).join("")
++`<div class="card"><h2>${gs(t("hxSend"),cur)}</h2><div class="chips"><button class="chip ${HXONCE?"hot":""}" onclick="HXONCE=true;render()">${t("hxOnce")}</button><button class="chip ${HXONCE?"":"hot"}" onclick="HXONCE=false;render()">${t("hxKeep")}</button></div><p class="mut">${HXONCE?tq("hxOnceD"):t("hxKeepD")}</p><label class="btn big hxpick">📷 ${gs(t("hxPick"),cur)}<input type="file" accept="image/*" hidden onchange="hxPick(this)"></label><p class="mut" style="font-size:12px;margin-bottom:0">${t("hxNote")}</p></div>`
++`<div class="card"><h2>${t("hxSaved")}</h2>${kept.length?`<div class="hxg">${kept.map(([u,x])=>`<button class="hxt ${u!=cur&&!hxSeen(cur,x.id)?"nw":""}" onclick="hxView('${u}','${x.id}')" aria-label="${nm(u)} ${hxDate(x.ts)}"><span>${faceSvg(u)}</span><b>🔥</b><small>${hxDate(x.ts)}</small></button>`).join("")}</div>`:`<p class="mut">${t("hxNone")}</p>`}</div>`
++(sent.length?`<div class="card"><h2>${gs(t("hxMine"),cur)}</h2>${sent.map(x=>{const seen=hxSeen(o,x.id);return`<div class="hxm"><span>👁️ ${hxDate(x.ts)}</span><b class="${seen?"ok":""}">${seen?t("hxSeen"):t("hxWaiting")}</b>${seen?"":`<button class="x" onclick="hxDel('${x.id}')">${t("hxUnsend")}</button>`}</div>`}).join("")}</div>`:"")}
+
+
 /* ================= front door (login) ================= */
 const AS={s:"loading",err:"",taken:[]};
 function loginView(){let b;
@@ -2106,7 +2196,7 @@ return`<div class="entry"><div class="fdoor"><span class="wreath">💐</span><sp
 function doLogin(){FB.login(vv("em"),document.getElementById("pw2").value)}
 
 /* ================= render ================= */
-const VIEWS={house:houseView,liv:livView,desk:deskView,cat:catView,our:ourView,cyc:cycView,games:gamesView,mail:mailView,gar:garView,att:attView,gdn:gdnView,bath:bathView,shop:shopView,av:avView,today:todayView,song:songView,draw:drawView,prm:prmView,notes:notesView,events:eventsView,album:albumView,pets:petsView,more:moreView,play:playView,apt:aptView,deco:()=>`<section class="hello"><div><h1>${t("deco")} <span class="e">🎨</span></h1></div></section>`+decoPanel()};
+const VIEWS={house:houseView,liv:livView,desk:deskView,cat:catView,our:ourView,cyc:cycView,games:gamesView,mail:mailView,gar:garView,att:attView,gdn:gdnView,bath:bathView,shop:shopView,av:avView,today:todayView,song:songView,draw:drawView,prm:prmView,notes:notesView,events:eventsView,album:albumView,pets:petsView,more:moreView,play:playView,apt:aptView,vault:vaultView,deco:()=>`<section class="hello"><div><h1>${t("deco")} <span class="e">🎨</span></h1></div></section>`+decoPanel()};
 const todayDot=()=>giftReady()||["song","draw","prm"].some(k=>dayOf(k,other())&&!dayOf(k,cur))||(!!qTheirs()&&!qMine());
 function nav(){const n=!cur?[]:[["house","house",t("house"),unseenNudges()],["desk","tasks",t("tasks")],["today","sun",t("today"),todayDot()],["games","game",t("rGame"),myXoTurn()],["mail","mail",t("rMail"),letterReady()&&D.msgs.some(m=>m.to==cur)],["more","more",t("more")]];
 document.getElementById("nav").innerHTML=cur?n.map(x=>`<button class="${D.tab==x[0]||x[0]=="house"&&D.tab=="play"?"on":""}" onclick="${x[0]=="games"?"GM=null;":""}go('${x[0]}')" aria-label="${x[2]}">${icon(x[1])}<span>${x[2]}</span>${x[3]?`<i class="dot"></i>`:""}</button>`).join(""):"";
@@ -2117,7 +2207,7 @@ function afterRender(){checkAch();if(D.tab=="draw")dInit();if(D.tab=="apt")aptPe
 
 setInterval(()=>{if(cur&&D.u[cur].day!==today()&&!busy)render()},60000);
 (()=>{const b=document.createElement("div");for(let i=0;i<6;i++){const e=document.createElement("span");e.className="fh";e.textContent=["💗","✨","🌸","🐾","⭐","💜"][i];e.style.left=(i*16+Math.random()*8)+"%";e.style.animationDuration=(16+Math.random()*12)+"s";e.style.animationDelay=(-Math.random()*20)+"s";e.style.fontSize=(14+Math.random()*10)+"px";b.appendChild(e)}document.body.appendChild(b)})();
-window.APP={D,AS,MINE,takePatch:()=>HPATCH.splice(0),putPatch:a=>{HPATCH.unshift(...a)},render:()=>render(),setCur:v=>{cur=v;dataOk=false;NAP=WOKE=false;HL=false;HPATCH=[]},setOk:()=>{dataOk=true},getCur:()=>cur,pct:u=>pctOf(u),arrive:p=>arrive(p),toast,t};
+window.APP={D,AS,MINE,takePatch:()=>HPATCH.splice(0),putPatch:a=>{HPATCH.unshift(...a)},render:()=>render(),setCur:v=>{cur=v;HXK=null;dataOk=false;NAP=WOKE=false;HL=false;HPATCH=[]},setOk:()=>{dataOk=true},getCur:()=>cur,pct:u=>pctOf(u),arrive:p=>arrive(p),toast,t};
 setTimeout(()=>{if(AS.s=="loading"&&!window.FB){AS.s="out";AS.err=t("nofb");render()}},8000);
 render();
 </script>
@@ -2172,6 +2262,10 @@ async delPhoto(id){await deleteDoc(doc(db,"world","ph_"+id));await deleteDoc(doc
 async putVoice(id,d){await setDoc(doc(db,"world","vo_"+id),{a:d.a,by:d.by,ts:d.ts})},
 async getVoice(id){const x=await getDoc(doc(db,"world","vo_"+id));return x.exists()?x.data():null},
 async delVoice(id){await deleteDoc(doc(db,"world","vo_"+id))},
+// the safe: only encrypted bytes are stored (world/hx_<id>)
+async putHot(id,d){await setDoc(doc(db,"world","hx_"+id),{iv:d.iv,c:d.c,by:d.by,ts:d.ts})},
+async getHot(id){const x=await getDoc(doc(db,"world","hx_"+id));return x.exists()?x.data():null},
+async delHot(id){await deleteDoc(doc(db,"world","hx_"+id))},
 async claim(k){try{await setDoc(doc(db,"slots",k),{uid:auth.currentUser.uid});AS.s="ok";D.tab="house";start(k);A.render()}catch(x){A.toast("⚠️ "+(x.code||x.message))}}};
 </script>
 </body>
